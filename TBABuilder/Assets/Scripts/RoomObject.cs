@@ -83,7 +83,9 @@ public class RoomObject : ScriptableObject
     {
         AddToInventory,
         RemoveFromInventory,
-        KillPlayer
+        KillPlayer,
+        EquipItem,
+        RemoveEquippedItem
     }
 
     [Serializable]

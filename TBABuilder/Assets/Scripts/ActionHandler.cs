@@ -41,6 +41,12 @@ public class ActionHandler : MonoBehaviour
                         textPrompt.killPlayer();
                         textPrompt.printText("\n--YOU DIED-- (Press any button to continue)");
                         break;
+                    case RoomObject.PlayerAction.EquipItem:
+                        player.equipItem(obj);
+                        break;
+                    case RoomObject.PlayerAction.RemoveEquippedItem:
+                        player.removeEquippedItem(obj);
+                        break;
                     default:
                         Debug.Log($"Unknown PlayerAction enum at {obj.name}: you forgot to add what to do in ActionHandler!");
                         break;
@@ -119,8 +125,6 @@ public class ActionHandler : MonoBehaviour
             }
         }
     }
-
-    //private void executeSpecificAction()
 
     public void eatObject(string objName)
     {

@@ -193,8 +193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47af52a20fe59e345b6dac46775540a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStatus: 0
   inventory: []
+  equippedItems: []
 --- !u!4 &283633082
 Transform:
   m_ObjectHideFlags: 0

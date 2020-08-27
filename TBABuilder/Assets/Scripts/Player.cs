@@ -5,29 +5,22 @@ using System.Text;
 
 public class Player : MonoBehaviour
 {
-    enum Status
-    {
-        Healthy,
-        Poisoned,
-        Trapped
-    }
-
-    [SerializeField] private Status playerStatus;
     [SerializeField] private List<RoomObject> inventory;
+    [SerializeField] private List<RoomObject> equippedItems;
 
     TextPrompt textPrompt;
 
     private void Start()
     {
-        playerStatus = Status.Healthy;
         inventory = new List<RoomObject>();
+        equippedItems = new List<RoomObject>();
         textPrompt = FindObjectOfType<TextPrompt>();
     }
 
     public void addItemToInventory(RoomObject item)
     {
-        item.isPickupable = false;
-        item.PickupableFlavorText = "You're already holding the " + item.name.ToLower() + ".";
+        //item.isPickupable = false;
+        //item.PickupableFlavorText = "You're already holding the " + item.name.ToLower() + ".";
         inventory.Add(item);
     }
 
@@ -47,6 +40,7 @@ public class Player : MonoBehaviour
         if (inventory.Count == 0)
         {
             textPrompt.printText("\nYou open your pouch of items, and find that it is empty.");
+            openEquipment();
             return;
         }
 
@@ -58,5 +52,41 @@ public class Player : MonoBehaviour
         inv.Remove(inv.Length - 2, 2);
         inv.Append(".");
         textPrompt.printText(inv.ToString());
+
+        openEquipment();
+    }
+
+    public void openEquipment()
+    {
+        StringBuilder equipment = new StringBuilder("\nYour current equipped items are: ");
+        if (equippedItems.Count > 0)
+        {
+            foreach (RoomObject obj in equippedItems)
+            {
+                equipment.Append(obj.name + ", ");
+            }
+            equipment.Remove(equipment.Length - 2, 2);
+            equipment.Append(".");
+            textPrompt.printText(equipment.ToString());
+        }
+        else
+        {
+            textPrompt.printText("\nYou have no items equipped.");
+        }
+    }
+
+    public void equipItem(RoomObject equipment)
+    {
+        equippedItems.Add(equipment);
+    }
+
+    public void removeEquippedItem(RoomObject equipment)
+    {
+        equippedItems.Remove(equipment);
+    }
+
+    public List<RoomObject> getEquippedItems()
+    {
+        return equippedItems;
     }
 }
