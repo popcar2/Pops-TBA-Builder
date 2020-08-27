@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5914daa0bd6cb0447b2e55394046ccd6, type: 3}
+  m_Name: Apple
+  m_EditorClassIdentifier: 
+  isEdible: 1
+  isTalkable: 0
+  isKillable: 0
+  isSittable: 0
+  isUsable: 0
+  isPickupable: 1
+  isWearable: 0
+  edibleFlavorText: It was poisoned!
+  talkableFlavorText: 
+  killableFlavorText: 
+  sittableFlavorText: 
+  usableFlavorText: 
+  pickupableFlavorText: 
+  wearableFlavorText: 
+  edibleVars:
+    actionCategories: 00000000
+    playerActions: 00000000
+    objectActions: 03000000
+    roomActions: 01000000
+    varsToChange:
+      isEdible: 0
+      isTalkable: 0
+      isKillable: 0
+      isSittable: 0
+      isUsable: 0
+      isPickupable: 0
+      isWearable: 0
+  talkableVars:
+    actionCategories: 
+    playerActions: 
+    objectActions: 
+    roomActions: 
+    varsToChange:
+      isEdible: 0
+      isTalkable: 0
+      isKillable: 0
+      isSittable: 0
+      isUsable: 0
+      isPickupable: 0
+      isWearable: 0
+  killableVars:
+    actionCategories: 
+    playerActions: 
+    objectActions: 
+    roomActions: 
+    varsToChange:
+      isEdible: 0
+      isTalkable: 0
+      isKillable: 0
+      isSittable: 0
+      isUsable: 0
+      isPickupable: 0
+      isWearable: 0
+  sittableVars:
+    actionCategories: 
+    playerActions: 
+    objectActions: 
+    roomActions: 
+    varsToChange:
+      isEdible: 0
+      isTalkable: 0
+      isKillable: 0
+      isSittable: 0
+      isUsable: 0
+      isPickupable: 0
+      isWearable: 0
+  usableVars:
+    actionCategories: 
+    playerActions: 
+    objectActions: 
+    roomActions: 
+    varsToChange:
+      isEdible: 0
+      isTalkable: 0
+      isKillable: 0
+      isSittable: 0
+      isUsable: 0
+      isPickupable: 0
+      isWearable: 0
+  pickupVars:
+    actionCategories: 0000000002000000
+    playerActions: 0100000001000000
+    objectActions: 0300000003000000
+    roomActions: 0100000000000000
+    varsToChange:
+      isEdible: 0
+      isTalkable: 0
+      isKillable: 0
+      isSittable: 0
+      isUsable: 0
+      isPickupable: 0
+      isWearable: 0
+  wearableVars:
+    actionCategories: 
+    playerActions: 
+    objectActions: 
+    roomActions: 
+    varsToChange:
+      isEdible: 0
+      isTalkable: 0
+      isKillable: 0
+      isSittable: 0
+      isUsable: 0
+      isPickupable: 0
+      isWearable: 0

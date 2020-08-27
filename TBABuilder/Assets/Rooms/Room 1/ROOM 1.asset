@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dcd6244e17fc2f48bb2776edd8547f8, type: 3}
+  m_Name: ROOM 1
+  m_EditorClassIdentifier: 
+  realRoomObjects:
+  - {fileID: 11400000, guid: 2eb662dabeca56044ae478577783f7ae, type: 2}
+  - {fileID: 11400000, guid: 844b957890bf36f46b59b433b4b25033, type: 2}
+  - {fileID: 11400000, guid: aa80afc04818caa41a13cb66d3dc1f7d, type: 2}
+  roomObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  roomText: you are in a dungeon room, there's an apple and potion on the table.
+    Next to it is a chair.
