@@ -76,4 +76,10 @@ public class RoomTracker : MonoBehaviour
             textPrompt.printText("\n" + currentRoom.roomText);
         }
     }
+
+    public void forceChangeRoom(Room room)
+    {
+        currentRoom = room;
+        textPrompt.printText("\n" + currentRoom.roomText);
+    }
 }

@@ -176,7 +176,14 @@ public class RoomObjectEditor : Editor
             {
                 showAdditionalTextField(ref objVars[i].varsToChange.wearableFlavorText);
             }
-
+        }
+        else if (objVars[i].actionCategory == RoomObject.ActionCategory.RoomActions)
+        {
+            if (objVars[i].roomAction == RoomObject.RoomAction.ChangeRoom)
+            {
+                GUIContent content = new GUIContent("Move to room", "Instantly move to the room you've selected, regardless of where it is. However, it has to be in roomTracker's room list.");
+                objVars[i].varsToChange.nextRoom = (Room)EditorGUILayout.ObjectField(content, objVars[i].varsToChange.nextRoom, typeof(Room), true);
+            }
         }
         GUILayout.EndHorizontal();
     }

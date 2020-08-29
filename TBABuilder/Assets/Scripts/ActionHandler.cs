@@ -112,15 +112,18 @@ public class ActionHandler : MonoBehaviour
             else if (category == RoomObject.ActionCategory.RoomActions)
             {
                 RoomObject.RoomAction roomAction = objVars[i].roomAction;
-                Room currentRoom = roomTracker.getCurrentRoom();
 
                 if (roomAction == RoomObject.RoomAction.AddObjectToRoom)
                 {
-                    currentRoom.addRoomObject(obj);
+                    roomTracker.getCurrentRoom().addRoomObject(obj);
                 }
                 else if (roomAction == RoomObject.RoomAction.RemoveObjectFromRoom)
                 {
-                    currentRoom.removeRoomObject(obj);
+                    roomTracker.getCurrentRoom().removeRoomObject(obj);
+                }
+                else if (roomAction == RoomObject.RoomAction.ChangeRoom)
+                {
+                    roomTracker.forceChangeRoom(objVars[i].varsToChange.nextRoom);
                 }
             }
         }

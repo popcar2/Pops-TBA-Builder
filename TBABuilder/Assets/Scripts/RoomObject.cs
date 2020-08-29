@@ -68,6 +68,8 @@ public class RoomObject : ScriptableObject
         public string usableFlavorText;
         public string pickupableFlavorText;
         public string wearableFlavorText;
+
+        public Room nextRoom;
     }
 
     [Serializable]
@@ -114,7 +116,8 @@ public class RoomObject : ScriptableObject
     public enum RoomAction
     {
         RemoveObjectFromRoom,
-        AddObjectToRoom
+        AddObjectToRoom,
+        ChangeRoom
     }
 
     public string EdibleFlavorText { get => edibleFlavorText; set => edibleFlavorText = value; }
