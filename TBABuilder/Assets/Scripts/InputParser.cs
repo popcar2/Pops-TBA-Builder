@@ -195,6 +195,10 @@ public class InputParser : MonoBehaviour
             case "look":
                 actionHandler.printCurrentRoomText();
                 break;
+            case "move":
+            case "go":
+                roomTracker.changeRoom(words[1]);
+                break;
             // Fluff/secret commands
             case "die":
                 textPrompt.printText("\n\"Eh, guess I'll die\". You suffocate yourself to death. Not sure why you'd want to do that.");
@@ -212,26 +216,6 @@ public class InputParser : MonoBehaviour
 
         return successFlag;
     }
-
-    /* Delete this later
-    RoomObject findObjectInRoom(Room room, string objName)
-    {
-        foreach (RoomObject obj in player.getInventory())
-        {
-            if (obj.name.ToLower() == objName)
-            {
-                return obj;
-            }
-        }
-        foreach (RoomObject obj in room.getRoomObjects())
-        {
-            if (obj.name.ToLower() == objName)
-            {
-                return obj;
-            }
-        }
-        return null;
-    } */
 
     // Returns whether the operation was a success or a failure. objCheck is the bool you use to check objects, such as obj.IsEdible
     public bool printResponse(RoomObject obj, bool objCheck, string defaultSuccess, string defaultFailure, string objFlavorText)

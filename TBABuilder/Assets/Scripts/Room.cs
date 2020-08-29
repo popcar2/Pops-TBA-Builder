@@ -6,27 +6,36 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Room", order = 0)]
 public class Room : ScriptableObject
 {
-    // realRoomObjects is what the game starts with but the issue is that the game alters objects permanently.
-    // Therefore, realRoomObjects is copied into roomObjects 
-    [SerializeField] List<RoomObject> realRoomObjects;
+    // roomObjects is what the game starts with but the issue is that the game alters objects permanently.
+    // Therefore, roomObjects is copied into copiedRoomObjects 
     [SerializeField] List<RoomObject> roomObjects;
+    List<RoomObject> copiedRoomObjects;
 
-    [TextArea(1, 10)] [SerializeField] public string roomText; 
+    [TextArea(1, 10)] [SerializeField] public string roomText;
+    [NonSerialized] public List<RoomConnectionVars> roomConnections = new List<RoomConnectionVars>();
+
+
+    [Serializable]
+    public class RoomConnectionVars
+    {
+        public Room room;
+        public string roomAlias;
+    }
 
     public void prepareRoomObjects()
     {
-        roomObjects = new List<RoomObject>();
-        foreach (RoomObject obj in realRoomObjects)
+        copiedRoomObjects = new List<RoomObject>();
+        foreach (RoomObject obj in roomObjects)
         {
             RoomObject temp = Instantiate(obj);
             temp.name = obj.name;
-            roomObjects.Add(temp);
+            copiedRoomObjects.Add(temp);
         }
     }
 
     public List<RoomObject> getRoomObjects()
     {
-        return roomObjects;
+        return copiedRoomObjects;
     }
 
     public RoomObject findObjectInRoom(string objName)
@@ -43,7 +52,7 @@ public class Room : ScriptableObject
         }
 
         // Look in this room
-        foreach (RoomObject obj in roomObjects)
+        foreach (RoomObject obj in copiedRoomObjects)
         {
             if (obj.name.ToLower() == objName)
             {
@@ -56,11 +65,11 @@ public class Room : ScriptableObject
 
     public void removeRoomObject(RoomObject obj)
     {
-        roomObjects.Remove(obj);
+        copiedRoomObjects.Remove(obj);
     }
 
     public void addRoomObject(RoomObject obj)
     {
-        roomObjects.Add(obj);
+        copiedRoomObjects.Add(obj);
     }
 }

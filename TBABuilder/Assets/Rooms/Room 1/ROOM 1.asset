@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dcd6244e17fc2f48bb2776edd8547f8, type: 3}
   m_Name: ROOM 1
   m_EditorClassIdentifier: 
-  realRoomObjects:
+  roomObjects:
   - {fileID: 11400000, guid: 2eb662dabeca56044ae478577783f7ae, type: 2}
+  - {fileID: 11400000, guid: a21093cfbf19b2241ac161e755ea5640, type: 2}
   - {fileID: 11400000, guid: 844b957890bf36f46b59b433b4b25033, type: 2}
   - {fileID: 11400000, guid: aa80afc04818caa41a13cb66d3dc1f7d, type: 2}
-  - {fileID: 11400000, guid: a21093cfbf19b2241ac161e755ea5640, type: 2}
-  roomObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   roomText: you are in a dungeon room, there's an apple and potion on the table.
     Next to it is a chair.
+  roomConnections:
+  - room: {fileID: 11400000}
+    roomAlias: Very,Angry,ANgery

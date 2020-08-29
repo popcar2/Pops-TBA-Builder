@@ -29,21 +29,22 @@ public class RoomObjectEditor : Editor
         obj.isWearable = GUILayout.Toggle(obj.isWearable, "Is Wearable");
         showActionTab(ref obj.isWearable, ref obj.wearableVars);
 
+        float textAreaHeight = 30f;
         
         GUILayout.Label("Edible Flavor Text");
-        obj.EdibleFlavorText = EditorGUILayout.TextArea(obj.EdibleFlavorText, GUILayout.MinHeight(30f));
+        obj.EdibleFlavorText = EditorGUILayout.TextArea(obj.EdibleFlavorText, GUILayout.MinHeight(textAreaHeight));
         GUILayout.Label("Talkable Flavor Text");
-        obj.TalkableFlavorText = EditorGUILayout.TextArea(obj.TalkableFlavorText, GUILayout.MinHeight(30f));
+        obj.TalkableFlavorText = EditorGUILayout.TextArea(obj.TalkableFlavorText, GUILayout.MinHeight(textAreaHeight));
         GUILayout.Label("Killable Flavor Text");
-        obj.KillableFlavorText = EditorGUILayout.TextArea(obj.KillableFlavorText, GUILayout.MinHeight(30f));
+        obj.KillableFlavorText = EditorGUILayout.TextArea(obj.KillableFlavorText, GUILayout.MinHeight(textAreaHeight));
         GUILayout.Label("Sittable Flavor Text");
-        obj.SittableFlavorText = EditorGUILayout.TextArea(obj.SittableFlavorText, GUILayout.MinHeight(30f));
+        obj.SittableFlavorText = EditorGUILayout.TextArea(obj.SittableFlavorText, GUILayout.MinHeight(textAreaHeight));
         GUILayout.Label("Usable Flavor Text");
-        obj.UsableFlavorText = EditorGUILayout.TextArea(obj.UsableFlavorText, GUILayout.MinHeight(30f));
+        obj.UsableFlavorText = EditorGUILayout.TextArea(obj.UsableFlavorText, GUILayout.MinHeight(textAreaHeight));
         GUILayout.Label("Pickupable Flavor Text");
-        obj.PickupableFlavorText = EditorGUILayout.TextArea(obj.PickupableFlavorText, GUILayout.MinHeight(30f));
+        obj.PickupableFlavorText = EditorGUILayout.TextArea(obj.PickupableFlavorText, GUILayout.MinHeight(textAreaHeight));
         GUILayout.Label("Wearable Flavor Text");
-        obj.WearableFlavorText = EditorGUILayout.TextArea(obj.WearableFlavorText, GUILayout.MinHeight(30f));
+        obj.WearableFlavorText = EditorGUILayout.TextArea(obj.WearableFlavorText, GUILayout.MinHeight(textAreaHeight));
 
         base.OnInspectorGUI();
     }
@@ -67,24 +68,24 @@ public class RoomObjectEditor : Editor
                     break;
                 }
 
-                objVars[i].actionCategory = (RoomObject.ActionCategory)EditorGUILayout.EnumPopup("", objVars[i].actionCategory, GUILayout.MaxWidth(150));
+                objVars[i].actionCategory = (RoomObject.ActionCategory)EditorGUILayout.EnumPopup(GUIContent.none, objVars[i].actionCategory, GUILayout.MaxWidth(150));
 
                 // Show Player Actions
                 if (objVars[i].actionCategory == RoomObject.ActionCategory.PlayerActions)
                 {
-                    objVars[i].playerAction = (RoomObject.PlayerAction)EditorGUILayout.EnumPopup("", objVars[i].playerAction);
+                    objVars[i].playerAction = (RoomObject.PlayerAction)EditorGUILayout.EnumPopup(GUIContent.none, objVars[i].playerAction);
                 }
 
                 // Show Object Actions
                 if (objVars[i].actionCategory == RoomObject.ActionCategory.ObjectActions)
                 {
-                    objVars[i].objectAction = (RoomObject.ObjectAction)EditorGUILayout.EnumPopup("", objVars[i].objectAction);
+                    objVars[i].objectAction = (RoomObject.ObjectAction)EditorGUILayout.EnumPopup(GUIContent.none, objVars[i].objectAction);
                 }
 
                 // Show Room Actions
                 if (objVars[i].actionCategory == RoomObject.ActionCategory.RoomActions)
                 {
-                    objVars[i].roomAction = (RoomObject.RoomAction)EditorGUILayout.EnumPopup("", objVars[i].roomAction);
+                    objVars[i].roomAction = (RoomObject.RoomAction)EditorGUILayout.EnumPopup(GUIContent.none, objVars[i].roomAction);
                 }
 
                 GUILayout.EndHorizontal();
@@ -98,10 +99,6 @@ public class RoomObjectEditor : Editor
 
             if (GUILayout.Button("Add new action"))
             {
-                // Fills all lists with actions. While this means unnecessary values exist, it makes indexing a whole lot easier
-                // when they're all on the same index.
-                //fillListsWithValues(ref objVars);
-
                 RoomObject.EditorVariables newVar = new RoomObject.EditorVariables();
                 objVars.Add(newVar);
             }
@@ -109,7 +106,7 @@ public class RoomObjectEditor : Editor
         }
         else
         {
-            objVars = new List<RoomObject.EditorVariables>();
+            objVars.Clear();
         }
         GUILayout.EndVertical();
     }
@@ -193,17 +190,4 @@ public class RoomObjectEditor : Editor
     {
         textField = GUILayout.TextArea(textField);
     }
-
-    /* DELETE THIS LATER
-    private void fillListsWithValues(ref RoomObject.EditorVariables objVars)
-    {
-        RoomObject.ActionCategory category = RoomObject.ActionCategory.PlayerActions;
-        objVars.actionCategories.Add(category);
-        RoomObject.PlayerAction playerAction = RoomObject.PlayerAction.AddToInventory;
-        objVars.playerActions.Add(playerAction);
-        RoomObject.ObjectAction objectAction = RoomObject.ObjectAction.IsSittable;
-        objVars.objectActions.Add(objectAction);
-        RoomObject.RoomAction roomAction = RoomObject.RoomAction.AddObjectToRoom;
-        objVars.roomActions.Add(roomAction);
-    }*/ 
 }

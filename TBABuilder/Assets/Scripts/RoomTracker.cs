@@ -7,6 +7,8 @@ public class RoomTracker : MonoBehaviour
     [SerializeField] Room[] rooms = null;
     Room currentRoom = null;
 
+    TextPrompt textPrompt;
+
     private void Start()
     {
         currentRoom = rooms[0];
@@ -15,6 +17,8 @@ public class RoomTracker : MonoBehaviour
             // Instantiates all RoomObjects so the original doesn't get changed during runtime
             room.prepareRoomObjects();
         }
+
+        textPrompt = FindObjectOfType<TextPrompt>();
     }
 
     public Room getCurrentRoom()
@@ -25,5 +29,51 @@ public class RoomTracker : MonoBehaviour
     public RoomObject findObjectInCurrentRoom(string objName)
     {
         return currentRoom.findObjectInRoom(objName);
+    }
+
+    public void changeRoom(string roomName)
+    {
+        Room newRoom = null;
+        
+        foreach (Room.RoomConnectionVars roomConnection in currentRoom.roomConnections)
+        {
+            // No aliases
+            if (string.IsNullOrWhiteSpace(roomConnection.roomAlias))
+            {
+                if (roomName == roomConnection.room.name.ToLower())
+                {
+                    newRoom = roomConnection.room;
+                }
+            }
+
+            // Has aliases
+            else
+            {
+                string[] roomAliases = roomConnection.roomAlias.Split(',');
+                foreach (string roomAlias in roomAliases)
+                {
+                    if (roomName == roomAlias.ToLower())
+                    {
+                        newRoom = roomConnection.room;
+                        break;
+                    }
+                }
+            }
+
+            if (newRoom != null)
+            {
+                break;
+            }
+        }
+
+        if (newRoom == null)
+        {
+            textPrompt.printText($"\nWhere is \"{roomName}\"?");
+        }
+        else
+        {
+            currentRoom = newRoom;
+            textPrompt.printText("\n" + currentRoom.roomText);
+        }
     }
 }
