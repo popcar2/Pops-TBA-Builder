@@ -33,3 +33,4 @@ MonoBehaviour:
   usableVars: []
   pickupVars: []
   wearableVars: []
+  objectAliases: Potion,Potion of Healing,Healing Juice

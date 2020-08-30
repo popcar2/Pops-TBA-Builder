@@ -129,15 +129,21 @@ public class ActionHandler : MonoBehaviour
         }
     }
 
-    public void eatObject(string objName)
+    private void printIfObjectIsNull()
     {
-        RoomObject obj = inputParser.findRoomObjectPrintOtherwise(objName);
+        textPrompt.printText("\nThere is no object with that name in this room.");  
+    }
 
+    public void eatObject(RoomObject obj)
+    {
         if (obj == null)
+        {
+            printIfObjectIsNull();
             return;
+        }
 
-        string defaultSuccessText = "You eat the " + objName + ".";
-        string defaultFailText = "You can't eat the " + objName + ".";
+        string defaultSuccessText = "You eat the " + obj.name + ".";
+        string defaultFailText = "You can't eat the " + obj.name + ".";
         bool successful = inputParser.printResponse(obj, obj.isEdible, defaultSuccessText, defaultFailText, obj.EdibleFlavorText);
 
         if (successful)
@@ -145,90 +151,98 @@ public class ActionHandler : MonoBehaviour
 
     }
 
-    public void talkToPerson(string objName)
+    public void talkToPerson(RoomObject obj)
     {
-        RoomObject obj = inputParser.findRoomObjectPrintOtherwise(objName);
-
         if (obj == null)
+        {
+            printIfObjectIsNull();
             return;
+        }
 
-        string defaultSuccessText = "You talk to " + objName + ".";
-        string defaultFailText = "You can't talk to " + objName + ".";
+        string defaultSuccessText = "You talk to " + obj.name + ".";
+        string defaultFailText = "You can't talk to " + obj.name + ".";
         bool successful = inputParser.printResponse(obj, obj.isTalkable, defaultSuccessText, defaultFailText, obj.TalkableFlavorText);
 
         if (successful)
             executeActions(obj, obj.talkableVars);
     }
 
-    public void killPerson(string objName)
+    public void killPerson(RoomObject obj)
     {
-        RoomObject obj = inputParser.findRoomObjectPrintOtherwise(objName);
-
         if (obj == null)
+        {
+            printIfObjectIsNull();
             return;
+        }
 
-        string defaultSuccessText = "You kill " + objName + ".";
-        string defaultFailText = "You can't kill " + objName + ".";
+        string defaultSuccessText = "You kill " + obj.name + ".";
+        string defaultFailText = "You can't kill " + obj.name + ".";
         bool successful = inputParser.printResponse(obj, obj.isKillable, defaultSuccessText, defaultFailText, obj.KillableFlavorText);
 
         if (successful)
             executeActions(obj, obj.killableVars);
     }
 
-    public void sitOnObject(string objName)
+    public void sitOnObject(RoomObject obj)
     {
-        RoomObject obj = inputParser.findRoomObjectPrintOtherwise(objName);
-
         if (obj == null)
+        {
+            printIfObjectIsNull();
             return;
+        }
 
-        string defaultSuccessText = "You sit on the " + objName + ".";
-        string defaultFailText = "You can't sit on the the " + objName + ".";
+        string defaultSuccessText = "You sit on the " + obj.name + ".";
+        string defaultFailText = "You can't sit on the the " + obj.name + ".";
         bool successful = inputParser.printResponse(obj, obj.isSittable, defaultSuccessText, defaultFailText, obj.SittableFlavorText);
 
         if (successful)
             executeActions(obj, obj.sittableVars);
     }
 
-    public void useObject(string objName)
+    public void useObject(RoomObject obj)
     {
-        RoomObject obj = inputParser.findRoomObjectPrintOtherwise(objName);
-
         if (obj == null)
+        {
+            printIfObjectIsNull();
             return;
+        }
 
-        string defaultSuccessText = "You use the " + objName + ".";
-        string defaultFailText = "You can't use the " + objName + ".";
+        string defaultSuccessText = "You use the " + obj.name + ".";
+        string defaultFailText = "You can't use the " + obj.name + ".";
         bool successful = inputParser.printResponse(obj, obj.isUsable, defaultSuccessText, defaultFailText, obj.UsableFlavorText);
 
         if (successful)
             executeActions(obj, obj.usableVars);
     }
 
-    public void pickupObject(string objName)
+    public void pickupObject(RoomObject obj)
     {
-        RoomObject obj = inputParser.findRoomObjectPrintOtherwise(objName);
 
         if (obj == null)
+        {
+            printIfObjectIsNull();
             return;
+        }
 
-        string defaultSuccessText = "You pick up the " + objName + ".";
-        string defaultFailText = "You can't pick up the " + objName + ".";
+        string defaultSuccessText = "You pick up the " + obj.name + ".";
+        string defaultFailText = "You can't pick up the " + obj.name + ".";
         bool successful = inputParser.printResponse(obj, obj.isPickupable, defaultSuccessText, defaultFailText, obj.PickupableFlavorText);
 
         if (successful)
             executeActions(obj, obj.pickupVars);
     }
 
-    public void wearObject(string objName)
+    public void wearObject(RoomObject obj)
     {
-        RoomObject obj = inputParser.findRoomObjectPrintOtherwise(objName);
 
         if (obj == null)
+        {
+            printIfObjectIsNull();
             return;
+        }
 
-        string defaultSuccessText = "You equip the " + objName + ".";
-        string defaultFailText = "You can't equip the " + objName + ".";
+        string defaultSuccessText = "You equip the " + obj.name + ".";
+        string defaultFailText = "You can't equip the " + obj.name + ".";
         bool successful = inputParser.printResponse(obj, obj.isWearable, defaultSuccessText, defaultFailText, obj.WearableFlavorText);
 
         if (successful)

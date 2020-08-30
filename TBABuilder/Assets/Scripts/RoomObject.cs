@@ -39,6 +39,9 @@ public class RoomObject : ScriptableObject
     public List<EditorVariables> pickupVars = new List<EditorVariables>();
     public List<EditorVariables> wearableVars = new List<EditorVariables>();
 
+    // Misc variables
+    public string objectAliases;
+
     [Serializable]
     public class EditorVariables
     {

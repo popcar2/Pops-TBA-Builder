@@ -20,6 +20,7 @@ public class InputParser : MonoBehaviour
 
     private string[] trimText(string text)
     {
+        // TODO: Remove unnecessary elements of trimText since text parsing was rewritten
         StringBuilder sb = new StringBuilder();
         bool spaceFlag = false;
 
@@ -86,6 +87,55 @@ public class InputParser : MonoBehaviour
         return words;
     }
 
+    // Helper function for findObjectFromInput, to easily iterate through inventory, equipment, and objects in the room
+    private RoomObject findObjectFromList(string input, List<RoomObject> roomObjects)
+    {
+        foreach (RoomObject roomObject in roomObjects)
+        {
+            // No aliases
+            if (String.IsNullOrWhiteSpace(roomObject.objectAliases))
+            {
+                if (input.ToLower().Contains(roomObject.name.ToLower()))
+                {
+                    return roomObject;
+                }
+            }
+
+            else
+            {
+                // Has aliases
+                string[] roomObjectAliases = roomObject.objectAliases.Split(',');
+                foreach (string alias in roomObjectAliases)
+                {
+                    if (input.ToLower().Contains(alias.ToLower()))
+                    {
+                        return roomObject;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    private RoomObject findObjectFromInput(string input)
+    {
+        RoomObject foundObject = null;
+
+        foundObject = findObjectFromList(input, roomTracker.getCurrentRoom().getRoomObjects());
+
+        if (foundObject != null)
+            return foundObject;
+
+        foundObject = findObjectFromList(input, player.getInventory());
+
+        if (foundObject != null)
+            return foundObject;
+
+        foundObject = findObjectFromList(input, player.getEquippedItems());
+
+        return foundObject;
+    }
+
     public void parseInput(string input)
     {
         string[] words = trimText(input);
@@ -95,13 +145,18 @@ public class InputParser : MonoBehaviour
         // Check player commands. If one activates, return.
 
         string failText = "\nUnknown Command, type \"help\" for the list of commands";
+
         if (words.Length == 0)
         {
             textPrompt.printText(failText);
             return;
         }
 
-        bool playerCommandSuccess = parsePlayerCommands(words);
+        string command = words[0];
+        RoomObject targetObject = findObjectFromInput(input);
+
+        // parsePlayerCommands needs input to scrape room name from input when player moves.
+        bool playerCommandSuccess = parsePlayerCommands(command, input);
         if (playerCommandSuccess)
             return;
 
@@ -112,26 +167,26 @@ public class InputParser : MonoBehaviour
         }
 
         // Regular Commands: Eat, Talk, Kill, Sit, Use, Pickup, Wear
-        parseRegularCommands(words);
+        parseRegularCommands(command, targetObject);
         
     }
 
-    private void parseRegularCommands(string[] words)
+    private void parseRegularCommands(string command, RoomObject targetObject)
     {
-        switch (words[0])
+        switch (command)
         {
             // eat
             case "eat":
             case "devour":
             case "consume":
             case "drink":
-                actionHandler.eatObject(words[1]);
+                actionHandler.eatObject(targetObject);
                 break;
             // talk
             case "talk":
             case "speak":
             case "say":
-                actionHandler.talkToPerson(words[1]);
+                actionHandler.talkToPerson(targetObject);
                 break;
             // kill
             case "kill":
@@ -140,52 +195,45 @@ public class InputParser : MonoBehaviour
             case "stab":
             case "cleave":
             case "murder":
-                actionHandler.killPerson(words[1]);
+                actionHandler.killPerson(targetObject);
                 break;
             // sit
             case "sit":
             case "seat":
-                actionHandler.sitOnObject(words[1]);
+                actionHandler.sitOnObject(targetObject);
                 break;
             // use
             case "use":
             case "activate":
-                actionHandler.useObject(words[1]);
+                actionHandler.useObject(targetObject);
                 break;
             // pickup
             case "pickup":
             case "grab":
             case "pick":
             case "steal":
-                if (words[1] == "up")
-                {
-                    actionHandler.pickupObject(words[2]);
-                }
-                else
-                {
-                    actionHandler.pickupObject(words[1]);
-                }
+                actionHandler.pickupObject(targetObject);
                 break;
             // wear
             case "wear":
             case "equip":
             case "put":
-                actionHandler.wearObject(words[1]);
+                actionHandler.wearObject(targetObject);
                 break;
             // unknown command
             default:
-                textPrompt.printText("\nWhat is \"" + words[0] + "\"?");
+                textPrompt.printText("\nWhat is \"" + command + "\"?");
                 break;
         }
     }
 
     // Is a bool because the main InputParser function would know whether to keep going or return
-    private bool parsePlayerCommands(string[] words)
+    private bool parsePlayerCommands(string command, string input)
     {
         // It's easier to set successflag as true then set it as false if it went to switch's default rather than set it to true every other case
         bool successFlag = true;
 
-        switch (words[0])
+        switch (command)
         {
             case "inv":
             case "inventory":
@@ -197,7 +245,7 @@ public class InputParser : MonoBehaviour
                 break;
             case "move":
             case "go":
-                roomTracker.changeRoom(words[1]);
+                roomTracker.findRoomFromInput(input);
                 break;
             // Fluff/secret commands
             case "die":
@@ -248,17 +296,5 @@ public class InputParser : MonoBehaviour
         }
 
         return success;
-    }
-
-    public RoomObject findRoomObjectPrintOtherwise(string objName)
-    {
-        RoomObject obj = roomTracker.findObjectInCurrentRoom(objName);
-
-        if (obj == null)
-        {
-            textPrompt.printText("\nThere is no " + objName + " in this room");
-        }
-
-        return obj;
     }
 }

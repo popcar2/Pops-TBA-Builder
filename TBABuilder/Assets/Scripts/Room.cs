@@ -12,7 +12,7 @@ public class Room : ScriptableObject
     List<RoomObject> copiedRoomObjects;
 
     [TextArea(1, 10)] [SerializeField] public string roomText;
-    [NonSerialized] public List<RoomConnectionVars> roomConnections = new List<RoomConnectionVars>();
+    [HideInInspector] public List<RoomConnectionVars> roomConnections = new List<RoomConnectionVars>();
 
 
     [Serializable]

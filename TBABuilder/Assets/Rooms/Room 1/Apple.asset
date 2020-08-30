@@ -46,9 +46,11 @@ MonoBehaviour:
       usableFlavorText: 
       pickupableFlavorText: 
       wearableFlavorText: 
+      nextRoom: {fileID: 0}
   talkableVars: []
   killableVars: []
   sittableVars: []
   usableVars: []
   pickupVars: []
   wearableVars: []
+  objectAliases: 

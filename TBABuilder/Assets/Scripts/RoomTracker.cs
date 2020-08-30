@@ -31,7 +31,7 @@ public class RoomTracker : MonoBehaviour
         return currentRoom.findObjectInRoom(objName);
     }
 
-    public void changeRoom(string roomName)
+    public void findRoomFromInput(string input)
     {
         Room newRoom = null;
         
@@ -40,7 +40,7 @@ public class RoomTracker : MonoBehaviour
             // No aliases
             if (string.IsNullOrWhiteSpace(roomConnection.roomAlias))
             {
-                if (roomName == roomConnection.room.name.ToLower())
+                if (input.ToLower().Contains(roomConnection.room.name.ToLower()))
                 {
                     newRoom = roomConnection.room;
                 }
@@ -52,7 +52,7 @@ public class RoomTracker : MonoBehaviour
                 string[] roomAliases = roomConnection.roomAlias.Split(',');
                 foreach (string roomAlias in roomAliases)
                 {
-                    if (roomName == roomAlias.ToLower())
+                    if (input.ToLower().Contains(roomAlias.ToLower()))
                     {
                         newRoom = roomConnection.room;
                         break;
@@ -68,7 +68,7 @@ public class RoomTracker : MonoBehaviour
 
         if (newRoom == null)
         {
-            textPrompt.printText($"\nWhere is \"{roomName}\"?");
+            textPrompt.printText($"\nThere's nothing in that direction.");
         }
         else
         {

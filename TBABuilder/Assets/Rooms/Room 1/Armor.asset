@@ -52,6 +52,7 @@ MonoBehaviour:
       usableFlavorText: 
       pickupableFlavorText: 
       wearableFlavorText: 
+      nextRoom: {fileID: 0}
   - actionCategory: 0
     playerAction: 1
     objectAction: 0
@@ -71,3 +72,5 @@ MonoBehaviour:
       usableFlavorText: 
       pickupableFlavorText: 
       wearableFlavorText: 
+      nextRoom: {fileID: 0}
+  objectAliases: 
