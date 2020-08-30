@@ -13,7 +13,7 @@ public class RoomObjectEditor : Editor
         // Using this method makes the variables in the object save properly when exiting Unity.
         // Otherwise, the enum lists reset on restart for whatever reason.
         EditorUtility.SetDirty(obj);
-        
+
         obj.isEdible = GUILayout.Toggle(obj.isEdible, "Is Edible");
         showActionTab(ref obj.isEdible, ref obj.edibleVars);
         obj.isTalkable = GUILayout.Toggle(obj.isTalkable, "Is Talkable");
@@ -30,7 +30,7 @@ public class RoomObjectEditor : Editor
         showActionTab(ref obj.isWearable, ref obj.wearableVars);
 
         float textAreaHeight = 30f;
-        
+
         GUILayout.Label("Edible Flavor Text");
         obj.EdibleFlavorText = EditorGUILayout.TextArea(obj.EdibleFlavorText, GUILayout.MinHeight(textAreaHeight));
         GUILayout.Label("Talkable Flavor Text");
@@ -46,7 +46,21 @@ public class RoomObjectEditor : Editor
         GUILayout.Label("Wearable Flavor Text");
         obj.WearableFlavorText = EditorGUILayout.TextArea(obj.WearableFlavorText, GUILayout.MinHeight(textAreaHeight));
 
+        showMiscTab(obj);
+
         base.OnInspectorGUI();
+    }
+
+    private void showMiscTab(RoomObject obj)
+    {
+        GUILayout.BeginHorizontal();
+
+        GUIContent content = new GUIContent("RoomObject Aliases", "The different names of the object in-game, which the player types to interact with." +
+                " Aliases are separated by a comma. Leave empty to set it to the object's name in the editor by default.\nEx: Potion of Healing,Healing Potion,Red Potion");
+        EditorGUILayout.PrefixLabel(content);
+        showAdditionalTextField(ref obj.objectAliases);
+
+        GUILayout.EndHorizontal();
     }
 
     private void showActionTab(ref bool toggleBool, ref List<RoomObject.EditorVariables> objVars)
@@ -190,11 +204,11 @@ public class RoomObjectEditor : Editor
 
     private void showAdditionalBool(ref bool toggleBool, string boolText)
     {
-        toggleBool = GUILayout.Toggle(toggleBool, boolText);
+        toggleBool = EditorGUILayout.Toggle(toggleBool, boolText);
     }
 
     private void showAdditionalTextField(ref string textField)
     {
-        textField = GUILayout.TextArea(textField);
+        textField = EditorGUILayout.TextArea(textField);
     }
 }
