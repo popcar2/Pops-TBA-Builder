@@ -45,7 +45,16 @@ public class Room : ScriptableObject
         // Look in player's inventory first
         foreach (RoomObject obj in player.getInventory())
         {
-            if (obj.name.ToLower() == objName)
+            if (obj.name == objName)
+            {
+                return obj;
+            }
+        }
+
+        // Look in player's inventory
+        foreach (RoomObject obj in player.getEquippedItems())
+        {
+            if (obj.name == objName)
             {
                 return obj;
             }
@@ -54,7 +63,7 @@ public class Room : ScriptableObject
         // Look in this room
         foreach (RoomObject obj in copiedRoomObjects)
         {
-            if (obj.name.ToLower() == objName)
+            if (obj.name == objName)
             {
                 return obj;
             }

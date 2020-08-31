@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5914daa0bd6cb0447b2e55394046ccd6, type: 3}
   m_Name: Potion
   m_EditorClassIdentifier: 
-  isEdible: 0
+  isEdible: 1
   isTalkable: 0
   isKillable: 0
   isSittable: 0
@@ -26,11 +26,53 @@ MonoBehaviour:
   usableFlavorText: 
   pickupableFlavorText: 
   wearableFlavorText: 
-  edibleVars: []
+  edibleVars:
+  - actionCategory: 1
+    playerAction: 0
+    objectAction: 1
+    roomAction: 0
+    varsToChange:
+      isEdible: 0
+      isTalkable: 0
+      isKillable: 0
+      isSittable: 0
+      isUsable: 0
+      isPickupable: 0
+      isWearable: 0
+      edibleFlavorText: 
+      talkableFlavorText: 
+      killableFlavorText: 
+      sittableFlavorText: 
+      usableFlavorText: 
+      pickupableFlavorText: 
+      wearableFlavorText: 
+      targetRoom: {fileID: 0}
+      targetObject: {fileID: 11400000}
+  - actionCategory: 1
+    playerAction: 0
+    objectAction: 8
+    roomAction: 0
+    varsToChange:
+      isEdible: 0
+      isTalkable: 0
+      isKillable: 0
+      isSittable: 0
+      isUsable: 0
+      isPickupable: 0
+      isWearable: 0
+      edibleFlavorText: Holy crap you already ate it!!!!
+      talkableFlavorText: 
+      killableFlavorText: 
+      sittableFlavorText: 
+      usableFlavorText: 
+      pickupableFlavorText: 
+      wearableFlavorText: 
+      targetRoom: {fileID: 0}
+      targetObject: {fileID: 11400000}
   talkableVars: []
   killableVars: []
   sittableVars: []
   usableVars: []
   pickupVars: []
   wearableVars: []
-  objectAliases: Potion,Potion of Healing,Healing Juice
+  objectAliases: Potion,Healing Juice

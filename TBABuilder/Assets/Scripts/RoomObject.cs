@@ -72,7 +72,8 @@ public class RoomObject : ScriptableObject
         public string pickupableFlavorText;
         public string wearableFlavorText;
 
-        public Room nextRoom;
+        public Room targetRoom;
+        public RoomObject targetObject;
     }
 
     [Serializable]

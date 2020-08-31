@@ -19,6 +19,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aa80afc04818caa41a13cb66d3dc1f7d, type: 2}
   roomText: you are in a dungeon room, there's an apple and potion on the table.
     Next to it is a chair.
-  roomConnections:
-  - room: {fileID: 11400000, guid: 8787727c800404342b8c38b73cc4d964, type: 2}
-    roomAlias: Other room, Room 2
+  roomConnections: []

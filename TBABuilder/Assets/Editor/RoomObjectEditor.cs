@@ -114,6 +114,7 @@ public class RoomObjectEditor : Editor
             if (GUILayout.Button("Add new action"))
             {
                 RoomObject.EditorVariables newVar = new RoomObject.EditorVariables();
+                newVar.varsToChange.targetObject = (RoomObject)target;
                 objVars.Add(newVar);
             }
             GUILayout.EndHorizontal();
@@ -129,66 +130,102 @@ public class RoomObjectEditor : Editor
     {
         GUILayout.BeginHorizontal();
         GUILayout.Space(50);
+        GUILayout.BeginVertical();
 
+        GUIContent targetObjectLabel = new GUIContent("Target Object", "The object that is affected by the selected action command. Set to the current object by default.");
         // Change this to a Switch statement later
-        if (objVars[i].actionCategory == RoomObject.ActionCategory.ObjectActions)
+
+        if (objVars[i].actionCategory == RoomObject.ActionCategory.PlayerActions)
+        {
+            if (objVars[i].playerAction == RoomObject.PlayerAction.AddToInventory)
+            {
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+            }
+            else if (objVars[i].playerAction == RoomObject.PlayerAction.RemoveFromInventory)
+            {
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+            }
+            else if (objVars[i].playerAction == RoomObject.PlayerAction.EquipItem)
+            {
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+            }
+            else if (objVars[i].playerAction == RoomObject.PlayerAction.RemoveEquippedItem)
+            {
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+            }
+        }
+        else if (objVars[i].actionCategory == RoomObject.ActionCategory.ObjectActions)
         {
             if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsEdible)
             {
-                showAdditionalBool(ref objVars[i].varsToChange.isEdible, "Become Edible");
+                objVars[i].varsToChange.isEdible = GUILayout.Toggle(objVars[i].varsToChange.isEdible, "Become Edible");
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsTalkable)
             {
-                showAdditionalBool(ref objVars[i].varsToChange.isTalkable, "Become Talkable");
+                objVars[i].varsToChange.isTalkable = GUILayout.Toggle(objVars[i].varsToChange.isTalkable, "Become Talkable");
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsKillable)
             {
-                showAdditionalBool(ref objVars[i].varsToChange.isKillable, "Become Killable");
+                objVars[i].varsToChange.isKillable = GUILayout.Toggle(objVars[i].varsToChange.isKillable, "Become Killable");
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsSittable)
             {
-                showAdditionalBool(ref objVars[i].varsToChange.isSittable, "Become Sittable");
+                objVars[i].varsToChange.isSittable = GUILayout.Toggle(objVars[i].varsToChange.isSittable, "Become Sittable");
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsUsable)
             {
-                showAdditionalBool(ref objVars[i].varsToChange.isUsable, "Become Usable");
+                objVars[i].varsToChange.isUsable = GUILayout.Toggle(objVars[i].varsToChange.isUsable, "Become Usable");
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsPickupable)
             {
-                showAdditionalBool(ref objVars[i].varsToChange.isPickupable, "Become Pickupable");
+                objVars[i].varsToChange.isPickupable = GUILayout.Toggle(objVars[i].varsToChange.isPickupable, "Become Pickupable");
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsWearable)
             {
-                showAdditionalBool(ref objVars[i].varsToChange.isWearable, "Become Wearable");
+                objVars[i].varsToChange.isWearable = GUILayout.Toggle(objVars[i].varsToChange.isWearable, "Become Wearable");
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
 
             else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeEdibleFlavorText)
             {
                 showAdditionalTextField(ref objVars[i].varsToChange.edibleFlavorText);
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeKillableFlavorText)
             {
                 showAdditionalTextField(ref objVars[i].varsToChange.killableFlavorText);
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangePickupableFlavorText)
             {
                 showAdditionalTextField(ref objVars[i].varsToChange.pickupableFlavorText);
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeSittableFlavorText)
             {
                 showAdditionalTextField(ref objVars[i].varsToChange.sittableFlavorText);
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeTalkableFlavorText)
             {
                 showAdditionalTextField(ref objVars[i].varsToChange.talkableFlavorText);
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeUsableFlavorText)
             {
                 showAdditionalTextField(ref objVars[i].varsToChange.usableFlavorText);
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeWearableFlavorText)
             {
                 showAdditionalTextField(ref objVars[i].varsToChange.wearableFlavorText);
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
         }
         else if (objVars[i].actionCategory == RoomObject.ActionCategory.RoomActions)
@@ -196,19 +233,31 @@ public class RoomObjectEditor : Editor
             if (objVars[i].roomAction == RoomObject.RoomAction.ChangeRoom)
             {
                 GUIContent content = new GUIContent("Move to room", "Instantly move to the room you've selected, regardless of where it is. However, it has to be in roomTracker's room list.");
-                objVars[i].varsToChange.nextRoom = (Room)EditorGUILayout.ObjectField(content, objVars[i].varsToChange.nextRoom, typeof(Room), true);
+                objVars[i].varsToChange.targetRoom = (Room)EditorGUILayout.ObjectField(content, objVars[i].varsToChange.targetRoom, typeof(Room), true);
+            }
+            else if (objVars[i].roomAction == RoomObject.RoomAction.AddObjectToRoom)
+            {
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+            }
+            else if (objVars[i].roomAction == RoomObject.RoomAction.RemoveObjectFromRoom)
+            {
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
         }
+        GUILayout.EndVertical();
         GUILayout.EndHorizontal();
-    }
-
-    private void showAdditionalBool(ref bool toggleBool, string boolText)
-    {
-        toggleBool = EditorGUILayout.Toggle(toggleBool, boolText);
     }
 
     private void showAdditionalTextField(ref string textField)
     {
         textField = EditorGUILayout.TextArea(textField);
+    }
+
+    private void showSelectableRoomObject(GUIContent label, ref RoomObject obj)
+    {
+        GUILayout.BeginHorizontal();
+        EditorGUILayout.PrefixLabel(label);
+        obj = (RoomObject)EditorGUILayout.ObjectField(obj, typeof(RoomObject), true, GUILayout.MaxWidth(200f));
+        GUILayout.EndHorizontal();
     }
 }
