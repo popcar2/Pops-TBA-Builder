@@ -20,6 +20,7 @@ public class RoomObject : ScriptableObject
     [SerializeField] public bool isUsable = false;
     [SerializeField] public bool isPickupable = false;
     [SerializeField] public bool isWearable = false;
+    [SerializeField] public bool isOpenable = false;
 
     [Header("Flavor Text")]
     [SerializeField] [TextArea(1, 5)] string edibleFlavorText;
@@ -29,6 +30,7 @@ public class RoomObject : ScriptableObject
     [SerializeField] [TextArea(1, 5)] string usableFlavorText;
     [SerializeField] [TextArea(1, 5)] string pickupableFlavorText;
     [SerializeField] [TextArea(1, 5)] string wearableFlavorText;
+    [SerializeField] [TextArea(1, 5)] string openableFlavorText;
 
     // Each index of the list represents one action.
     public List<EditorVariables> edibleVars = new List<EditorVariables>();
@@ -38,6 +40,7 @@ public class RoomObject : ScriptableObject
     public List<EditorVariables> usableVars = new List<EditorVariables>();
     public List<EditorVariables> pickupVars = new List<EditorVariables>();
     public List<EditorVariables> wearableVars = new List<EditorVariables>();
+    public List<EditorVariables> openableVars = new List<EditorVariables>();
 
     // Misc variables
     public string objectAliases;
@@ -63,6 +66,7 @@ public class RoomObject : ScriptableObject
         public bool isUsable;
         public bool isPickupable;
         public bool isWearable;
+        public bool isOpenable;
 
         public string edibleFlavorText;
         public string talkableFlavorText;
@@ -71,6 +75,7 @@ public class RoomObject : ScriptableObject
         public string usableFlavorText;
         public string pickupableFlavorText;
         public string wearableFlavorText;
+        public string openableFlavorText;
 
         public Room targetRoom;
         public RoomObject targetObject;
@@ -106,6 +111,7 @@ public class RoomObject : ScriptableObject
         SetIsUsable,
         SetIsPickupable,
         SetIsWearable,
+        SetIsOpenable,
 
         ChangeEdibleFlavorText,
         ChangeTalkableFlavorText,
@@ -113,7 +119,8 @@ public class RoomObject : ScriptableObject
         ChangeSittableFlavorText,
         ChangeUsableFlavorText,
         ChangePickupableFlavorText,
-        ChangeWearableFlavorText
+        ChangeWearableFlavorText,
+        ChangeOpenableFlavorText
     }
 
     [Serializable]
@@ -131,4 +138,5 @@ public class RoomObject : ScriptableObject
     public string UsableFlavorText { get => usableFlavorText; set => usableFlavorText = value; }
     public string PickupableFlavorText { get => pickupableFlavorText; set => pickupableFlavorText = value; }
     public string WearableFlavorText { get => wearableFlavorText; set => wearableFlavorText = value; }
+    public string OpenableFlavorText { get => openableFlavorText; set => openableFlavorText = value; }
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5914daa0bd6cb0447b2e55394046ccd6, type: 3}
-  m_Name: Potion
+  m_Name: Spooky Skeleton
   m_EditorClassIdentifier: 
   isEdible: 0
   isTalkable: 0
@@ -20,7 +20,7 @@ MonoBehaviour:
   isPickupable: 0
   isWearable: 0
   isOpenable: 0
-  edibleFlavorText: You drink the potion
+  edibleFlavorText: 
   talkableFlavorText: 
   killableFlavorText: 
   sittableFlavorText: 
@@ -36,4 +36,4 @@ MonoBehaviour:
   pickupVars: []
   wearableVars: []
   openableVars: []
-  objectAliases: Potion,Healing Juice
+  objectAliases: Skeleton

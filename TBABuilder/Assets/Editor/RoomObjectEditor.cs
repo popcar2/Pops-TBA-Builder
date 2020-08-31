@@ -28,6 +28,8 @@ public class RoomObjectEditor : Editor
         showActionTab(ref obj.isPickupable, ref obj.pickupVars);
         obj.isWearable = GUILayout.Toggle(obj.isWearable, "Is Wearable");
         showActionTab(ref obj.isWearable, ref obj.wearableVars);
+        obj.isOpenable = GUILayout.Toggle(obj.isOpenable, "Is Openable");
+        showActionTab(ref obj.isOpenable, ref obj.openableVars);
 
         float textAreaHeight = 30f;
 
@@ -45,6 +47,8 @@ public class RoomObjectEditor : Editor
         obj.PickupableFlavorText = EditorGUILayout.TextArea(obj.PickupableFlavorText, GUILayout.MinHeight(textAreaHeight));
         GUILayout.Label("Wearable Flavor Text");
         obj.WearableFlavorText = EditorGUILayout.TextArea(obj.WearableFlavorText, GUILayout.MinHeight(textAreaHeight));
+        GUILayout.Label("Openable Flavor Text");
+        obj.OpenableFlavorText = EditorGUILayout.TextArea(obj.OpenableFlavorText, GUILayout.MinHeight(textAreaHeight));
 
         showMiscTab(obj);
 
@@ -191,6 +195,11 @@ public class RoomObjectEditor : Editor
                 objVars[i].varsToChange.isWearable = GUILayout.Toggle(objVars[i].varsToChange.isWearable, "Become Wearable");
                 showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
+            else if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsOpenable)
+            {
+                objVars[i].varsToChange.isOpenable = GUILayout.Toggle(objVars[i].varsToChange.isWearable, "Become Openable");
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+            }
 
             else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeEdibleFlavorText)
             {
@@ -225,6 +234,11 @@ public class RoomObjectEditor : Editor
             else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeWearableFlavorText)
             {
                 showAdditionalTextField(ref objVars[i].varsToChange.wearableFlavorText);
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+            }
+            else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeOpenableFlavorText)
+            {
+                showAdditionalTextField(ref objVars[i].varsToChange.openableFlavorText);
                 showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
         }

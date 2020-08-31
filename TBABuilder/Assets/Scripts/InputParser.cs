@@ -220,6 +220,12 @@ public class InputParser : MonoBehaviour
             case "put":
                 actionHandler.wearObject(targetObject);
                 break;
+            // open
+            case "open":
+            case "unlock":
+            case "reveal":
+                actionHandler.openObject(targetObject);
+                break;
             // unknown command
             default:
                 textPrompt.printText("\nWhat is \"" + command + "\"?");

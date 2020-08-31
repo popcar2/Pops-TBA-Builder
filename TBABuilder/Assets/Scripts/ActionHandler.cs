@@ -98,6 +98,9 @@ public class ActionHandler : MonoBehaviour
                     case RoomObject.ObjectAction.SetIsWearable:
                         targetObject.isWearable = objVars[i].varsToChange.isWearable;
                         break;
+                    case RoomObject.ObjectAction.SetIsOpenable:
+                        targetObject.isOpenable = objVars[i].varsToChange.isOpenable;
+                        break;
 
                     case RoomObject.ObjectAction.ChangeEdibleFlavorText:
                         targetObject.EdibleFlavorText = objVars[i].varsToChange.edibleFlavorText;
@@ -119,6 +122,9 @@ public class ActionHandler : MonoBehaviour
                         break;
                     case RoomObject.ObjectAction.ChangeWearableFlavorText:
                         targetObject.WearableFlavorText = objVars[i].varsToChange.wearableFlavorText;
+                        break;
+                    case RoomObject.ObjectAction.ChangeOpenableFlavorText:
+                        targetObject.OpenableFlavorText = objVars[i].varsToChange.openableFlavorText;
                         break;
 
                     default:
@@ -272,6 +278,23 @@ public class ActionHandler : MonoBehaviour
 
         if (successful)
             executeActions(obj, obj.wearableVars);
+    }
+
+    public void openObject(RoomObject obj)
+    {
+
+        if (obj == null)
+        {
+            printIfObjectIsNull();
+            return;
+        }
+
+        string defaultSuccessText = "You open the " + obj.name + ".";
+        string defaultFailText = "You can't open the " + obj.name + ".";
+        bool successful = inputParser.printResponse(obj, obj.isOpenable, defaultSuccessText, defaultFailText, obj.OpenableFlavorText);
+
+        if (successful)
+            executeActions(obj, obj.openableVars);
     }
 
     public void printCurrentRoomText()
