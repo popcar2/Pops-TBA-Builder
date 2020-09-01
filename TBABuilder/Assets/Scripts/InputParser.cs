@@ -226,6 +226,10 @@ public class InputParser : MonoBehaviour
             case "reveal":
                 actionHandler.openObject(targetObject);
                 break;
+            // look at
+            case "look":
+                actionHandler.lookAtObject(targetObject);
+                break;
             // unknown command
             default:
                 textPrompt.printText("\nWhat is \"" + command + "\"?");
@@ -247,6 +251,11 @@ public class InputParser : MonoBehaviour
                 player.openInventory();
                 break;
             case "look":
+                if (input.Split(' ').Length != 1)
+                {
+                    successFlag = false;
+                    break;
+                }
                 actionHandler.printCurrentRoomText();
                 break;
             case "move":

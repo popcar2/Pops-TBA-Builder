@@ -126,6 +126,9 @@ public class ActionHandler : MonoBehaviour
                     case RoomObject.ObjectAction.ChangeOpenableFlavorText:
                         targetObject.OpenableFlavorText = objVars[i].varsToChange.openableFlavorText;
                         break;
+                    case RoomObject.ObjectAction.ChangeLookAtFlavorText:
+                        targetObject.LookAtFlavorText = objVars[i].varsToChange.lookAtFlavorText;
+                        break;
 
                     default:
                         Debug.Log($"Unknown ObjectAction enum at {obj.name}: you forgot to add what to do in ActionHandler!");
@@ -152,11 +155,6 @@ public class ActionHandler : MonoBehaviour
         }
     }
 
-    private void printIfObjectIsNull()
-    {
-        textPrompt.printText("\nThere is no object with that name in this room.");  
-    }
-
     // Used to preserve original objects when adding new ones to the scene
     private RoomObject copyRoomObject(RoomObject originalObject)
     {
@@ -169,7 +167,7 @@ public class ActionHandler : MonoBehaviour
     {
         if (obj == null)
         {
-            printIfObjectIsNull();
+            textPrompt.printText("\nEat what?");
             return;
         }
 
@@ -186,7 +184,7 @@ public class ActionHandler : MonoBehaviour
     {
         if (obj == null)
         {
-            printIfObjectIsNull();
+            textPrompt.printText("\nTalk to who?");
             return;
         }
 
@@ -202,7 +200,7 @@ public class ActionHandler : MonoBehaviour
     {
         if (obj == null)
         {
-            printIfObjectIsNull();
+            textPrompt.printText("\nKill who?");
             return;
         }
 
@@ -218,7 +216,7 @@ public class ActionHandler : MonoBehaviour
     {
         if (obj == null)
         {
-            printIfObjectIsNull();
+            textPrompt.printText("\nSit on what?");
             return;
         }
 
@@ -234,7 +232,7 @@ public class ActionHandler : MonoBehaviour
     {
         if (obj == null)
         {
-            printIfObjectIsNull();
+            textPrompt.printText("\nUse what?");
             return;
         }
 
@@ -251,7 +249,7 @@ public class ActionHandler : MonoBehaviour
 
         if (obj == null)
         {
-            printIfObjectIsNull();
+            textPrompt.printText("\nPick up what?");
             return;
         }
 
@@ -268,7 +266,7 @@ public class ActionHandler : MonoBehaviour
 
         if (obj == null)
         {
-            printIfObjectIsNull();
+            textPrompt.printText("\nEquip what?");
             return;
         }
 
@@ -285,7 +283,7 @@ public class ActionHandler : MonoBehaviour
 
         if (obj == null)
         {
-            printIfObjectIsNull();
+            textPrompt.printText("\nOpen what?");
             return;
         }
 
@@ -295,6 +293,23 @@ public class ActionHandler : MonoBehaviour
 
         if (successful)
             executeActions(obj, obj.openableVars);
+    }
+
+    public void lookAtObject(RoomObject obj)
+    {
+        if (obj == null)
+        {
+            textPrompt.printText("\nLook at what?");
+            return;
+        }
+
+        if (System.String.IsNullOrWhiteSpace(obj.LookAtFlavorText))
+        {
+            textPrompt.printText("\nNothing interesting here.");
+            return;
+        }
+
+        textPrompt.printText("\n" + obj.LookAtFlavorText);
     }
 
     public void printCurrentRoomText()

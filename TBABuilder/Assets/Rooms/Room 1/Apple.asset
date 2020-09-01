@@ -19,6 +19,7 @@ MonoBehaviour:
   isUsable: 0
   isPickupable: 0
   isWearable: 0
+  isOpenable: 0
   edibleFlavorText: mmm delicious apple
   talkableFlavorText: 
   killableFlavorText: 
@@ -26,6 +27,8 @@ MonoBehaviour:
   usableFlavorText: 
   pickupableFlavorText: 
   wearableFlavorText: 
+  openableFlavorText: 
+  lookAtFlavorText: 
   edibleVars:
   - actionCategory: 1
     playerAction: 0
@@ -39,6 +42,7 @@ MonoBehaviour:
       isUsable: 0
       isPickupable: 0
       isWearable: 0
+      isOpenable: 0
       edibleFlavorText: 
       talkableFlavorText: 
       killableFlavorText: 
@@ -46,6 +50,8 @@ MonoBehaviour:
       usableFlavorText: 
       pickupableFlavorText: 
       wearableFlavorText: 
+      openableFlavorText: 
+      lookAtFlavorText: 
       targetRoom: {fileID: 0}
       targetObject: {fileID: 0}
   talkableVars: []
@@ -54,4 +60,5 @@ MonoBehaviour:
   usableVars: []
   pickupVars: []
   wearableVars: []
+  openableVars: []
   objectAliases: 

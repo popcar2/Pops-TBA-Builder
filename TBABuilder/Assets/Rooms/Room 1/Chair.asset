@@ -19,6 +19,7 @@ MonoBehaviour:
   isUsable: 0
   isPickupable: 0
   isWearable: 0
+  isOpenable: 0
   edibleFlavorText: Why would you want to eat the chair???
   talkableFlavorText: '"Hullo, chair."
 
@@ -31,6 +32,8 @@ MonoBehaviour:
   pickupableFlavorText: It would be nice if you could have a chair with you at all
     times, but alas, 'tis too heavy to pick up.
   wearableFlavorText: 
+  openableFlavorText: 
+  lookAtFlavorText: 
   edibleVars: []
   talkableVars: []
   killableVars: []
@@ -38,4 +41,5 @@ MonoBehaviour:
   usableVars: []
   pickupVars: []
   wearableVars: []
+  openableVars: []
   objectAliases: 

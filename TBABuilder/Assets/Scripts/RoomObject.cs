@@ -22,8 +22,7 @@ public class RoomObject : ScriptableObject
     [SerializeField] public bool isWearable = false;
     [SerializeField] public bool isOpenable = false;
 
-    [Header("Flavor Text")]
-    [SerializeField] [TextArea(1, 5)] string edibleFlavorText;
+    [TextArea(1, 5)] public string edibleFlavorText;
     [SerializeField] [TextArea(1, 5)] string talkableFlavorText;
     [SerializeField] [TextArea(1, 5)] string killableFlavorText;
     [SerializeField] [TextArea(1, 5)] string sittableFlavorText;
@@ -31,6 +30,7 @@ public class RoomObject : ScriptableObject
     [SerializeField] [TextArea(1, 5)] string pickupableFlavorText;
     [SerializeField] [TextArea(1, 5)] string wearableFlavorText;
     [SerializeField] [TextArea(1, 5)] string openableFlavorText;
+    [SerializeField] [TextArea(1, 5)] string lookAtFlavorText;
 
     // Each index of the list represents one action.
     public List<EditorVariables> edibleVars = new List<EditorVariables>();
@@ -76,6 +76,7 @@ public class RoomObject : ScriptableObject
         public string pickupableFlavorText;
         public string wearableFlavorText;
         public string openableFlavorText;
+        public string lookAtFlavorText;
 
         public Room targetRoom;
         public RoomObject targetObject;
@@ -120,7 +121,8 @@ public class RoomObject : ScriptableObject
         ChangeUsableFlavorText,
         ChangePickupableFlavorText,
         ChangeWearableFlavorText,
-        ChangeOpenableFlavorText
+        ChangeOpenableFlavorText,
+        ChangeLookAtFlavorText
     }
 
     [Serializable]
@@ -139,4 +141,5 @@ public class RoomObject : ScriptableObject
     public string PickupableFlavorText { get => pickupableFlavorText; set => pickupableFlavorText = value; }
     public string WearableFlavorText { get => wearableFlavorText; set => wearableFlavorText = value; }
     public string OpenableFlavorText { get => openableFlavorText; set => openableFlavorText = value; }
+    public string LookAtFlavorText { get => lookAtFlavorText; set => lookAtFlavorText = value; }
 }

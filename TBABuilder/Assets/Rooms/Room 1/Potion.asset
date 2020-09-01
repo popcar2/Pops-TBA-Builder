@@ -23,11 +23,12 @@ MonoBehaviour:
   edibleFlavorText: You drink the potion
   talkableFlavorText: 
   killableFlavorText: 
-  sittableFlavorText: 
+  sittableFlavorText: eat pant
   usableFlavorText: 
   pickupableFlavorText: 
   wearableFlavorText: 
   openableFlavorText: 
+  lookAtFlavorText: The potion glows with intensity.
   edibleVars: []
   talkableVars: []
   killableVars: []

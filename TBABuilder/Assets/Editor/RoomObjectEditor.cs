@@ -6,6 +6,13 @@ using System.Collections.Generic;
 [CustomEditor(typeof(RoomObject))]
 public class RoomObjectEditor : Editor
 {
+    SerializedProperty edibleFlavorText;
+
+    private void OnEnable()
+    {
+        edibleFlavorText = serializedObject.FindProperty("edibleFlavorText");
+    }
+
     public override void OnInspectorGUI()
     {
         RoomObject obj = (RoomObject)target;
@@ -13,6 +20,9 @@ public class RoomObjectEditor : Editor
         // Using this method makes the variables in the object save properly when exiting Unity.
         // Otherwise, the enum lists reset on restart for whatever reason.
         EditorUtility.SetDirty(obj);
+
+        GUI.skin.textArea.wordWrap = true;
+        GUI.skin.textArea.stretchHeight = true;
 
         obj.isEdible = GUILayout.Toggle(obj.isEdible, "Is Edible");
         showActionTab(ref obj.isEdible, ref obj.edibleVars);
@@ -33,8 +43,8 @@ public class RoomObjectEditor : Editor
 
         float textAreaHeight = 30f;
 
-        GUILayout.Label("Edible Flavor Text");
-        obj.EdibleFlavorText = EditorGUILayout.TextArea(obj.EdibleFlavorText, GUILayout.MinHeight(textAreaHeight));
+        
+        EditorGUILayout.PropertyField(edibleFlavorText);
         GUILayout.Label("Talkable Flavor Text");
         obj.TalkableFlavorText = EditorGUILayout.TextArea(obj.TalkableFlavorText, GUILayout.MinHeight(textAreaHeight));
         GUILayout.Label("Killable Flavor Text");
@@ -52,19 +62,21 @@ public class RoomObjectEditor : Editor
 
         showMiscTab(obj);
 
-        base.OnInspectorGUI();
     }
 
     private void showMiscTab(RoomObject obj)
     {
         GUILayout.BeginHorizontal();
-
-        GUIContent content = new GUIContent("RoomObject Aliases", "The different names of the object in-game, which the player types to interact with." +
+        GUIContent aliasContent = new GUIContent("RoomObject Aliases", "The different names of the object in-game, which the player types to interact with." +
                 " Aliases are separated by a comma. Leave empty to set it to the object's name in the editor by default.\nEx: Potion of Healing,Healing Potion,Red Potion");
-        EditorGUILayout.PrefixLabel(content);
+        EditorGUILayout.PrefixLabel(aliasContent);
         showAdditionalTextField(ref obj.objectAliases);
-
         GUILayout.EndHorizontal();
+
+        GUIContent lookAtContent = new GUIContent("Look At Flavor Text", "The text that's printed when the player looks at the object");
+        EditorGUILayout.PrefixLabel(lookAtContent);
+        obj.LookAtFlavorText = EditorGUILayout.TextArea(obj.LookAtFlavorText);
+
     }
 
     private void showActionTab(ref bool toggleBool, ref List<RoomObject.EditorVariables> objVars)

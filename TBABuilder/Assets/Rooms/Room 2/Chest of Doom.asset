@@ -29,6 +29,7 @@ MonoBehaviour:
   wearableFlavorText: 
   openableFlavorText: You unlock THE CHEST OF DOOOOOOOM and a SPOOKY SKELETON jumps
     out of it. Uh oh... What are you gonna do now?
+  lookAtFlavorText: 
   edibleVars: []
   talkableVars: []
   killableVars: []
@@ -58,31 +59,9 @@ MonoBehaviour:
       pickupableFlavorText: 
       wearableFlavorText: 
       openableFlavorText: 
+      lookAtFlavorText: 
       targetRoom: {fileID: 0}
       targetObject: {fileID: 11400000, guid: 600dd42bb294ea74fa3b7dab69640571, type: 2}
-  - actionCategory: 1
-    playerAction: 0
-    objectAction: 8
-    roomAction: 0
-    varsToChange:
-      isEdible: 0
-      isTalkable: 0
-      isKillable: 0
-      isSittable: 0
-      isUsable: 0
-      isPickupable: 0
-      isWearable: 0
-      isOpenable: 0
-      edibleFlavorText: 
-      talkableFlavorText: 
-      killableFlavorText: 
-      sittableFlavorText: 
-      usableFlavorText: 
-      pickupableFlavorText: 
-      wearableFlavorText: 
-      openableFlavorText: 
-      targetRoom: {fileID: 0}
-      targetObject: {fileID: 11400000}
   - actionCategory: 1
     playerAction: 0
     objectAction: 16
@@ -104,6 +83,31 @@ MonoBehaviour:
       pickupableFlavorText: 
       wearableFlavorText: 
       openableFlavorText: YOU HAVE ALREADY UNLEASHED THE DOOM.
+      lookAtFlavorText: 
+      targetRoom: {fileID: 0}
+      targetObject: {fileID: 11400000}
+  - actionCategory: 1
+    playerAction: 0
+    objectAction: 8
+    roomAction: 0
+    varsToChange:
+      isEdible: 0
+      isTalkable: 0
+      isKillable: 0
+      isSittable: 0
+      isUsable: 0
+      isPickupable: 0
+      isWearable: 0
+      isOpenable: 0
+      edibleFlavorText: 
+      talkableFlavorText: 
+      killableFlavorText: 
+      sittableFlavorText: 
+      usableFlavorText: 
+      pickupableFlavorText: 
+      wearableFlavorText: 
+      openableFlavorText: 
+      lookAtFlavorText: 
       targetRoom: {fileID: 0}
       targetObject: {fileID: 11400000}
   objectAliases: Chest

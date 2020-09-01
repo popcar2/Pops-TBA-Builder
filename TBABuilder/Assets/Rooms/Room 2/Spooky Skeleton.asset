@@ -28,6 +28,7 @@ MonoBehaviour:
   pickupableFlavorText: 
   wearableFlavorText: 
   openableFlavorText: 
+  lookAtFlavorText: 
   edibleVars: []
   talkableVars: []
   killableVars: []
