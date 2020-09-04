@@ -10,7 +10,6 @@ public class InputParser : MonoBehaviour
     RoomTracker roomTracker;
     Player player;
     ActionHandler actionHandler;
-    ObjectFinder objectFinder;
 
     private void Start()
     {
@@ -18,7 +17,6 @@ public class InputParser : MonoBehaviour
         roomTracker = FindObjectOfType<RoomTracker>();
         player = FindObjectOfType<Player>();
         actionHandler = FindObjectOfType<ActionHandler>();
-        objectFinder = FindObjectOfType<ObjectFinder>();
     }
 
     private string[] trimText(string text)

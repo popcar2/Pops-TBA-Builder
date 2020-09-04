@@ -8,13 +8,11 @@ public class RoomTracker : MonoBehaviour
     Room currentRoom = null;
 
     TextPrompt textPrompt;
-    ObjectFinder objectFinder;
     Player player;
 
     private void Start()
     {
         textPrompt = FindObjectOfType<TextPrompt>();
-        objectFinder = FindObjectOfType<ObjectFinder>();
         player = FindObjectOfType<Player>();
 
         currentRoom = startingRoom;
