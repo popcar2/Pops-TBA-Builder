@@ -38,7 +38,7 @@ public class ActionHandler : MonoBehaviour
                 switch (playerAction)
                 {
                     case RoomObject.PlayerAction.AddToInventory:
-                        player.addItemToInventory(copyRoomObject(objVars[i].varsToChange.targetObject));
+                        player.addItemToInventory(objVars[i].varsToChange.targetObject);
                         break;
                     case RoomObject.PlayerAction.RemoveFromInventory:
                         RoomObject objToRemove = roomTracker.findObjectInCurrentRoom(objVars[i].varsToChange.targetObject.name);
@@ -50,7 +50,7 @@ public class ActionHandler : MonoBehaviour
                         textPrompt.printText("\n--YOU DIED-- (Press any button to continue)");
                         break;
                     case RoomObject.PlayerAction.EquipItem:
-                        player.equipItem(copyRoomObject(objVars[i].varsToChange.targetObject));
+                        player.equipItem(objVars[i].varsToChange.targetObject);
                         break;
                     case RoomObject.PlayerAction.RemoveEquippedItem:
                         player.removeEquippedItem(roomTracker.findObjectInCurrentRoom(objVars[i].varsToChange.targetObject.name));
@@ -75,59 +75,59 @@ public class ActionHandler : MonoBehaviour
                 // Execute object actions
                 switch (objectAction)
                 {
-                    case RoomObject.ObjectAction.DestroyThisObject:
+                    case RoomObject.ObjectAction.DestroyObject:
                         player.removeItemFromInventory(targetObject);
                         player.removeEquippedItem(targetObject);
                         roomTracker.getCurrentRoom().removeRoomObject(targetObject);
                         break;
                     case RoomObject.ObjectAction.SetIsEdible:
-                        targetObject.isEdible = objVars[i].varsToChange.isEdible;
+                        targetObject.runtimeIsEdible = objVars[i].varsToChange.isEdible;
                         break;
                     case RoomObject.ObjectAction.SetIsTalkable:
-                        targetObject.isTalkable = objVars[i].varsToChange.isTalkable;
+                        targetObject.runtimeIsTalkable = objVars[i].varsToChange.isTalkable;
                         break;
                     case RoomObject.ObjectAction.SetIsKillable:
-                        targetObject.isKillable = objVars[i].varsToChange.isKillable;
+                        targetObject.runtimeIsKillable = objVars[i].varsToChange.isKillable;
                         break;
                     case RoomObject.ObjectAction.SetIsSittable:
-                        targetObject.isSittable = objVars[i].varsToChange.isSittable;
+                        targetObject.runtimeIsSittable = objVars[i].varsToChange.isSittable;
                         break;
                     case RoomObject.ObjectAction.SetIsUsable:
-                        targetObject.isUsable = objVars[i].varsToChange.isUsable;
+                        targetObject.runtimeIsUsable = objVars[i].varsToChange.isUsable;
                         break;
                     case RoomObject.ObjectAction.SetIsWearable:
-                        targetObject.isWearable = objVars[i].varsToChange.isWearable;
+                        targetObject.runtimeIsWearable = objVars[i].varsToChange.isWearable;
                         break;
                     case RoomObject.ObjectAction.SetIsOpenable:
-                        targetObject.isOpenable = objVars[i].varsToChange.isOpenable;
+                        targetObject.runtimeIsOpenable = objVars[i].varsToChange.isOpenable;
                         break;
 
                     case RoomObject.ObjectAction.ChangeEdibleFlavorText:
-                        targetObject.EdibleFlavorText = objVars[i].varsToChange.edibleFlavorText;
+                        targetObject.runtimeEdibleFlavorText = objVars[i].varsToChange.edibleFlavorText;
                         break;
                     case RoomObject.ObjectAction.ChangeKillableFlavorText:
-                        targetObject.KillableFlavorText = objVars[i].varsToChange.killableFlavorText;
+                        targetObject.runtimeKillableFlavorText = objVars[i].varsToChange.killableFlavorText;
                         break;
                     case RoomObject.ObjectAction.ChangePickupableFlavorText:
-                        targetObject.PickupableFlavorText = objVars[i].varsToChange.pickupableFlavorText;
+                        targetObject.runtimePickupableFlavorText = objVars[i].varsToChange.pickupableFlavorText;
                         break;
                     case RoomObject.ObjectAction.ChangeSittableFlavorText:
-                        targetObject.SittableFlavorText = objVars[i].varsToChange.sittableFlavorText;
+                        targetObject.runtimeSittableFlavorText = objVars[i].varsToChange.sittableFlavorText;
                         break;
                     case RoomObject.ObjectAction.ChangeTalkableFlavorText:
-                        targetObject.TalkableFlavorText = objVars[i].varsToChange.talkableFlavorText;
+                        targetObject.runtimeTalkableFlavorText = objVars[i].varsToChange.talkableFlavorText;
                         break;
                     case RoomObject.ObjectAction.ChangeUsableFlavorText:
-                        targetObject.UsableFlavorText = objVars[i].varsToChange.usableFlavorText;
+                        targetObject.runtimeUsableFlavorText = objVars[i].varsToChange.usableFlavorText;
                         break;
                     case RoomObject.ObjectAction.ChangeWearableFlavorText:
-                        targetObject.WearableFlavorText = objVars[i].varsToChange.wearableFlavorText;
+                        targetObject.runtimeWearableFlavorText = objVars[i].varsToChange.wearableFlavorText;
                         break;
                     case RoomObject.ObjectAction.ChangeOpenableFlavorText:
-                        targetObject.OpenableFlavorText = objVars[i].varsToChange.openableFlavorText;
+                        targetObject.runtimeOpenableFlavorText = objVars[i].varsToChange.openableFlavorText;
                         break;
                     case RoomObject.ObjectAction.ChangeLookAtFlavorText:
-                        targetObject.LookAtFlavorText = objVars[i].varsToChange.lookAtFlavorText;
+                        targetObject.runtimeLookAtFlavorText = objVars[i].varsToChange.lookAtFlavorText;
                         break;
 
                     default:
@@ -138,29 +138,26 @@ public class ActionHandler : MonoBehaviour
             else if (category == RoomObject.ActionCategory.RoomActions)
             {
                 RoomObject.RoomAction roomAction = objVars[i].roomAction;
+                Room targetRoom = objVars[i].varsToChange.targetRoom;
 
                 if (roomAction == RoomObject.RoomAction.AddObjectToRoom)
                 {
-                    roomTracker.getCurrentRoom().addRoomObject(copyRoomObject(objVars[i].varsToChange.targetObject));
+                    roomTracker.getCurrentRoom().addRoomObject(objVars[i].varsToChange.targetObject);
                 }
                 else if (roomAction == RoomObject.RoomAction.RemoveObjectFromRoom)
                 {
                     roomTracker.getCurrentRoom().removeRoomObject(roomTracker.findObjectInCurrentRoom(objVars[i].varsToChange.targetObject.name));
                 }
-                else if (roomAction == RoomObject.RoomAction.ChangeRoom)
+                else if (roomAction == RoomObject.RoomAction.SwitchRooms)
                 {
                     roomTracker.forceChangeRoom(objVars[i].varsToChange.targetRoom);
                 }
+                else if (roomAction == RoomObject.RoomAction.ChangeRoomText)
+                {
+                    targetRoom.runtimeRoomText = objVars[i].varsToChange.roomText;
+                }
             }
         }
-    }
-
-    // Used to preserve original objects when adding new ones to the scene
-    private RoomObject copyRoomObject(RoomObject originalObject)
-    {
-        RoomObject copiedObject = Instantiate(originalObject);
-        copiedObject.name = originalObject.name;
-        return copiedObject;
     }
 
     public void eatObject(RoomObject obj)
@@ -173,7 +170,7 @@ public class ActionHandler : MonoBehaviour
 
         string defaultSuccessText = "You eat the " + obj.name + ".";
         string defaultFailText = "You can't eat the " + obj.name + ".";
-        bool successful = inputParser.printResponse(obj, obj.isEdible, defaultSuccessText, defaultFailText, obj.EdibleFlavorText);
+        bool successful = inputParser.printResponse(obj, obj.runtimeIsEdible, defaultSuccessText, defaultFailText, obj.runtimeEdibleFlavorText);
 
         if (successful)
             executeActions(obj, obj.edibleVars);
@@ -190,7 +187,7 @@ public class ActionHandler : MonoBehaviour
 
         string defaultSuccessText = "You talk to " + obj.name + ".";
         string defaultFailText = "You can't talk to " + obj.name + ".";
-        bool successful = inputParser.printResponse(obj, obj.isTalkable, defaultSuccessText, defaultFailText, obj.TalkableFlavorText);
+        bool successful = inputParser.printResponse(obj, obj.runtimeIsTalkable, defaultSuccessText, defaultFailText, obj.runtimeTalkableFlavorText);
 
         if (successful)
             executeActions(obj, obj.talkableVars);
@@ -206,7 +203,7 @@ public class ActionHandler : MonoBehaviour
 
         string defaultSuccessText = "You kill " + obj.name + ".";
         string defaultFailText = "You can't kill " + obj.name + ".";
-        bool successful = inputParser.printResponse(obj, obj.isKillable, defaultSuccessText, defaultFailText, obj.KillableFlavorText);
+        bool successful = inputParser.printResponse(obj, obj.runtimeIsKillable, defaultSuccessText, defaultFailText, obj.runtimeKillableFlavorText);
 
         if (successful)
             executeActions(obj, obj.killableVars);
@@ -222,7 +219,7 @@ public class ActionHandler : MonoBehaviour
 
         string defaultSuccessText = "You sit on the " + obj.name + ".";
         string defaultFailText = "You can't sit on the the " + obj.name + ".";
-        bool successful = inputParser.printResponse(obj, obj.isSittable, defaultSuccessText, defaultFailText, obj.SittableFlavorText);
+        bool successful = inputParser.printResponse(obj, obj.runtimeIsSittable, defaultSuccessText, defaultFailText, obj.runtimeSittableFlavorText);
 
         if (successful)
             executeActions(obj, obj.sittableVars);
@@ -238,7 +235,7 @@ public class ActionHandler : MonoBehaviour
 
         string defaultSuccessText = "You use the " + obj.name + ".";
         string defaultFailText = "You can't use the " + obj.name + ".";
-        bool successful = inputParser.printResponse(obj, obj.isUsable, defaultSuccessText, defaultFailText, obj.UsableFlavorText);
+        bool successful = inputParser.printResponse(obj, obj.runtimeIsUsable, defaultSuccessText, defaultFailText, obj.runtimeUsableFlavorText);
 
         if (successful)
             executeActions(obj, obj.usableVars);
@@ -255,7 +252,7 @@ public class ActionHandler : MonoBehaviour
 
         string defaultSuccessText = "You pick up the " + obj.name + ".";
         string defaultFailText = "You can't pick up the " + obj.name + ".";
-        bool successful = inputParser.printResponse(obj, obj.isPickupable, defaultSuccessText, defaultFailText, obj.PickupableFlavorText);
+        bool successful = inputParser.printResponse(obj, obj.runtimeIsPickupable, defaultSuccessText, defaultFailText, obj.runtimePickupableFlavorText);
 
         if (successful)
             executeActions(obj, obj.pickupVars);
@@ -272,7 +269,7 @@ public class ActionHandler : MonoBehaviour
 
         string defaultSuccessText = "You equip the " + obj.name + ".";
         string defaultFailText = "You can't equip the " + obj.name + ".";
-        bool successful = inputParser.printResponse(obj, obj.isWearable, defaultSuccessText, defaultFailText, obj.WearableFlavorText);
+        bool successful = inputParser.printResponse(obj, obj.runtimeIsWearable, defaultSuccessText, defaultFailText, obj.runtimeWearableFlavorText);
 
         if (successful)
             executeActions(obj, obj.wearableVars);
@@ -289,7 +286,7 @@ public class ActionHandler : MonoBehaviour
 
         string defaultSuccessText = "You open the " + obj.name + ".";
         string defaultFailText = "You can't open the " + obj.name + ".";
-        bool successful = inputParser.printResponse(obj, obj.isOpenable, defaultSuccessText, defaultFailText, obj.OpenableFlavorText);
+        bool successful = inputParser.printResponse(obj, obj.runtimeIsOpenable, defaultSuccessText, defaultFailText, obj.runtimeOpenableFlavorText);
 
         if (successful)
             executeActions(obj, obj.openableVars);
@@ -303,18 +300,19 @@ public class ActionHandler : MonoBehaviour
             return;
         }
 
-        if (System.String.IsNullOrWhiteSpace(obj.LookAtFlavorText))
+        if (System.String.IsNullOrWhiteSpace(obj.runtimeLookAtFlavorText))
         {
             textPrompt.printText("\nNothing interesting here.");
             return;
         }
 
-        textPrompt.printText("\n" + obj.LookAtFlavorText);
+        textPrompt.printText("\n" + obj.runtimeLookAtFlavorText);
     }
 
     public void printCurrentRoomText()
     {
-        string roomText = roomTracker.getCurrentRoom().roomText;
+        string roomText = roomTracker.getCurrentRoom().runtimeRoomText;
+
         if (System.String.IsNullOrEmpty(roomText))
         {
             textPrompt.printText("\n(You forgot to add Room Text for this current room)");

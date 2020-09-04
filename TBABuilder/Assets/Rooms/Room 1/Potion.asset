@@ -20,6 +20,14 @@ MonoBehaviour:
   isPickupable: 0
   isWearable: 0
   isOpenable: 0
+  runtimeIsEdible: 0
+  runtimeIsTalkable: 0
+  runtimeIsKillable: 0
+  runtimeIsSittable: 0
+  runtimeIsUsable: 0
+  runtimeIsPickupable: 0
+  runtimeIsWearable: 0
+  runtimeIsOpenable: 0
   edibleFlavorText: You drink the potion
   talkableFlavorText: 
   killableFlavorText: 
@@ -29,6 +37,15 @@ MonoBehaviour:
   wearableFlavorText: 
   openableFlavorText: 
   lookAtFlavorText: The potion glows with intensity.
+  runtimeEdibleFlavorText: You drink the potion
+  runtimeTalkableFlavorText: 
+  runtimeKillableFlavorText: 
+  runtimeSittableFlavorText: eat pant
+  runtimeUsableFlavorText: 
+  runtimePickupableFlavorText: 
+  runtimeWearableFlavorText: 
+  runtimeOpenableFlavorText: 
+  runtimeLookAtFlavorText: The potion glows with intensity.
   edibleVars: []
   talkableVars: []
   killableVars: []

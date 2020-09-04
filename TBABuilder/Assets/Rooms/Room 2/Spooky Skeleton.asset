@@ -20,6 +20,14 @@ MonoBehaviour:
   isPickupable: 0
   isWearable: 0
   isOpenable: 0
+  runtimeIsEdible: 0
+  runtimeIsTalkable: 0
+  runtimeIsKillable: 0
+  runtimeIsSittable: 0
+  runtimeIsUsable: 0
+  runtimeIsPickupable: 0
+  runtimeIsWearable: 0
+  runtimeIsOpenable: 0
   edibleFlavorText: 
   talkableFlavorText: 
   killableFlavorText: 
@@ -29,6 +37,15 @@ MonoBehaviour:
   wearableFlavorText: 
   openableFlavorText: 
   lookAtFlavorText: 
+  runtimeEdibleFlavorText: 
+  runtimeTalkableFlavorText: 
+  runtimeKillableFlavorText: 
+  runtimeSittableFlavorText: 
+  runtimeUsableFlavorText: 
+  runtimePickupableFlavorText: 
+  runtimeWearableFlavorText: 
+  runtimeOpenableFlavorText: 
+  runtimeLookAtFlavorText: 
   edibleVars: []
   talkableVars: []
   killableVars: []

@@ -7,30 +7,72 @@ using UnityEngine;
 [Serializable]
 public class RoomObject : ScriptableObject
 {
-
     // You may be wondering why these variables are public rather than have getters and setters
     // This is because properties can't be passed by reference and that makes it more difficult to manipulate outside the class
     // Since you're free to get and set them ANYWAYS and there isn't a special rule for either, I decided to make them public
 
-    [Header("Booleans")]
-    [SerializeField] public bool isEdible = false;
-    [SerializeField] public bool isTalkable = false;
-    [SerializeField] public bool isKillable = false;
-    [SerializeField] public bool isSittable = false;
-    [SerializeField] public bool isUsable = false;
-    [SerializeField] public bool isPickupable = false;
-    [SerializeField] public bool isWearable = false;
-    [SerializeField] public bool isOpenable = false;
+    [NonSerialized] public bool isInitialized = false;
 
-    [TextArea(1, 5)] public string edibleFlavorText;
-    [SerializeField] [TextArea(1, 5)] string talkableFlavorText;
-    [SerializeField] [TextArea(1, 5)] string killableFlavorText;
-    [SerializeField] [TextArea(1, 5)] string sittableFlavorText;
-    [SerializeField] [TextArea(1, 5)] string usableFlavorText;
-    [SerializeField] [TextArea(1, 5)] string pickupableFlavorText;
-    [SerializeField] [TextArea(1, 5)] string wearableFlavorText;
-    [SerializeField] [TextArea(1, 5)] string openableFlavorText;
-    [SerializeField] [TextArea(1, 5)] string lookAtFlavorText;
+    public bool isEdible = false;
+    public bool isTalkable = false;
+    public bool isKillable = false;
+    public bool isSittable = false;
+    public bool isUsable = false;
+    public bool isPickupable = false;
+    public bool isWearable = false;
+    public bool isOpenable = false;
+
+    public bool runtimeIsEdible;
+    public bool runtimeIsTalkable;
+    public bool runtimeIsKillable;
+    public bool runtimeIsSittable;
+    public bool runtimeIsUsable;
+    public bool runtimeIsPickupable;
+    public bool runtimeIsWearable;
+    public bool runtimeIsOpenable;
+
+    public string edibleFlavorText;
+    public string talkableFlavorText;
+    public string killableFlavorText;
+    public string sittableFlavorText;
+    public string usableFlavorText;
+    public string pickupableFlavorText;
+    public string wearableFlavorText;
+    public string openableFlavorText;
+    public string lookAtFlavorText;
+
+    public string runtimeEdibleFlavorText;
+    public string runtimeTalkableFlavorText;
+    public string runtimeKillableFlavorText;
+    public string runtimeSittableFlavorText;
+    public string runtimeUsableFlavorText;
+    public string runtimePickupableFlavorText;
+    public string runtimeWearableFlavorText;
+    public string runtimeOpenableFlavorText;
+    public string runtimeLookAtFlavorText;
+
+    public void initializeRuntimeVariables() {
+        isInitialized = true;
+
+        runtimeIsEdible = isEdible;
+        runtimeIsTalkable = isTalkable;
+        runtimeIsKillable = isKillable;
+        runtimeIsSittable = isSittable;
+        runtimeIsUsable = isUsable;
+        runtimeIsPickupable = isPickupable;
+        runtimeIsWearable = isWearable;
+        runtimeIsOpenable = isOpenable;
+
+        runtimeEdibleFlavorText = edibleFlavorText;
+        runtimeTalkableFlavorText = talkableFlavorText;
+        runtimeKillableFlavorText = killableFlavorText;
+        runtimeSittableFlavorText = sittableFlavorText;
+        runtimeUsableFlavorText = usableFlavorText;
+        runtimePickupableFlavorText = pickupableFlavorText;
+        runtimeWearableFlavorText = wearableFlavorText;
+        runtimeOpenableFlavorText = openableFlavorText;
+        runtimeLookAtFlavorText = lookAtFlavorText;
+    }
 
     // Each index of the list represents one action.
     public List<EditorVariables> edibleVars = new List<EditorVariables>();
@@ -79,6 +121,9 @@ public class RoomObject : ScriptableObject
         public string lookAtFlavorText;
 
         public Room targetRoom;
+
+        public string roomText;
+
         public RoomObject targetObject;
     }
 
@@ -103,7 +148,7 @@ public class RoomObject : ScriptableObject
     [Serializable]
     public enum ObjectAction
     {
-        DestroyThisObject,
+        DestroyObject,
 
         SetIsEdible,
         SetIsTalkable,
@@ -130,16 +175,7 @@ public class RoomObject : ScriptableObject
     {
         RemoveObjectFromRoom,
         AddObjectToRoom,
-        ChangeRoom
+        SwitchRooms,
+        ChangeRoomText
     }
-
-    public string EdibleFlavorText { get => edibleFlavorText; set => edibleFlavorText = value; }
-    public string TalkableFlavorText { get => talkableFlavorText; set => talkableFlavorText = value; }
-    public string KillableFlavorText { get => killableFlavorText; set => killableFlavorText = value; }
-    public string SittableFlavorText { get => sittableFlavorText; set => sittableFlavorText = value; }
-    public string UsableFlavorText { get => usableFlavorText; set => usableFlavorText = value; }
-    public string PickupableFlavorText { get => pickupableFlavorText; set => pickupableFlavorText = value; }
-    public string WearableFlavorText { get => wearableFlavorText; set => wearableFlavorText = value; }
-    public string OpenableFlavorText { get => openableFlavorText; set => openableFlavorText = value; }
-    public string LookAtFlavorText { get => lookAtFlavorText; set => lookAtFlavorText = value; }
 }

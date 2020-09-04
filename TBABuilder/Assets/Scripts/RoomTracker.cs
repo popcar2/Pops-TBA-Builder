@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class RoomTracker : MonoBehaviour
 {
-    [SerializeField] Room[] rooms = null;
+    [SerializeField] Room startingRoom;
     Room currentRoom = null;
 
     TextPrompt textPrompt;
+    ObjectFinder objectFinder;
+    Player player;
 
     private void Start()
     {
-        currentRoom = rooms[0];
-        foreach (Room room in rooms)
-        {
-            // Instantiates all RoomObjects so the original doesn't get changed during runtime
-            room.prepareRoomObjects();
-        }
-
         textPrompt = FindObjectOfType<TextPrompt>();
+        objectFinder = FindObjectOfType<ObjectFinder>();
+        player = FindObjectOfType<Player>();
+
+        currentRoom = startingRoom;
+
+        currentRoom.initializeRuntimeVariables();
     }
 
     public Room getCurrentRoom()
@@ -28,19 +29,78 @@ public class RoomTracker : MonoBehaviour
 
     public RoomObject findObjectInCurrentRoom(string objName)
     {
-        return currentRoom.findObjectInRoom(objName);
+        // Look in player's inventory first
+        foreach (RoomObject obj in player.getInventory())
+        {
+            if (obj.name == objName)
+            {
+                return obj;
+            }
+        }
+
+        // Look in player's equipped items
+        foreach (RoomObject obj in player.getEquippedItems())
+        {
+            if (obj.name == objName)
+            {
+                return obj;
+            }
+        }
+
+        // Look in this room
+        foreach (RoomObject obj in currentRoom.runtimeRoomObjects)
+        {
+            if (obj.name == objName)
+            {
+                return obj;
+            }
+        }
+
+        return null;
     }
 
-    public void findRoomFromInput(string input)
+    public void forceChangeRoom(Room room)
+    {
+        if (room == null)
+        {
+            textPrompt.printText("\nThere's nothing in that direction.");
+            return;
+        }
+
+        if (room.isInitialized == false)
+            room.initializeRuntimeVariables();
+
+        currentRoom = room;
+        textPrompt.printText("\n" + currentRoom.runtimeRoomText);
+    }
+
+    public void changeRoomViaRoomConnection(string userInput)
+    {
+        Room newRoom = findRoomConnection(userInput);
+
+        if (newRoom == null)
+        {
+            textPrompt.printText($"\nThere's nothing in that direction.");
+            return;
+        }
+
+        if (newRoom.isInitialized == false)
+            newRoom.initializeRuntimeVariables();
+
+        currentRoom = newRoom;
+        textPrompt.printText("\n" + currentRoom.runtimeRoomText);
+    }
+
+    private Room findRoomConnection(string userInput)
     {
         Room newRoom = null;
-        
-        foreach (Room.RoomConnectionVars roomConnection in currentRoom.roomConnections)
+
+        foreach (Room.RoomConnectionVars roomConnection in currentRoom.runtimeRoomConnections)
         {
             // No aliases
             if (string.IsNullOrWhiteSpace(roomConnection.roomAlias))
             {
-                if (input.ToLower().Contains(roomConnection.room.name.ToLower()))
+                if (userInput.ToLower().Contains(roomConnection.room.name.ToLower()))
                 {
                     newRoom = roomConnection.room;
                 }
@@ -52,7 +112,7 @@ public class RoomTracker : MonoBehaviour
                 string[] roomAliases = roomConnection.roomAlias.Split(',');
                 foreach (string roomAlias in roomAliases)
                 {
-                    if (input.ToLower().Contains(roomAlias.ToLower()))
+                    if (userInput.ToLower().Contains(roomAlias.ToLower()))
                     {
                         newRoom = roomConnection.room;
                         break;
@@ -66,20 +126,6 @@ public class RoomTracker : MonoBehaviour
             }
         }
 
-        if (newRoom == null)
-        {
-            textPrompt.printText($"\nThere's nothing in that direction.");
-        }
-        else
-        {
-            currentRoom = newRoom;
-            textPrompt.printText("\n" + currentRoom.roomText);
-        }
-    }
-
-    public void forceChangeRoom(Room room)
-    {
-        currentRoom = room;
-        textPrompt.printText("\n" + currentRoom.roomText);
+        return newRoom;
     }
 }

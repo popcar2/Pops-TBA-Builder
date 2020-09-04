@@ -374,7 +374,7 @@ PrefabInstance:
     - target: {fileID: 1575612016298144237, guid: bf518bf947e797b4e9c4b396916d7ac1,
         type: 3}
       propertyPath: m_Name
-      value: EventSystem
+      value: Event System
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf518bf947e797b4e9c4b396916d7ac1, type: 3}
@@ -451,10 +451,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 89266a7e1e0717f4cbce3d97a66d1179,
         type: 2}
+    - target: {fileID: 5440832264275846369, guid: 54fb870b712db9c408109d756f338467,
+        type: 3}
+      propertyPath: startingRoom
+      value: 
+      objectReference: {fileID: 11400000, guid: 9d48b8f96ae5b134cac5e0d91f332df1,
+        type: 2}
     - target: {fileID: 5440832264275846370, guid: 54fb870b712db9c408109d756f338467,
         type: 3}
       propertyPath: m_Name
-      value: RoomTracker
+      value: Room Tracker
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54fb870b712db9c408109d756f338467, type: 3}
@@ -537,7 +543,7 @@ PrefabInstance:
     - target: {fileID: 2816579538797764533, guid: eb1491d393a25a14b851384a65a3407d,
         type: 3}
       propertyPath: m_Name
-      value: InputParser
+      value: Input Parser
       objectReference: {fileID: 0}
     - target: {fileID: 9150609697040621672, guid: eb1491d393a25a14b851384a65a3407d,
         type: 3}
@@ -606,7 +612,7 @@ PrefabInstance:
     - target: {fileID: 6443435181026826395, guid: 682fa940c2c9d4647a2a1e8d767dada3,
         type: 3}
       propertyPath: m_Name
-      value: ActionHandler
+      value: Action Handler
       objectReference: {fileID: 0}
     - target: {fileID: 6443435181026826396, guid: 682fa940c2c9d4647a2a1e8d767dada3,
         type: 3}

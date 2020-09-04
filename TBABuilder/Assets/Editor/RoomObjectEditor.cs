@@ -46,19 +46,19 @@ public class RoomObjectEditor : Editor
         
         EditorGUILayout.PropertyField(edibleFlavorText);
         GUILayout.Label("Talkable Flavor Text");
-        obj.TalkableFlavorText = EditorGUILayout.TextArea(obj.TalkableFlavorText, GUILayout.MinHeight(textAreaHeight));
+        obj.talkableFlavorText = EditorGUILayout.TextArea(obj.talkableFlavorText, GUILayout.MinHeight(textAreaHeight));
         GUILayout.Label("Killable Flavor Text");
-        obj.KillableFlavorText = EditorGUILayout.TextArea(obj.KillableFlavorText, GUILayout.MinHeight(textAreaHeight));
+        obj.killableFlavorText = EditorGUILayout.TextArea(obj.killableFlavorText, GUILayout.MinHeight(textAreaHeight));
         GUILayout.Label("Sittable Flavor Text");
-        obj.SittableFlavorText = EditorGUILayout.TextArea(obj.SittableFlavorText, GUILayout.MinHeight(textAreaHeight));
+        obj.sittableFlavorText = EditorGUILayout.TextArea(obj.sittableFlavorText, GUILayout.MinHeight(textAreaHeight));
         GUILayout.Label("Usable Flavor Text");
-        obj.UsableFlavorText = EditorGUILayout.TextArea(obj.UsableFlavorText, GUILayout.MinHeight(textAreaHeight));
+        obj.usableFlavorText = EditorGUILayout.TextArea(obj.usableFlavorText, GUILayout.MinHeight(textAreaHeight));
         GUILayout.Label("Pickupable Flavor Text");
-        obj.PickupableFlavorText = EditorGUILayout.TextArea(obj.PickupableFlavorText, GUILayout.MinHeight(textAreaHeight));
+        obj.pickupableFlavorText = EditorGUILayout.TextArea(obj.pickupableFlavorText, GUILayout.MinHeight(textAreaHeight));
         GUILayout.Label("Wearable Flavor Text");
-        obj.WearableFlavorText = EditorGUILayout.TextArea(obj.WearableFlavorText, GUILayout.MinHeight(textAreaHeight));
+        obj.wearableFlavorText = EditorGUILayout.TextArea(obj.wearableFlavorText, GUILayout.MinHeight(textAreaHeight));
         GUILayout.Label("Openable Flavor Text");
-        obj.OpenableFlavorText = EditorGUILayout.TextArea(obj.OpenableFlavorText, GUILayout.MinHeight(textAreaHeight));
+        obj.openableFlavorText = EditorGUILayout.TextArea(obj.openableFlavorText, GUILayout.MinHeight(textAreaHeight));
 
         showMiscTab(obj);
 
@@ -75,7 +75,7 @@ public class RoomObjectEditor : Editor
 
         GUIContent lookAtContent = new GUIContent("Look At Flavor Text", "The text that's printed when the player looks at the object");
         EditorGUILayout.PrefixLabel(lookAtContent);
-        obj.LookAtFlavorText = EditorGUILayout.TextArea(obj.LookAtFlavorText);
+        obj.lookAtFlavorText = EditorGUILayout.TextArea(obj.lookAtFlavorText);
 
     }
 
@@ -107,13 +107,13 @@ public class RoomObjectEditor : Editor
                 }
 
                 // Show Object Actions
-                if (objVars[i].actionCategory == RoomObject.ActionCategory.ObjectActions)
+                else if (objVars[i].actionCategory == RoomObject.ActionCategory.ObjectActions)
                 {
                     objVars[i].objectAction = (RoomObject.ObjectAction)EditorGUILayout.EnumPopup(GUIContent.none, objVars[i].objectAction);
                 }
 
                 // Show Room Actions
-                if (objVars[i].actionCategory == RoomObject.ActionCategory.RoomActions)
+                else if (objVars[i].actionCategory == RoomObject.ActionCategory.RoomActions)
                 {
                     objVars[i].roomAction = (RoomObject.RoomAction)EditorGUILayout.EnumPopup(GUIContent.none, objVars[i].roomAction);
                 }
@@ -132,6 +132,7 @@ public class RoomObjectEditor : Editor
                 RoomObject.EditorVariables newVar = new RoomObject.EditorVariables();
                 newVar.varsToChange.targetObject = (RoomObject)target;
                 objVars.Add(newVar);
+
             }
             GUILayout.EndHorizontal();
         }
@@ -149,6 +150,7 @@ public class RoomObjectEditor : Editor
         GUILayout.BeginVertical();
 
         GUIContent targetObjectLabel = new GUIContent("Target Object", "The object that is affected by the selected action command. Set to the current object by default.");
+        GUIContent targetRoomLabel = new GUIContent("Target Room", "The room that is affected by the selected action command.");
         // Change this to a Switch statement later
 
         if (objVars[i].actionCategory == RoomObject.ActionCategory.PlayerActions)
@@ -172,7 +174,11 @@ public class RoomObjectEditor : Editor
         }
         else if (objVars[i].actionCategory == RoomObject.ActionCategory.ObjectActions)
         {
-            if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsEdible)
+            if (objVars[i].objectAction == RoomObject.ObjectAction.DestroyObject)
+            {
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+            }
+            else if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsEdible)
             {
                 objVars[i].varsToChange.isEdible = GUILayout.Toggle(objVars[i].varsToChange.isEdible, "Become Edible");
                 showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
@@ -250,14 +256,20 @@ public class RoomObjectEditor : Editor
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeOpenableFlavorText)
             {
-                showAdditionalTextField(ref objVars[i].varsToChange.openableFlavorText);
                 showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                showAdditionalTextField(ref objVars[i].varsToChange.openableFlavorText);
+            }
+            else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeLookAtFlavorText)
+            {
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                showAdditionalTextField(ref objVars[i].varsToChange.lookAtFlavorText);
             }
         }
         else if (objVars[i].actionCategory == RoomObject.ActionCategory.RoomActions)
         {
-            if (objVars[i].roomAction == RoomObject.RoomAction.ChangeRoom)
+            if (objVars[i].roomAction == RoomObject.RoomAction.SwitchRooms)
             {
+                // TODO: Change this later
                 GUIContent content = new GUIContent("Move to room", "Instantly move to the room you've selected, regardless of where it is. However, it has to be in roomTracker's room list.");
                 objVars[i].varsToChange.targetRoom = (Room)EditorGUILayout.ObjectField(content, objVars[i].varsToChange.targetRoom, typeof(Room), true);
             }
@@ -268,6 +280,11 @@ public class RoomObjectEditor : Editor
             else if (objVars[i].roomAction == RoomObject.RoomAction.RemoveObjectFromRoom)
             {
                 showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+            }
+            else if (objVars[i].roomAction == RoomObject.RoomAction.ChangeRoomText)
+            {
+                showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
+                showAdditionalTextField(ref objVars[i].varsToChange.roomText);
             }
         }
         GUILayout.EndVertical();
@@ -284,6 +301,14 @@ public class RoomObjectEditor : Editor
         GUILayout.BeginHorizontal();
         EditorGUILayout.PrefixLabel(label);
         obj = (RoomObject)EditorGUILayout.ObjectField(obj, typeof(RoomObject), true, GUILayout.MaxWidth(200f));
+        GUILayout.EndHorizontal();
+    }
+
+    private void showSelectableRoom(GUIContent label, ref Room room)
+    {
+        GUILayout.BeginHorizontal();
+        EditorGUILayout.PrefixLabel(label);
+        room = (Room)EditorGUILayout.ObjectField(room, typeof(Room), true, GUILayout.MaxWidth(200f));
         GUILayout.EndHorizontal();
     }
 }

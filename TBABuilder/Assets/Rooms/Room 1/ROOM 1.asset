@@ -13,12 +13,20 @@ MonoBehaviour:
   m_Name: ROOM 1
   m_EditorClassIdentifier: 
   roomObjects:
-  - {fileID: 11400000, guid: 2eb662dabeca56044ae478577783f7ae, type: 2}
   - {fileID: 11400000, guid: a21093cfbf19b2241ac161e755ea5640, type: 2}
   - {fileID: 11400000, guid: 844b957890bf36f46b59b433b4b25033, type: 2}
   - {fileID: 11400000, guid: aa80afc04818caa41a13cb66d3dc1f7d, type: 2}
-  roomText: you are in a dungeon room, there's an apple and potion on the table.
-    Next to it is a chair.
+  - {fileID: 11400000, guid: 2eb662dabeca56044ae478577783f7ae, type: 2}
+  roomText: 'You are in a room. In it, a chair, armor, potion, and apple. '
   roomConnections:
+  - room: {fileID: 11400000, guid: 89266a7e1e0717f4cbce3d97a66d1179, type: 2}
+    roomAlias: Bone Zone, Spooky Zone
+  runtimeRoomObjects:
+  - {fileID: 11400000, guid: a21093cfbf19b2241ac161e755ea5640, type: 2}
+  - {fileID: 11400000, guid: 844b957890bf36f46b59b433b4b25033, type: 2}
+  - {fileID: 11400000, guid: aa80afc04818caa41a13cb66d3dc1f7d, type: 2}
+  - {fileID: 11400000, guid: 2eb662dabeca56044ae478577783f7ae, type: 2}
+  runtimeRoomText: Apple eaten
+  runtimeRoomConnections:
   - room: {fileID: 11400000, guid: 89266a7e1e0717f4cbce3d97a66d1179, type: 2}
     roomAlias: Bone Zone, Spooky Zone

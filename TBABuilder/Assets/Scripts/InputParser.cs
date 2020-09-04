@@ -10,12 +10,15 @@ public class InputParser : MonoBehaviour
     RoomTracker roomTracker;
     Player player;
     ActionHandler actionHandler;
+    ObjectFinder objectFinder;
+
     private void Start()
     {
         textPrompt = FindObjectOfType<TextPrompt>();
         roomTracker = FindObjectOfType<RoomTracker>();
         player = FindObjectOfType<Player>();
         actionHandler = FindObjectOfType<ActionHandler>();
+        objectFinder = FindObjectOfType<ObjectFinder>();
     }
 
     private string[] trimText(string text)
@@ -121,7 +124,7 @@ public class InputParser : MonoBehaviour
     {
         RoomObject foundObject = null;
 
-        foundObject = findObjectFromList(input, roomTracker.getCurrentRoom().getRoomObjects());
+        foundObject = findObjectFromList(input, roomTracker.getCurrentRoom().runtimeRoomObjects);
 
         if (foundObject != null)
             return foundObject;
@@ -260,7 +263,7 @@ public class InputParser : MonoBehaviour
                 break;
             case "move":
             case "go":
-                roomTracker.findRoomFromInput(input);
+                roomTracker.changeRoomViaRoomConnection(input);
                 break;
             // Fluff/secret commands
             case "die":

@@ -18,8 +18,16 @@ MonoBehaviour:
   isSittable: 0
   isUsable: 0
   isPickupable: 0
-  isWearable: 1
+  isWearable: 0
   isOpenable: 0
+  runtimeIsEdible: 0
+  runtimeIsTalkable: 0
+  runtimeIsKillable: 0
+  runtimeIsSittable: 0
+  runtimeIsUsable: 0
+  runtimeIsPickupable: 0
+  runtimeIsWearable: 0
+  runtimeIsOpenable: 0
   edibleFlavorText: 
   talkableFlavorText: 
   killableFlavorText: 
@@ -29,84 +37,21 @@ MonoBehaviour:
   wearableFlavorText: 
   openableFlavorText: 
   lookAtFlavorText: 
+  runtimeEdibleFlavorText: 
+  runtimeTalkableFlavorText: 
+  runtimeKillableFlavorText: 
+  runtimeSittableFlavorText: 
+  runtimeUsableFlavorText: 
+  runtimePickupableFlavorText: 
+  runtimeWearableFlavorText: 
+  runtimeOpenableFlavorText: 
+  runtimeLookAtFlavorText: 
   edibleVars: []
   talkableVars: []
   killableVars: []
   sittableVars: []
   usableVars: []
   pickupVars: []
-  wearableVars:
-  - actionCategory: 0
-    playerAction: 3
-    objectAction: 0
-    roomAction: 0
-    varsToChange:
-      isEdible: 0
-      isTalkable: 0
-      isKillable: 0
-      isSittable: 0
-      isUsable: 0
-      isPickupable: 0
-      isWearable: 0
-      isOpenable: 0
-      edibleFlavorText: 
-      talkableFlavorText: 
-      killableFlavorText: 
-      sittableFlavorText: 
-      usableFlavorText: 
-      pickupableFlavorText: 
-      wearableFlavorText: 
-      openableFlavorText: 
-      lookAtFlavorText: 
-      targetRoom: {fileID: 0}
-      targetObject: {fileID: 0}
-  - actionCategory: 0
-    playerAction: 1
-    objectAction: 0
-    roomAction: 0
-    varsToChange:
-      isEdible: 0
-      isTalkable: 0
-      isKillable: 0
-      isSittable: 0
-      isUsable: 0
-      isPickupable: 0
-      isWearable: 0
-      isOpenable: 0
-      edibleFlavorText: 
-      talkableFlavorText: 
-      killableFlavorText: 
-      sittableFlavorText: 
-      usableFlavorText: 
-      pickupableFlavorText: 
-      wearableFlavorText: 
-      openableFlavorText: 
-      lookAtFlavorText: 
-      targetRoom: {fileID: 0}
-      targetObject: {fileID: 0}
-  - actionCategory: 2
-    playerAction: 0
-    objectAction: 0
-    roomAction: 0
-    varsToChange:
-      isEdible: 0
-      isTalkable: 0
-      isKillable: 0
-      isSittable: 0
-      isUsable: 0
-      isPickupable: 0
-      isWearable: 0
-      isOpenable: 0
-      edibleFlavorText: 
-      talkableFlavorText: 
-      killableFlavorText: 
-      sittableFlavorText: 
-      usableFlavorText: 
-      pickupableFlavorText: 
-      wearableFlavorText: 
-      openableFlavorText: 
-      lookAtFlavorText: 
-      targetRoom: {fileID: 0}
-      targetObject: {fileID: 0}
+  wearableVars: []
   openableVars: []
   objectAliases: 

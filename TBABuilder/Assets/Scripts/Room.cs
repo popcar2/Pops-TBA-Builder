@@ -2,17 +2,34 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using System.Linq;
 
 [CreateAssetMenu(menuName = "Room", order = 0)]
 public class Room : ScriptableObject
 {
-    // roomObjects is what the game starts with but the issue is that the game alters objects permanently.
-    // Therefore, roomObjects is copied into copiedRoomObjects 
-    [SerializeField] List<RoomObject> roomObjects;
-    List<RoomObject> copiedRoomObjects;
+    [NonSerialized] public bool isInitialized = false;
 
+    [SerializeField] public List<RoomObject> roomObjects;
     [TextArea(1, 10)] [SerializeField] public string roomText;
     [HideInInspector] public List<RoomConnectionVars> roomConnections = new List<RoomConnectionVars>();
+
+    public List<RoomObject> runtimeRoomObjects = new List<RoomObject>();
+    public string runtimeRoomText;
+    public List<RoomConnectionVars> runtimeRoomConnections = new List<RoomConnectionVars>();
+
+    public void initializeRuntimeVariables()
+    {
+        isInitialized = true;
+        runtimeRoomObjects = roomObjects.ToList();
+        runtimeRoomText = roomText;
+        runtimeRoomConnections = roomConnections;
+
+        foreach (RoomObject obj in runtimeRoomObjects)
+        {
+            if (obj.isInitialized == false)
+                obj.initializeRuntimeVariables();
+        }
+    }
 
 
     [Serializable]
@@ -22,63 +39,13 @@ public class Room : ScriptableObject
         public string roomAlias;
     }
 
-    public void prepareRoomObjects()
-    {
-        copiedRoomObjects = new List<RoomObject>();
-        foreach (RoomObject obj in roomObjects)
-        {
-            RoomObject temp = Instantiate(obj);
-            temp.name = obj.name;
-            copiedRoomObjects.Add(temp);
-        }
-    }
-
-    public List<RoomObject> getRoomObjects()
-    {
-        return copiedRoomObjects;
-    }
-
-    public RoomObject findObjectInRoom(string objName)
-    {
-        Player player = FindObjectOfType<Player>();
-
-        // Look in player's inventory first
-        foreach (RoomObject obj in player.getInventory())
-        {
-            if (obj.name == objName)
-            {
-                return obj;
-            }
-        }
-
-        // Look in player's inventory
-        foreach (RoomObject obj in player.getEquippedItems())
-        {
-            if (obj.name == objName)
-            {
-                return obj;
-            }
-        }
-
-        // Look in this room
-        foreach (RoomObject obj in copiedRoomObjects)
-        {
-            if (obj.name == objName)
-            {
-                return obj;
-            }
-        }
-
-        return null;
-    }
-
     public void removeRoomObject(RoomObject obj)
     {
-        copiedRoomObjects.Remove(obj);
+        runtimeRoomObjects.Remove(obj);
     }
 
     public void addRoomObject(RoomObject obj)
     {
-        copiedRoomObjects.Add(obj);
+        runtimeRoomObjects.Add(obj);
     }
 }
