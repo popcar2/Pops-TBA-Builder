@@ -13,9 +13,9 @@ public class Room : ScriptableObject
     [TextArea(1, 10)] [SerializeField] public string roomText;
     [HideInInspector] public List<RoomConnectionVars> roomConnections = new List<RoomConnectionVars>();
 
-    public List<RoomObject> runtimeRoomObjects = new List<RoomObject>();
-    public string runtimeRoomText;
-    public List<RoomConnectionVars> runtimeRoomConnections = new List<RoomConnectionVars>();
+    [HideInInspector] public List<RoomObject> runtimeRoomObjects = new List<RoomObject>();
+    [HideInInspector] public string runtimeRoomText;
+    [HideInInspector] public List<RoomConnectionVars> runtimeRoomConnections = new List<RoomConnectionVars>();
 
     public void initializeRuntimeVariables()
     {

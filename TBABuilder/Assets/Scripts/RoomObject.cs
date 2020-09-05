@@ -138,9 +138,10 @@ public class RoomObject : ScriptableObject
     [Serializable]
     public enum PlayerAction
     {
+        KillPlayer,
+        WinGame,
         AddToInventory,
         RemoveFromInventory,
-        KillPlayer,
         EquipItem,
         RemoveEquippedItem
     }

@@ -45,17 +45,24 @@ public class ActionHandler : MonoBehaviour
 
                 switch (playerAction)
                 {
+                    case RoomObject.PlayerAction.KillPlayer:
+                        textPrompt.killPlayer();
+                        textPrompt.printText("\nYOU DIED (Press any button to restart)");
+                        break;
+
+                    case RoomObject.PlayerAction.WinGame:
+                        textPrompt.winGame();
+                        textPrompt.printText("\nYOU WON! (Press any button to restart)");
+                        break;
+
                     case RoomObject.PlayerAction.AddToInventory:
                         player.addItemToInventory(targetObject);
+                        roomTracker.getCurrentRoom().removeRoomObject(targetObject);
+                        player.removeEquippedItem(targetObject);
                         break;
 
                     case RoomObject.PlayerAction.RemoveFromInventory:
                         player.removeItemFromInventory(targetObject);
-                        break;
-
-                    case RoomObject.PlayerAction.KillPlayer:
-                        textPrompt.killPlayer();
-                        textPrompt.printText("\n--YOU DIED-- (Press any button to continue)");
                         break;
 
                     case RoomObject.PlayerAction.EquipItem:

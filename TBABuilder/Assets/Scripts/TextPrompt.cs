@@ -18,7 +18,7 @@ public class TextPrompt : MonoBehaviour
 
     // Helper variables
     private bool isPrinting = false;
-    private bool isDead = false;
+    private bool gameOver = false;
     private Queue<string> printQueue;
 
     void Start()
@@ -38,12 +38,12 @@ public class TextPrompt : MonoBehaviour
 
     void Update()
     {
-        if (isDead && !isPrinting && Input.anyKeyDown)
+        if (gameOver && !isPrinting && Input.anyKeyDown)
         {
             SceneManager.LoadScene(0);
         }
 
-        if (Input.GetKeyDown(KeyCode.Return) && !string.IsNullOrWhiteSpace(inputField.text) && !isDead)
+        if (Input.GetKeyDown(KeyCode.Return) && !string.IsNullOrWhiteSpace(inputField.text) && !gameOver)
         {
             // Input text
             inputField.ActivateInputField();
@@ -57,7 +57,7 @@ public class TextPrompt : MonoBehaviour
             inputField.ActivateInputField();
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !isDead)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !gameOver)
         {
             inputField.ActivateInputField();
         }
@@ -74,7 +74,14 @@ public class TextPrompt : MonoBehaviour
 
     public void killPlayer()
     {
-        isDead = true;
+        gameOver = true;
+        // For some reason inputfield doesn't deactivate so I just moved it off-screen lmao
+        inputField.transform.position = new Vector2(0, -100);
+    }
+
+    public void winGame()
+    {
+        gameOver = true;
         // For some reason inputfield doesn't deactivate so I just moved it off-screen lmao
         inputField.transform.position = new Vector2(0, -100);
     }
