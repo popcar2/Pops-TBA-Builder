@@ -70,13 +70,12 @@ public class RoomObjectEditor : Editor
         GUIContent aliasContent = new GUIContent("RoomObject Aliases", "The different names of the object in-game, which the player types to interact with." +
                 " Aliases are separated by a comma. Leave empty to set it to the object's name in the editor by default.\nEx: Potion of Healing,Healing Potion,Red Potion");
         EditorGUILayout.PrefixLabel(aliasContent);
-        showAdditionalTextField(ref obj.objectAliases);
+        showAdditionalTextArea(ref obj.objectAliases);
         GUILayout.EndHorizontal();
 
         GUIContent lookAtContent = new GUIContent("Look At Flavor Text", "The text that's printed when the player looks at the object");
         EditorGUILayout.PrefixLabel(lookAtContent);
         obj.lookAtFlavorText = EditorGUILayout.TextArea(obj.lookAtFlavorText);
-
     }
 
     private void showActionTab(ref bool toggleBool, ref List<RoomObject.EditorVariables> objVars)
@@ -221,48 +220,48 @@ public class RoomObjectEditor : Editor
 
             else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeEdibleFlavorText)
             {
-                showAdditionalTextField(ref objVars[i].varsToChange.edibleFlavorText);
+                showAdditionalTextArea(ref objVars[i].varsToChange.edibleFlavorText);
                 showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeKillableFlavorText)
             {
-                showAdditionalTextField(ref objVars[i].varsToChange.killableFlavorText);
+                showAdditionalTextArea(ref objVars[i].varsToChange.killableFlavorText);
                 showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangePickupableFlavorText)
             {
-                showAdditionalTextField(ref objVars[i].varsToChange.pickupableFlavorText);
+                showAdditionalTextArea(ref objVars[i].varsToChange.pickupableFlavorText);
                 showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeSittableFlavorText)
             {
-                showAdditionalTextField(ref objVars[i].varsToChange.sittableFlavorText);
+                showAdditionalTextArea(ref objVars[i].varsToChange.sittableFlavorText);
                 showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeTalkableFlavorText)
             {
-                showAdditionalTextField(ref objVars[i].varsToChange.talkableFlavorText);
+                showAdditionalTextArea(ref objVars[i].varsToChange.talkableFlavorText);
                 showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeUsableFlavorText)
             {
-                showAdditionalTextField(ref objVars[i].varsToChange.usableFlavorText);
+                showAdditionalTextArea(ref objVars[i].varsToChange.usableFlavorText);
                 showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeWearableFlavorText)
             {
-                showAdditionalTextField(ref objVars[i].varsToChange.wearableFlavorText);
+                showAdditionalTextArea(ref objVars[i].varsToChange.wearableFlavorText);
                 showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeOpenableFlavorText)
             {
                 showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                showAdditionalTextField(ref objVars[i].varsToChange.openableFlavorText);
+                showAdditionalTextArea(ref objVars[i].varsToChange.openableFlavorText);
             }
             else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeLookAtFlavorText)
             {
                 showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                showAdditionalTextField(ref objVars[i].varsToChange.lookAtFlavorText);
+                showAdditionalTextArea(ref objVars[i].varsToChange.lookAtFlavorText);
             }
         }
         else if (objVars[i].actionCategory == RoomObject.ActionCategory.RoomActions)
@@ -284,16 +283,16 @@ public class RoomObjectEditor : Editor
             else if (objVars[i].roomAction == RoomObject.RoomAction.ChangeRoomText)
             {
                 showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
-                showAdditionalTextField(ref objVars[i].varsToChange.roomText);
+                showAdditionalTextArea(ref objVars[i].varsToChange.roomText);
             }
         }
         GUILayout.EndVertical();
         GUILayout.EndHorizontal();
     }
 
-    private void showAdditionalTextField(ref string textField)
+    private void showAdditionalTextArea(ref string text)
     {
-        textField = EditorGUILayout.TextArea(textField);
+        text = EditorGUILayout.TextArea(text);
     }
 
     private void showSelectableRoomObject(GUIContent label, ref RoomObject obj)

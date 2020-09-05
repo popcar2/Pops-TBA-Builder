@@ -35,26 +35,37 @@ public class ActionHandler : MonoBehaviour
             {
                 RoomObject.PlayerAction playerAction = objVars[i].playerAction;
 
+                RoomObject targetObject = objVars[i].varsToChange.targetObject;
+
+                if (targetObject == null)
+                {
+                    Debug.Log($"{objName}: There's an object that wasn't set in an action");
+                    continue;
+                }
+
                 switch (playerAction)
                 {
                     case RoomObject.PlayerAction.AddToInventory:
-                        player.addItemToInventory(objVars[i].varsToChange.targetObject);
+                        player.addItemToInventory(targetObject);
                         break;
+
                     case RoomObject.PlayerAction.RemoveFromInventory:
-                        RoomObject objToRemove = roomTracker.findObjectInCurrentRoom(objVars[i].varsToChange.targetObject.name);
-                        Debug.Log(objToRemove.name);
-                        player.removeItemFromInventory(objToRemove);
+                        player.removeItemFromInventory(targetObject);
                         break;
+
                     case RoomObject.PlayerAction.KillPlayer:
                         textPrompt.killPlayer();
                         textPrompt.printText("\n--YOU DIED-- (Press any button to continue)");
                         break;
+
                     case RoomObject.PlayerAction.EquipItem:
-                        player.equipItem(objVars[i].varsToChange.targetObject);
+                        player.equipItem(targetObject);
                         break;
+
                     case RoomObject.PlayerAction.RemoveEquippedItem:
-                        player.removeEquippedItem(roomTracker.findObjectInCurrentRoom(objVars[i].varsToChange.targetObject.name));
+                        player.removeEquippedItem(targetObject);
                         break;
+
                     default:
                         Debug.Log($"Unknown PlayerAction enum at {obj.name}: you forgot to add what to do in ActionHandler!");
                         break;
@@ -64,11 +75,11 @@ public class ActionHandler : MonoBehaviour
             {
                 RoomObject.ObjectAction objectAction = objVars[i].objectAction;
 
-                RoomObject targetObject = roomTracker.findObjectInCurrentRoom(objVars[i].varsToChange.targetObject.name);
+                RoomObject targetObject = objVars[i].varsToChange.targetObject;
 
                 if (targetObject == null)
                 {
-                    Debug.Log($"{objName}: couldn't find {objVars[i].varsToChange.targetObject.name} in the current room");
+                    Debug.Log($"{objName}: There's an object that wasn't set in an action");
                     continue;
                 }
 
@@ -80,52 +91,68 @@ public class ActionHandler : MonoBehaviour
                         player.removeEquippedItem(targetObject);
                         roomTracker.getCurrentRoom().removeRoomObject(targetObject);
                         break;
+
                     case RoomObject.ObjectAction.SetIsEdible:
                         targetObject.runtimeIsEdible = objVars[i].varsToChange.isEdible;
                         break;
+
                     case RoomObject.ObjectAction.SetIsTalkable:
                         targetObject.runtimeIsTalkable = objVars[i].varsToChange.isTalkable;
                         break;
+
                     case RoomObject.ObjectAction.SetIsKillable:
                         targetObject.runtimeIsKillable = objVars[i].varsToChange.isKillable;
                         break;
+
                     case RoomObject.ObjectAction.SetIsSittable:
                         targetObject.runtimeIsSittable = objVars[i].varsToChange.isSittable;
                         break;
+
                     case RoomObject.ObjectAction.SetIsUsable:
                         targetObject.runtimeIsUsable = objVars[i].varsToChange.isUsable;
                         break;
+
                     case RoomObject.ObjectAction.SetIsWearable:
                         targetObject.runtimeIsWearable = objVars[i].varsToChange.isWearable;
                         break;
+
                     case RoomObject.ObjectAction.SetIsOpenable:
                         targetObject.runtimeIsOpenable = objVars[i].varsToChange.isOpenable;
                         break;
 
+
                     case RoomObject.ObjectAction.ChangeEdibleFlavorText:
                         targetObject.runtimeEdibleFlavorText = objVars[i].varsToChange.edibleFlavorText;
                         break;
+
                     case RoomObject.ObjectAction.ChangeKillableFlavorText:
                         targetObject.runtimeKillableFlavorText = objVars[i].varsToChange.killableFlavorText;
                         break;
+
                     case RoomObject.ObjectAction.ChangePickupableFlavorText:
                         targetObject.runtimePickupableFlavorText = objVars[i].varsToChange.pickupableFlavorText;
                         break;
+
                     case RoomObject.ObjectAction.ChangeSittableFlavorText:
                         targetObject.runtimeSittableFlavorText = objVars[i].varsToChange.sittableFlavorText;
                         break;
+
                     case RoomObject.ObjectAction.ChangeTalkableFlavorText:
                         targetObject.runtimeTalkableFlavorText = objVars[i].varsToChange.talkableFlavorText;
                         break;
+
                     case RoomObject.ObjectAction.ChangeUsableFlavorText:
                         targetObject.runtimeUsableFlavorText = objVars[i].varsToChange.usableFlavorText;
                         break;
+
                     case RoomObject.ObjectAction.ChangeWearableFlavorText:
                         targetObject.runtimeWearableFlavorText = objVars[i].varsToChange.wearableFlavorText;
                         break;
+
                     case RoomObject.ObjectAction.ChangeOpenableFlavorText:
                         targetObject.runtimeOpenableFlavorText = objVars[i].varsToChange.openableFlavorText;
                         break;
+
                     case RoomObject.ObjectAction.ChangeLookAtFlavorText:
                         targetObject.runtimeLookAtFlavorText = objVars[i].varsToChange.lookAtFlavorText;
                         break;
@@ -140,21 +167,28 @@ public class ActionHandler : MonoBehaviour
                 RoomObject.RoomAction roomAction = objVars[i].roomAction;
                 Room targetRoom = objVars[i].varsToChange.targetRoom;
 
-                if (roomAction == RoomObject.RoomAction.AddObjectToRoom)
-                {
-                    roomTracker.getCurrentRoom().addRoomObject(objVars[i].varsToChange.targetObject);
-                }
-                else if (roomAction == RoomObject.RoomAction.RemoveObjectFromRoom)
-                {
-                    roomTracker.getCurrentRoom().removeRoomObject(roomTracker.findObjectInCurrentRoom(objVars[i].varsToChange.targetObject.name));
-                }
-                else if (roomAction == RoomObject.RoomAction.SwitchRooms)
-                {
-                    roomTracker.forceChangeRoom(objVars[i].varsToChange.targetRoom);
-                }
-                else if (roomAction == RoomObject.RoomAction.ChangeRoomText)
-                {
-                    targetRoom.runtimeRoomText = objVars[i].varsToChange.roomText;
+                switch (roomAction) {
+                    case RoomObject.RoomAction.AddObjectToRoom:
+                        if (objVars[i].varsToChange.targetObject.isInitialized == false)
+                            objVars[i].varsToChange.targetObject.initializeRuntimeVariables();
+                        roomTracker.getCurrentRoom().addRoomObject(objVars[i].varsToChange.targetObject);
+                        break;
+
+                    case RoomObject.RoomAction.RemoveObjectFromRoom:
+                        roomTracker.getCurrentRoom().removeRoomObject(objVars[i].varsToChange.targetObject);
+                        break;
+
+                    case RoomObject.RoomAction.SwitchRooms:
+                        roomTracker.forceChangeRoom(objVars[i].varsToChange.targetRoom);
+                        break;
+
+                    case RoomObject.RoomAction.ChangeRoomText:
+                        targetRoom.runtimeRoomText = objVars[i].varsToChange.roomText;
+                        break;
+
+                    default:
+                        Debug.Log($"Unknown RoomAction enum at {obj.name}: you forgot to add what to do in ActionHandler!");
+                        break;
                 }
             }
         }
