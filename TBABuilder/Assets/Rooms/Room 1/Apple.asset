@@ -20,7 +20,7 @@ MonoBehaviour:
   isPickupable: 0
   isWearable: 0
   isOpenable: 0
-  runtimeIsEdible: 0
+  runtimeIsEdible: 1
   runtimeIsTalkable: 0
   runtimeIsKillable: 0
   runtimeIsSittable: 0
@@ -37,7 +37,7 @@ MonoBehaviour:
   wearableFlavorText: 
   openableFlavorText: 
   lookAtFlavorText: It's a healthy looking apple.
-  runtimeEdibleFlavorText: You've already eaten this apple.
+  runtimeEdibleFlavorText: mmm delicious apple
   runtimeTalkableFlavorText: 
   runtimeKillableFlavorText: 
   runtimeSittableFlavorText: 
@@ -45,7 +45,7 @@ MonoBehaviour:
   runtimePickupableFlavorText: 
   runtimeWearableFlavorText: 
   runtimeOpenableFlavorText: 
-  runtimeLookAtFlavorText: It's a half-eaten apple.
+  runtimeLookAtFlavorText: It's a healthy looking apple.
   edibleVars:
   - actionCategory: 1
     playerAction: 0

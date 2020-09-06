@@ -31,16 +31,16 @@ MonoBehaviour:
   edibleFlavorText: You drink the potion
   talkableFlavorText: 
   killableFlavorText: 
-  sittableFlavorText: eat pant
+  sittableFlavorText: 
   usableFlavorText: 
   pickupableFlavorText: 
   wearableFlavorText: 
   openableFlavorText: 
   lookAtFlavorText: The potion glows with intensity.
   runtimeEdibleFlavorText: You drink the potion
-  runtimeTalkableFlavorText: 
+  runtimeTalkableFlavorText: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
   runtimeKillableFlavorText: 
-  runtimeSittableFlavorText: eat pant
+  runtimeSittableFlavorText: 
   runtimeUsableFlavorText: 
   runtimePickupableFlavorText: 
   runtimeWearableFlavorText: 

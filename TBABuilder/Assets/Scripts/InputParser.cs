@@ -268,11 +268,6 @@ public class InputParser : MonoBehaviour
                 textPrompt.printText("\n\"Eh, guess I'll die\". You suffocate yourself to death. Not sure why you'd want to do that.");
                 textPrompt.killPlayer();
                 break;
-            case "dab":
-                textPrompt.printText("\nYou unleash a sick dab similar to the ones you find on the youtubes, " +
-                    "and suddenly you begin to hear the ground quake. The earth crumbles before you and flies into the sun. This is all your fault.");
-                textPrompt.killPlayer();
-                break;
             default:
                 successFlag = false;
                 break;

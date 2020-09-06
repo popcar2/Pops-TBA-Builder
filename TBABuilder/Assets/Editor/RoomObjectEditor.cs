@@ -6,13 +6,6 @@ using System.Collections.Generic;
 [CustomEditor(typeof(RoomObject))]
 public class RoomObjectEditor : Editor
 {
-    SerializedProperty edibleFlavorText;
-
-    private void OnEnable()
-    {
-        edibleFlavorText = serializedObject.FindProperty("edibleFlavorText");
-    }
-
     public override void OnInspectorGUI()
     {
         RoomObject obj = (RoomObject)target;
@@ -20,9 +13,6 @@ public class RoomObjectEditor : Editor
         // Using this method makes the variables in the object save properly when exiting Unity.
         // Otherwise, the enum lists reset on restart for whatever reason.
         EditorUtility.SetDirty(obj);
-
-        GUI.skin.textArea.wordWrap = true;
-        GUI.skin.textArea.stretchHeight = true;
 
         obj.isEdible = GUILayout.Toggle(obj.isEdible, "Is Edible");
         showActionTab(ref obj.isEdible, ref obj.edibleVars);
@@ -41,24 +31,22 @@ public class RoomObjectEditor : Editor
         obj.isOpenable = GUILayout.Toggle(obj.isOpenable, "Is Openable");
         showActionTab(ref obj.isOpenable, ref obj.openableVars);
 
-        float textAreaHeight = 30f;
-
-        
-        EditorGUILayout.PropertyField(edibleFlavorText);
+        GUILayout.Label("Edible Flavor Text");
+        obj.edibleFlavorText = GUILayout.TextArea(obj.edibleFlavorText, GUILayout.ExpandHeight(true));
         GUILayout.Label("Talkable Flavor Text");
-        obj.talkableFlavorText = EditorGUILayout.TextArea(obj.talkableFlavorText, GUILayout.MinHeight(textAreaHeight));
+        obj.talkableFlavorText = GUILayout.TextArea(obj.talkableFlavorText, GUILayout.ExpandHeight(true));
         GUILayout.Label("Killable Flavor Text");
-        obj.killableFlavorText = EditorGUILayout.TextArea(obj.killableFlavorText, GUILayout.MinHeight(textAreaHeight));
+        obj.killableFlavorText = GUILayout.TextArea(obj.killableFlavorText, GUILayout.ExpandHeight(true));
         GUILayout.Label("Sittable Flavor Text");
-        obj.sittableFlavorText = EditorGUILayout.TextArea(obj.sittableFlavorText, GUILayout.MinHeight(textAreaHeight));
+        obj.sittableFlavorText = GUILayout.TextArea(obj.sittableFlavorText, GUILayout.ExpandHeight(true));
         GUILayout.Label("Usable Flavor Text");
-        obj.usableFlavorText = EditorGUILayout.TextArea(obj.usableFlavorText, GUILayout.MinHeight(textAreaHeight));
+        obj.usableFlavorText = GUILayout.TextArea(obj.usableFlavorText, GUILayout.ExpandHeight(true));
         GUILayout.Label("Pickupable Flavor Text");
-        obj.pickupableFlavorText = EditorGUILayout.TextArea(obj.pickupableFlavorText, GUILayout.MinHeight(textAreaHeight));
+        obj.pickupableFlavorText = GUILayout.TextArea(obj.pickupableFlavorText, GUILayout.ExpandHeight(true));
         GUILayout.Label("Wearable Flavor Text");
-        obj.wearableFlavorText = EditorGUILayout.TextArea(obj.wearableFlavorText, GUILayout.MinHeight(textAreaHeight));
+        obj.wearableFlavorText = GUILayout.TextArea(obj.wearableFlavorText, GUILayout.ExpandHeight(true));
         GUILayout.Label("Openable Flavor Text");
-        obj.openableFlavorText = EditorGUILayout.TextArea(obj.openableFlavorText, GUILayout.MinHeight(textAreaHeight));
+        obj.openableFlavorText = GUILayout.TextArea(obj.openableFlavorText, GUILayout.ExpandHeight(true));
 
         showMiscTab(obj);
 
@@ -75,7 +63,7 @@ public class RoomObjectEditor : Editor
 
         GUIContent lookAtContent = new GUIContent("Look At Flavor Text", "The text that's printed when the player looks at the object");
         EditorGUILayout.PrefixLabel(lookAtContent);
-        obj.lookAtFlavorText = EditorGUILayout.TextArea(obj.lookAtFlavorText);
+        obj.lookAtFlavorText = GUILayout.TextArea(obj.lookAtFlavorText, GUILayout.ExpandHeight(true));
     }
 
     private void showActionTab(ref bool toggleBool, ref List<RoomObject.EditorVariables> objVars)
@@ -292,7 +280,7 @@ public class RoomObjectEditor : Editor
 
     private void showAdditionalTextArea(ref string text)
     {
-        text = EditorGUILayout.TextArea(text);
+        text = GUILayout.TextArea(text, GUILayout.ExpandHeight(true));
     }
 
     private void showSelectableRoomObject(GUIContent label, ref RoomObject obj)

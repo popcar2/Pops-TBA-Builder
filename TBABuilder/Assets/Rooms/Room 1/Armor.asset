@@ -18,7 +18,7 @@ MonoBehaviour:
   isSittable: 0
   isUsable: 0
   isPickupable: 0
-  isWearable: 0
+  isWearable: 1
   isOpenable: 0
   runtimeIsEdible: 0
   runtimeIsTalkable: 0
@@ -26,7 +26,7 @@ MonoBehaviour:
   runtimeIsSittable: 0
   runtimeIsUsable: 0
   runtimeIsPickupable: 0
-  runtimeIsWearable: 0
+  runtimeIsWearable: 1
   runtimeIsOpenable: 0
   edibleFlavorText: 
   talkableFlavorText: 
@@ -52,6 +52,31 @@ MonoBehaviour:
   sittableVars: []
   usableVars: []
   pickupVars: []
-  wearableVars: []
+  wearableVars:
+  - actionCategory: 0
+    playerAction: 1
+    objectAction: 0
+    roomAction: 0
+    varsToChange:
+      isEdible: 0
+      isTalkable: 0
+      isKillable: 0
+      isSittable: 0
+      isUsable: 0
+      isPickupable: 0
+      isWearable: 0
+      isOpenable: 0
+      edibleFlavorText: 
+      talkableFlavorText: 
+      killableFlavorText: 
+      sittableFlavorText: 
+      usableFlavorText: 
+      pickupableFlavorText: 
+      wearableFlavorText: 
+      openableFlavorText: 
+      lookAtFlavorText: 
+      targetRoom: {fileID: 0}
+      roomText: 
+      targetObject: {fileID: 11400000}
   openableVars: []
   objectAliases: 

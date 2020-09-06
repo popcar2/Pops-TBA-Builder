@@ -20,8 +20,6 @@ MonoBehaviour:
     roomAlias: back, room 1, safe zone
   runtimeRoomObjects:
   - {fileID: 11400000, guid: 0d814a0a9e10f014ab5ac6be69afd2a8, type: 2}
-  - {fileID: 11400000, guid: 600dd42bb294ea74fa3b7dab69640571, type: 2}
-  - {fileID: 11400000, guid: 600dd42bb294ea74fa3b7dab69640571, type: 2}
   runtimeRoomText: 'I am a test. Hello. '
   runtimeRoomConnections:
   - room: {fileID: 11400000, guid: 9d48b8f96ae5b134cac5e0d91f332df1, type: 2}
