@@ -8,6 +8,7 @@ public class ActionHandler : MonoBehaviour
     RoomTracker roomTracker;
     Player player;
     TextPrompt textPrompt;
+    DefaultValues defaultValues;
 
     private void Start()
     {
@@ -15,14 +16,11 @@ public class ActionHandler : MonoBehaviour
         roomTracker = FindObjectOfType<RoomTracker>();
         player = FindObjectOfType<Player>();
         textPrompt = FindObjectOfType<TextPrompt>();
+        defaultValues = FindObjectOfType<DefaultValues>();
     }
 
     public void executeActions(RoomObject obj, List<RoomObject.EditorVariables> objVars)
     {
-        // NOTE ON USING OBJECTS SET IN THE INSPECTOR: Objects that are ADDED have to be copies to retain the original variables of the scriptable object.
-        // Objects that are REMOVED/EDITED use the name as a way to find the same object, since comparing it to the OBJECT set to the inspector compares two different objects
-        // (they are different objects since they are copies of the Scriptable Object and are not the same)
-
         // TODO: Make actions perform on ALL objects of the same time? 
 
         string objName = obj.name;
@@ -47,12 +45,12 @@ public class ActionHandler : MonoBehaviour
                 {
                     case RoomObject.PlayerAction.KillPlayer:
                         textPrompt.killPlayer();
-                        textPrompt.printText("\nYOU DIED (Press any button to restart)");
+                        textPrompt.printText("\n" + defaultValues.deathText);
                         break;
 
                     case RoomObject.PlayerAction.WinGame:
                         textPrompt.winGame();
-                        textPrompt.printText("\nYOU WON! (Press any button to restart)");
+                        textPrompt.printText("\n" + defaultValues.winText);
                         break;
 
                     case RoomObject.PlayerAction.AddToInventory:
@@ -205,12 +203,12 @@ public class ActionHandler : MonoBehaviour
     {
         if (obj == null)
         {
-            textPrompt.printText("\nEat what?");
+            textPrompt.printText("\n" + defaultValues.edibleNotFoundText);
             return;
         }
 
-        string defaultSuccessText = "You eat the " + obj.name + ".";
-        string defaultFailText = "You can't eat the " + obj.name + ".";
+        string defaultSuccessText = defaultValues.edibleSuccessText.Replace("(NAME)", obj.name);
+        string defaultFailText = defaultValues.edibleFailText.Replace("(NAME)", obj.name);
         bool successful = inputParser.printResponse(obj, obj.runtimeIsEdible, defaultSuccessText, defaultFailText, obj.runtimeEdibleFlavorText);
 
         if (successful)
@@ -222,12 +220,12 @@ public class ActionHandler : MonoBehaviour
     {
         if (obj == null)
         {
-            textPrompt.printText("\nTalk to who?");
+            textPrompt.printText("\n" + defaultValues.talkableNotFoundText);
             return;
         }
 
-        string defaultSuccessText = "You talk to " + obj.name + ".";
-        string defaultFailText = "You can't talk to " + obj.name + ".";
+        string defaultSuccessText = defaultValues.talkableSuccessText.Replace("(NAME)", obj.name);
+        string defaultFailText = defaultValues.talkableFailText.Replace("(NAME)", obj.name); ;
         bool successful = inputParser.printResponse(obj, obj.runtimeIsTalkable, defaultSuccessText, defaultFailText, obj.runtimeTalkableFlavorText);
 
         if (successful)
@@ -238,12 +236,12 @@ public class ActionHandler : MonoBehaviour
     {
         if (obj == null)
         {
-            textPrompt.printText("\nKill who?");
+            textPrompt.printText("\n" + defaultValues.killableNotFoundText);
             return;
         }
 
-        string defaultSuccessText = "You kill " + obj.name + ".";
-        string defaultFailText = "You can't kill " + obj.name + ".";
+        string defaultSuccessText = defaultValues.killableSuccessText.Replace("(NAME)", obj.name);
+        string defaultFailText = defaultValues.killableFailText.Replace("(NAME)", obj.name);
         bool successful = inputParser.printResponse(obj, obj.runtimeIsKillable, defaultSuccessText, defaultFailText, obj.runtimeKillableFlavorText);
 
         if (successful)
@@ -254,12 +252,12 @@ public class ActionHandler : MonoBehaviour
     {
         if (obj == null)
         {
-            textPrompt.printText("\nSit on what?");
+            textPrompt.printText("\n" + defaultValues.sittableNotFoundText);
             return;
         }
 
-        string defaultSuccessText = "You sit on the " + obj.name + ".";
-        string defaultFailText = "You can't sit on the the " + obj.name + ".";
+        string defaultSuccessText = defaultValues.sittableSuccessText.Replace("(NAME)", obj.name);
+        string defaultFailText = defaultValues.sittableFailText.Replace("(NAME)", obj.name);
         bool successful = inputParser.printResponse(obj, obj.runtimeIsSittable, defaultSuccessText, defaultFailText, obj.runtimeSittableFlavorText);
 
         if (successful)
@@ -270,12 +268,12 @@ public class ActionHandler : MonoBehaviour
     {
         if (obj == null)
         {
-            textPrompt.printText("\nUse what?");
+            textPrompt.printText("\n" + defaultValues.usableNotFoundText);
             return;
         }
 
-        string defaultSuccessText = "You use the " + obj.name + ".";
-        string defaultFailText = "You can't use the " + obj.name + ".";
+        string defaultSuccessText = defaultValues.usableSuccessText.Replace("(NAME)", obj.name);
+        string defaultFailText = defaultValues.usableFailText.Replace("(NAME)", obj.name);
         bool successful = inputParser.printResponse(obj, obj.runtimeIsUsable, defaultSuccessText, defaultFailText, obj.runtimeUsableFlavorText);
 
         if (successful)
@@ -287,12 +285,12 @@ public class ActionHandler : MonoBehaviour
 
         if (obj == null)
         {
-            textPrompt.printText("\nPick up what?");
+            textPrompt.printText("\n" + defaultValues.pickupableNotFoundText);
             return;
         }
 
-        string defaultSuccessText = "You pick up the " + obj.name + ".";
-        string defaultFailText = "You can't pick up the " + obj.name + ".";
+        string defaultSuccessText = defaultValues.pickupableSuccessText.Replace("(NAME)", obj.name);
+        string defaultFailText = defaultValues.pickupableFailText.Replace("(NAME)", obj.name);
         bool successful = inputParser.printResponse(obj, obj.runtimeIsPickupable, defaultSuccessText, defaultFailText, obj.runtimePickupableFlavorText);
 
         if (successful)
@@ -304,12 +302,12 @@ public class ActionHandler : MonoBehaviour
 
         if (obj == null)
         {
-            textPrompt.printText("\nEquip what?");
+            textPrompt.printText("\n" + defaultValues.wearableNotFoundText);
             return;
         }
 
-        string defaultSuccessText = "You equip the " + obj.name + ".";
-        string defaultFailText = "You can't equip the " + obj.name + ".";
+        string defaultSuccessText = defaultValues.wearableSuccessText.Replace("(NAME)", obj.name);
+        string defaultFailText = defaultValues.wearableFailText.Replace("(NAME)", obj.name);
         bool successful = inputParser.printResponse(obj, obj.runtimeIsWearable, defaultSuccessText, defaultFailText, obj.runtimeWearableFlavorText);
 
         if (successful)
@@ -321,12 +319,12 @@ public class ActionHandler : MonoBehaviour
 
         if (obj == null)
         {
-            textPrompt.printText("\nOpen what?");
+            textPrompt.printText("\n" + defaultValues.openableNotFoundText);
             return;
         }
 
-        string defaultSuccessText = "You open the " + obj.name + ".";
-        string defaultFailText = "You can't open the " + obj.name + ".";
+        string defaultSuccessText = defaultValues.openableSuccessText.Replace("(NAME)", obj.name);
+        string defaultFailText = defaultValues.openableFailText.Replace("(NAME)", obj.name);
         bool successful = inputParser.printResponse(obj, obj.runtimeIsOpenable, defaultSuccessText, defaultFailText, obj.runtimeOpenableFlavorText);
 
         if (successful)
@@ -337,13 +335,13 @@ public class ActionHandler : MonoBehaviour
     {
         if (obj == null)
         {
-            textPrompt.printText("\nLook at what?");
+            textPrompt.printText("\n" + defaultValues.lookAtNotFoundText);
             return;
         }
 
         if (System.String.IsNullOrWhiteSpace(obj.runtimeLookAtFlavorText))
         {
-            textPrompt.printText("\nNothing interesting here.");
+            textPrompt.printText("\n" + defaultValues.lookAtDefaultText.Replace("(NAME)", obj.name));
             return;
         }
 

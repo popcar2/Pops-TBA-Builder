@@ -10,6 +10,7 @@ public class InputParser : MonoBehaviour
     RoomTracker roomTracker;
     Player player;
     ActionHandler actionHandler;
+    DefaultValues defaultValues;
 
     private void Start()
     {
@@ -17,6 +18,7 @@ public class InputParser : MonoBehaviour
         roomTracker = FindObjectOfType<RoomTracker>();
         player = FindObjectOfType<Player>();
         actionHandler = FindObjectOfType<ActionHandler>();
+        defaultValues = FindObjectOfType<DefaultValues>();
     }
 
     private string[] trimText(string text)
@@ -145,7 +147,7 @@ public class InputParser : MonoBehaviour
         // and regular commands need a minimum of 2 words to work whereas player commands (like "inv") can be one word.
         // Check player commands. If one activates, return.
 
-        string failText = "\nUnknown Command, type \"help\" for the list of commands";
+        string failText = "\n" + defaultValues.unknownCommand;
 
         if (words.Length == 0)
         {
@@ -233,7 +235,7 @@ public class InputParser : MonoBehaviour
                 break;
             // unknown command
             default:
-                textPrompt.printText("\nWhat is \"" + command + "\"?");
+                textPrompt.printText("\n" + defaultValues.unknownCommand);
                 break;
         }
     }
@@ -241,7 +243,6 @@ public class InputParser : MonoBehaviour
     // Is a bool because the main InputParser function would know whether to keep going or return
     private bool parsePlayerCommands(string command, string input)
     {
-        // It's easier to set successflag as true then set it as false if it went to switch's default rather than set it to true every other case
         bool successFlag = true;
 
         switch (command)

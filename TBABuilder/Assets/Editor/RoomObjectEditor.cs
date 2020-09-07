@@ -32,21 +32,21 @@ public class RoomObjectEditor : Editor
         showActionTab(ref obj.isOpenable, ref obj.openableVars);
 
         GUILayout.Label("Edible Flavor Text");
-        obj.edibleFlavorText = GUILayout.TextArea(obj.edibleFlavorText, GUILayout.ExpandHeight(true));
+        obj.edibleFlavorText = EditorGUILayout.TextArea(obj.edibleFlavorText, EditorStyles.textArea);
         GUILayout.Label("Talkable Flavor Text");
-        obj.talkableFlavorText = GUILayout.TextArea(obj.talkableFlavorText, GUILayout.ExpandHeight(true));
+        obj.talkableFlavorText = EditorGUILayout.TextArea(obj.talkableFlavorText, EditorStyles.textArea);
         GUILayout.Label("Killable Flavor Text");
-        obj.killableFlavorText = GUILayout.TextArea(obj.killableFlavorText, GUILayout.ExpandHeight(true));
+        obj.killableFlavorText = EditorGUILayout.TextArea(obj.killableFlavorText, EditorStyles.textArea);
         GUILayout.Label("Sittable Flavor Text");
-        obj.sittableFlavorText = GUILayout.TextArea(obj.sittableFlavorText, GUILayout.ExpandHeight(true));
+        obj.sittableFlavorText = EditorGUILayout.TextArea(obj.sittableFlavorText, EditorStyles.textArea);
         GUILayout.Label("Usable Flavor Text");
-        obj.usableFlavorText = GUILayout.TextArea(obj.usableFlavorText, GUILayout.ExpandHeight(true));
+        obj.usableFlavorText = EditorGUILayout.TextArea(obj.usableFlavorText, EditorStyles.textArea);
         GUILayout.Label("Pickupable Flavor Text");
-        obj.pickupableFlavorText = GUILayout.TextArea(obj.pickupableFlavorText, GUILayout.ExpandHeight(true));
+        obj.pickupableFlavorText = EditorGUILayout.TextArea(obj.pickupableFlavorText, EditorStyles.textArea);
         GUILayout.Label("Wearable Flavor Text");
-        obj.wearableFlavorText = GUILayout.TextArea(obj.wearableFlavorText, GUILayout.ExpandHeight(true));
+        obj.wearableFlavorText = EditorGUILayout.TextArea(obj.wearableFlavorText, EditorStyles.textArea);
         GUILayout.Label("Openable Flavor Text");
-        obj.openableFlavorText = GUILayout.TextArea(obj.openableFlavorText, GUILayout.ExpandHeight(true));
+        obj.openableFlavorText = EditorGUILayout.TextArea(obj.openableFlavorText, EditorStyles.textArea);
 
         showMiscTab(obj);
 
@@ -280,7 +280,7 @@ public class RoomObjectEditor : Editor
 
     private void showAdditionalTextArea(ref string text)
     {
-        text = GUILayout.TextArea(text, GUILayout.ExpandHeight(true));
+        text = EditorGUILayout.TextArea(text, EditorStyles.textArea);
     }
 
     private void showSelectableRoomObject(GUIContent label, ref RoomObject obj)

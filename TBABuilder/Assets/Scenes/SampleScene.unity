@@ -150,6 +150,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbcf29b822d65f14b835e5b2c85ba359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  edibleSuccessText: You eat the (NAME).
+  edibleFailText: You can't eat (NAME).
+  talkableSuccessText: You talk to (NAME).
+  talkableFailText: You can't talk to (NAME).
+  killableSuccessText: You kill (NAME).
+  killableFailText: You can't kill (NAME).
+  sittableSuccessText: You sit on (NAME).
+  sittableFailText: You can't sit on (NAME).
+  usableSuccessText: You use (NAME).
+  usableFailText: You can't use (NAME).
+  pickupableSuccessText: You pick up (NAME).
+  pickupableFailText: You can't pick up (NAME).
+  wearableSuccessText: You equip (NAME).
+  wearableFailText: You can't equip (NAME).
+  openableSuccessText: You open (NAME).
+  openableFailText: You can't open (NAME).
+  lookAtDefaultText: Nothing interesting here.
+  edibleNotFoundText: Eat what?
+  talkableNotFoundText: Talk to who?
+  killableNotFoundText: Kill what?
+  sittableNotFoundText: Sit on what?
+  usableNotFoundText: Use what?
+  pickupableNotFoundText: Pick up what?
+  wearableNotFoundText: Equip what?
+  openableNotFoundText: Open what?
+  lookAtNotFoundText: Look at what?
+  winText: YOU WON! (Press any button to restart)
+  deathText: YOU DIED! (Press any button to restart)
+  unknownCommand: Unknown Command, type "help" for the list of commands
 --- !u!4 &1488773991
 Transform:
   m_ObjectHideFlags: 0

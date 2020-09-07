@@ -4,25 +4,43 @@ using UnityEngine;
 
 public class DefaultValues : MonoBehaviour
 {
-    public GenericActionTexts genericActionTexts = new GenericActionTexts();
+    
+    [Header("Default Action Texts")]
 
-    public class GenericActionTexts
-    {
-        public string edibleFailText;
-        public string edibleSuccessText;
-        public string talkableFailText;
-        public string talkableSuccessText;
-        public string killableFailText;
-        public string killableSuccessText;
-        public string sittableFailText;
-        public string sittableSuccessText;
-        public string usableFailText;
-        public string usableSuccessText;
-        public string pickupableFailText;
-        public string pickupableSuccessText;
-        public string wearableFailText;
-        public string wearableSuccessText;
-        public string openableFailText;
-        public string openableSuccessText;
-    }
+    [SerializeField] public string edibleSuccessText;
+    [SerializeField] public string edibleFailText;
+    [SerializeField] public string talkableSuccessText;
+    [SerializeField] public string talkableFailText;
+    [SerializeField] public string killableSuccessText;
+    [SerializeField] public string killableFailText;
+    [SerializeField] public string sittableSuccessText;
+    [SerializeField] public string sittableFailText;
+    [SerializeField] public string usableSuccessText;
+    [SerializeField] public string usableFailText;
+    [SerializeField] public string pickupableSuccessText;
+    [SerializeField] public string pickupableFailText;
+    [SerializeField] public string wearableSuccessText;
+    [SerializeField] public string wearableFailText;
+    [SerializeField] public string openableSuccessText;
+    [SerializeField] public string openableFailText;
+
+    [SerializeField] public string lookAtDefaultText;
+
+    [Header("Other Action Texts")]
+
+    [SerializeField] public string edibleNotFoundText;
+    [SerializeField] public string talkableNotFoundText;
+    [SerializeField] public string killableNotFoundText;
+    [SerializeField] public string sittableNotFoundText;
+    [SerializeField] public string usableNotFoundText;
+    [SerializeField] public string pickupableNotFoundText;
+    [SerializeField] public string wearableNotFoundText;
+    [SerializeField] public string openableNotFoundText;
+    [SerializeField] public string lookAtNotFoundText;
+
+    [Header("Misc Texts")]
+
+    [SerializeField] public string winText;
+    [SerializeField] public string deathText;
+    [SerializeField] public string unknownCommand;
 }
