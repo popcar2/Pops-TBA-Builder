@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &658139642575849021
+--- !u!1 &1644861435700308366
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 658139642575849023}
-  - component: {fileID: 658139642575849022}
+  - component: {fileID: 1644861435700308364}
+  - component: {fileID: 1644861435700308365}
   m_Layer: 0
   m_Name: Default Values (Click me!)
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &658139642575849023
+--- !u!4 &1644861435700308364
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658139642575849021}
+  m_GameObject: {fileID: 1644861435700308366}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,13 +31,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &658139642575849022
+--- !u!114 &1644861435700308365
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658139642575849021}
+  m_GameObject: {fileID: 1644861435700308366}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbcf29b822d65f14b835e5b2c85ba359, type: 3}
@@ -45,10 +45,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   edibleSuccessText: You eat the (NAME).
   edibleFailText: You can't eat (NAME).
+  drinkableSuccessText: You drink the (NAME).
+  drinkableFailText: You can't drink the (NAME).
   talkableSuccessText: You talk to (NAME).
   talkableFailText: You can't talk to (NAME).
   killableSuccessText: You kill (NAME).
   killableFailText: You can't kill (NAME).
+  breakableSuccessText: You break the (NAME).
+  breakableFailText: You can't break the (NAME).
   sittableSuccessText: You sit on (NAME).
   sittableFailText: You can't sit on (NAME).
   usableSuccessText: You use (NAME).
@@ -61,8 +65,10 @@ MonoBehaviour:
   openableFailText: You can't open (NAME).
   lookAtDefaultText: Nothing interesting here.
   edibleNotFoundText: Eat what?
+  drinkableNotFoundText: Drink what?
   talkableNotFoundText: Talk to who?
   killableNotFoundText: Kill what?
+  breakableNotFoundText: Break what?
   sittableNotFoundText: Sit on what?
   usableNotFoundText: Use what?
   pickupableNotFoundText: Pick up what?
