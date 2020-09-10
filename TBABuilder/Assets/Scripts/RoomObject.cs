@@ -14,8 +14,10 @@ public class RoomObject : ScriptableObject
     [NonSerialized] public bool isInitialized = false;
 
     public bool isEdible = false;
+    public bool isDrinkable = false;
     public bool isTalkable = false;
     public bool isKillable = false;
+    public bool isBreakable = false;
     public bool isSittable = false;
     public bool isUsable = false;
     public bool isPickupable = false;
@@ -23,8 +25,10 @@ public class RoomObject : ScriptableObject
     public bool isOpenable = false;
 
     public bool runtimeIsEdible;
+    public bool runtimeIsDrinkable;
     public bool runtimeIsTalkable;
     public bool runtimeIsKillable;
+    public bool runtimeIsBreakable;
     public bool runtimeIsSittable;
     public bool runtimeIsUsable;
     public bool runtimeIsPickupable;
@@ -32,8 +36,10 @@ public class RoomObject : ScriptableObject
     public bool runtimeIsOpenable;
 
     public string edibleFlavorText;
+    public string drinkableFlavorText;
     public string talkableFlavorText;
     public string killableFlavorText;
+    public string breakableFlavorText;
     public string sittableFlavorText;
     public string usableFlavorText;
     public string pickupableFlavorText;
@@ -42,8 +48,10 @@ public class RoomObject : ScriptableObject
     public string lookAtFlavorText;
 
     public string runtimeEdibleFlavorText;
+    public string runtimeDrinkableFlavorText;
     public string runtimeTalkableFlavorText;
     public string runtimeKillableFlavorText;
+    public string runtimeBreakableFlavorText;
     public string runtimeSittableFlavorText;
     public string runtimeUsableFlavorText;
     public string runtimePickupableFlavorText;
@@ -55,8 +63,10 @@ public class RoomObject : ScriptableObject
         isInitialized = true;
 
         runtimeIsEdible = isEdible;
+        runtimeIsDrinkable = isDrinkable;
         runtimeIsTalkable = isTalkable;
         runtimeIsKillable = isKillable;
+        runtimeIsBreakable = isBreakable;
         runtimeIsSittable = isSittable;
         runtimeIsUsable = isUsable;
         runtimeIsPickupable = isPickupable;
@@ -64,8 +74,10 @@ public class RoomObject : ScriptableObject
         runtimeIsOpenable = isOpenable;
 
         runtimeEdibleFlavorText = edibleFlavorText;
+        runtimeDrinkableFlavorText = drinkableFlavorText;
         runtimeTalkableFlavorText = talkableFlavorText;
         runtimeKillableFlavorText = killableFlavorText;
+        runtimeBreakableFlavorText = breakableFlavorText;
         runtimeSittableFlavorText = sittableFlavorText;
         runtimeUsableFlavorText = usableFlavorText;
         runtimePickupableFlavorText = pickupableFlavorText;
@@ -76,11 +88,13 @@ public class RoomObject : ScriptableObject
 
     // Each index of the list represents one action.
     public List<EditorVariables> edibleVars = new List<EditorVariables>();
+    public List<EditorVariables> drinkableVars = new List<EditorVariables>();
     public List<EditorVariables> talkableVars = new List<EditorVariables>();
     public List<EditorVariables> killableVars = new List<EditorVariables>();
+    public List<EditorVariables> breakableVars = new List<EditorVariables>();
     public List<EditorVariables> sittableVars = new List<EditorVariables>();
     public List<EditorVariables> usableVars = new List<EditorVariables>();
-    public List<EditorVariables> pickupVars = new List<EditorVariables>();
+    public List<EditorVariables> pickupableVars = new List<EditorVariables>();
     public List<EditorVariables> wearableVars = new List<EditorVariables>();
     public List<EditorVariables> openableVars = new List<EditorVariables>();
 
@@ -102,8 +116,10 @@ public class RoomObject : ScriptableObject
     public class CurrentVarsToChange
     {
         public bool isEdible;
+        public bool isDrinkable;
         public bool isTalkable;
         public bool isKillable;
+        public bool isBreakable;
         public bool isSittable;
         public bool isUsable;
         public bool isPickupable;
@@ -111,8 +127,10 @@ public class RoomObject : ScriptableObject
         public bool isOpenable;
 
         public string edibleFlavorText;
+        public string drinkableFlavorText;
         public string talkableFlavorText;
         public string killableFlavorText;
+        public string breakableFlavorText;
         public string sittableFlavorText;
         public string usableFlavorText;
         public string pickupableFlavorText;
@@ -152,8 +170,10 @@ public class RoomObject : ScriptableObject
         DestroyObject,
 
         SetIsEdible,
+        SetIsDrinkable,
         SetIsTalkable,
         SetIsKillable,
+        SetIsBreakable,
         SetIsSittable,
         SetIsUsable,
         SetIsPickupable,
@@ -161,8 +181,10 @@ public class RoomObject : ScriptableObject
         SetIsOpenable,
 
         ChangeEdibleFlavorText,
+        ChangeDrinkableFlavorText,
         ChangeTalkableFlavorText,
         ChangeKillableFlavorText,
+        ChangeBreakableFlavorText,
         ChangeSittableFlavorText,
         ChangeUsableFlavorText,
         ChangePickupableFlavorText,

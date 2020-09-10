@@ -182,8 +182,11 @@ public class InputParser : MonoBehaviour
             case "eat":
             case "devour":
             case "consume":
-            case "drink":
                 actionHandler.eatObject(targetObject);
+                break;
+            // drink
+            case "drink":
+                actionHandler.drinkObject(targetObject);
                 break;
             // talk
             case "talk":
@@ -193,12 +196,15 @@ public class InputParser : MonoBehaviour
                 break;
             // kill
             case "kill":
-            case "destroy":
-            case "break":
             case "stab":
             case "cleave":
             case "murder":
                 actionHandler.killPerson(targetObject);
+                break;
+            // break
+            case "break":
+            case "destroy":
+                actionHandler.BreakObject(targetObject);
                 break;
             // sit
             case "sit":

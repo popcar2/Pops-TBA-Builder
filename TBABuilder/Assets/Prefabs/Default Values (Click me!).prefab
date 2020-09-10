@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &658139642575849021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 658139642575849023}
+  - component: {fileID: 658139642575849022}
+  m_Layer: 0
+  m_Name: Default Values (Click me!)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &658139642575849023
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658139642575849021}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &658139642575849022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658139642575849021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbcf29b822d65f14b835e5b2c85ba359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  edibleSuccessText: You eat the (NAME).
+  edibleFailText: You can't eat (NAME).
+  talkableSuccessText: You talk to (NAME).
+  talkableFailText: You can't talk to (NAME).
+  killableSuccessText: You kill (NAME).
+  killableFailText: You can't kill (NAME).
+  sittableSuccessText: You sit on (NAME).
+  sittableFailText: You can't sit on (NAME).
+  usableSuccessText: You use (NAME).
+  usableFailText: You can't use (NAME).
+  pickupableSuccessText: You pick up (NAME).
+  pickupableFailText: You can't pick up (NAME).
+  wearableSuccessText: You equip (NAME).
+  wearableFailText: You can't equip (NAME).
+  openableSuccessText: You open (NAME).
+  openableFailText: You can't open (NAME).
+  lookAtDefaultText: Nothing interesting here.
+  edibleNotFoundText: Eat what?
+  talkableNotFoundText: Talk to who?
+  killableNotFoundText: Kill what?
+  sittableNotFoundText: Sit on what?
+  usableNotFoundText: Use what?
+  pickupableNotFoundText: Pick up what?
+  wearableNotFoundText: Equip what?
+  openableNotFoundText: Open what?
+  lookAtNotFoundText: Look at what?
+  winText: YOU WON! (Press any button to restart)
+  deathText: YOU DIED! (Press any button to restart)
+  unknownCommand: Unknown Command, type "help" for the list of commands
