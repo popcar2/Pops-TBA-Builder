@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomTracker : MonoBehaviour
 {
-    [SerializeField] Room startingRoom;
+    [SerializeField] Room startingRoom = null;
     Room currentRoom = null;
 
     TextPrompt textPrompt;

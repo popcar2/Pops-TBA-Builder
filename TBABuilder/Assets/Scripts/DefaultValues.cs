@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class DefaultValues : MonoBehaviour
 {
+    [Header("Activated Commands")]
+    [SerializeField] public bool eatActive = true;
+    [SerializeField] public bool drinkActive = true;
+    [SerializeField] public bool talkActive = true;
+    [SerializeField] public bool killActive = true;
+    [SerializeField] public bool breakActive = true;
+    [SerializeField] public bool sitActive = true;
+    [SerializeField] public bool useActive = true;
+    [SerializeField] public bool pickupActive = true;
+    [SerializeField] public bool wearActive = true;
+    [SerializeField] public bool openActive = true;
+    [SerializeField] public bool lookAtActive = true;
+
     [Header("Default Action Texts")]
 
     [SerializeField] public string edibleSuccessText;

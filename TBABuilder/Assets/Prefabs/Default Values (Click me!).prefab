@@ -43,6 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbcf29b822d65f14b835e5b2c85ba359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eatActive: 1
+  drinkActive: 1
+  talkActive: 1
+  killActive: 1
+  breakActive: 1
+  sitActive: 1
+  useActive: 1
+  pickupActive: 1
+  wearActive: 1
+  openActive: 1
+  lookAtActive: 1
   edibleSuccessText: You eat the (NAME).
   edibleFailText: You can't eat (NAME).
   drinkableSuccessText: You drink the (NAME).

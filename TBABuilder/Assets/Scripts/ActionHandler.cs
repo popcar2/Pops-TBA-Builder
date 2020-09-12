@@ -214,8 +214,7 @@ public class ActionHandler : MonoBehaviour
     }
 
     // Needs an unholy amount of variables but still better than copy pasting the same thing to each method
-    public void doGenericAction(RoomObject obj, string defaultSuccessText, string defaultFailText, string flavorText, 
-        bool successBool, List<RoomObject.EditorVariables> objVars)
+    public void doGenericAction(RoomObject obj, string defaultSuccessText, string defaultFailText, string flavorText, bool successBool, List<RoomObject.EditorVariables> objVars)
     {
         bool successful = inputParser.printResponse(obj, successBool, defaultSuccessText, defaultFailText, flavorText);
 
@@ -225,149 +224,226 @@ public class ActionHandler : MonoBehaviour
 
     public void eatObject(RoomObject obj)
     {
-        if (obj == null)
+        if (defaultValues.eatActive)
         {
-            textPrompt.printText("\n" + defaultValues.edibleNotFoundText);
-            return;
-        }
+            if (obj == null)
+            {
+                textPrompt.printText("\n" + defaultValues.edibleNotFoundText);
+                return;
+            }
 
-        string defaultSuccessText = defaultValues.edibleSuccessText.Replace("(NAME)", obj.name);
-        string defaultFailText = defaultValues.edibleFailText.Replace("(NAME)", obj.name);
-        doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeEdibleFlavorText, obj.runtimeIsEdible, obj.edibleVars);
+            string defaultSuccessText = defaultValues.edibleSuccessText.Replace("(NAME)", obj.name);
+            string defaultFailText = defaultValues.edibleFailText.Replace("(NAME)", obj.name);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeEdibleFlavorText, obj.runtimeIsEdible, obj.edibleVars);
+        }
+        else
+        {
+            textPrompt.printText("\n" + defaultValues.unknownCommand);
+        }
     }
 
     public void drinkObject(RoomObject obj)
     {
-        if (obj == null)
+        if (defaultValues.drinkActive)
         {
-            textPrompt.printText("\n" + defaultValues.drinkableNotFoundText);
-            return;
-        }
+            if (obj == null)
+            {
+                textPrompt.printText("\n" + defaultValues.drinkableNotFoundText);
+                return;
+            }
 
-        string defaultSuccessText = defaultValues.drinkableSuccessText.Replace("(NAME)", obj.name);
-        string defaultFailText = defaultValues.drinkableFailText.Replace("(NAME)", obj.name);
-        doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeDrinkableFlavorText, obj.runtimeIsDrinkable, obj.drinkableVars);
+            string defaultSuccessText = defaultValues.drinkableSuccessText.Replace("(NAME)", obj.name);
+            string defaultFailText = defaultValues.drinkableFailText.Replace("(NAME)", obj.name);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeDrinkableFlavorText, obj.runtimeIsDrinkable, obj.drinkableVars);
+        }
+        else
+        {
+            textPrompt.printText("\n" + defaultValues.unknownCommand);
+        }
     }
 
     public void talkToPerson(RoomObject obj)
     {
-        if (obj == null)
+        if (defaultValues.talkActive)
         {
-            textPrompt.printText("\n" + defaultValues.talkableNotFoundText);
-            return;
-        }
+            if (obj == null)
+            {
+                textPrompt.printText("\n" + defaultValues.talkableNotFoundText);
+                return;
+            }
 
-        string defaultSuccessText = defaultValues.talkableSuccessText.Replace("(NAME)", obj.name);
-        string defaultFailText = defaultValues.talkableFailText.Replace("(NAME)", obj.name);
-        doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeTalkableFlavorText, obj.runtimeIsTalkable, obj.talkableVars);
+            string defaultSuccessText = defaultValues.talkableSuccessText.Replace("(NAME)", obj.name);
+            string defaultFailText = defaultValues.talkableFailText.Replace("(NAME)", obj.name);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeTalkableFlavorText, obj.runtimeIsTalkable, obj.talkableVars);
+        }
+        else
+        {
+            textPrompt.printText("\n" + defaultValues.unknownCommand);
+        }
     }
 
     public void killPerson(RoomObject obj)
     {
-        if (obj == null)
+        if (defaultValues.killActive)
         {
-            textPrompt.printText("\n" + defaultValues.killableNotFoundText);
-            return;
-        }
+            if (obj == null)
+            {
+                textPrompt.printText("\n" + defaultValues.killableNotFoundText);
+                return;
+            }
 
-        string defaultSuccessText = defaultValues.killableSuccessText.Replace("(NAME)", obj.name);
-        string defaultFailText = defaultValues.killableFailText.Replace("(NAME)", obj.name);
-        doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeKillableFlavorText, obj.runtimeIsKillable, obj.killableVars);
+            string defaultSuccessText = defaultValues.killableSuccessText.Replace("(NAME)", obj.name);
+            string defaultFailText = defaultValues.killableFailText.Replace("(NAME)", obj.name);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeKillableFlavorText, obj.runtimeIsKillable, obj.killableVars);
+        }
+        else
+        {
+            textPrompt.printText("\n" + defaultValues.unknownCommand);
+        }
     }
 
     public void BreakObject(RoomObject obj)
     {
-        if (obj == null)
+        if (defaultValues.breakActive)
         {
-            textPrompt.printText("\n" + defaultValues.breakableNotFoundText);
-            return;
-        }
+            if (obj == null)
+            {
+                textPrompt.printText("\n" + defaultValues.breakableNotFoundText);
+                return;
+            }
 
-        string defaultSuccessText = defaultValues.breakableSuccessText.Replace("(NAME)", obj.name);
-        string defaultFailText = defaultValues.breakableFailText.Replace("(NAME)", obj.name);
-        doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeBreakableFlavorText, obj.runtimeIsBreakable, obj.breakableVars);
+            string defaultSuccessText = defaultValues.breakableSuccessText.Replace("(NAME)", obj.name);
+            string defaultFailText = defaultValues.breakableFailText.Replace("(NAME)", obj.name);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeBreakableFlavorText, obj.runtimeIsBreakable, obj.breakableVars);
+        }
+        else
+        {
+            textPrompt.printText("\n" + defaultValues.unknownCommand);
+        }
     }
 
     public void sitOnObject(RoomObject obj)
     {
-        if (obj == null)
+        if (defaultValues.sitActive)
         {
-            textPrompt.printText("\n" + defaultValues.sittableNotFoundText);
-            return;
-        }
+            if (obj == null)
+            {
+                textPrompt.printText("\n" + defaultValues.sittableNotFoundText);
+                return;
+            }
 
-        string defaultSuccessText = defaultValues.sittableSuccessText.Replace("(NAME)", obj.name);
-        string defaultFailText = defaultValues.sittableFailText.Replace("(NAME)", obj.name);
-        doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeSittableFlavorText, obj.runtimeIsSittable, obj.sittableVars);
+            string defaultSuccessText = defaultValues.sittableSuccessText.Replace("(NAME)", obj.name);
+            string defaultFailText = defaultValues.sittableFailText.Replace("(NAME)", obj.name);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeSittableFlavorText, obj.runtimeIsSittable, obj.sittableVars);
+        }
+        else
+        {
+            textPrompt.printText("\n" + defaultValues.unknownCommand);
+        }
     }
 
     public void useObject(RoomObject obj)
     {
-        if (obj == null)
+        if (defaultValues.useActive)
         {
-            textPrompt.printText("\n" + defaultValues.usableNotFoundText);
-            return;
-        }
+            if (obj == null)
+            {
+                textPrompt.printText("\n" + defaultValues.usableNotFoundText);
+                return;
+            }
 
-        string defaultSuccessText = defaultValues.usableSuccessText.Replace("(NAME)", obj.name);
-        string defaultFailText = defaultValues.usableFailText.Replace("(NAME)", obj.name);
-        doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeUsableFlavorText, obj.runtimeIsUsable, obj.usableVars);
+            string defaultSuccessText = defaultValues.usableSuccessText.Replace("(NAME)", obj.name);
+            string defaultFailText = defaultValues.usableFailText.Replace("(NAME)", obj.name);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeUsableFlavorText, obj.runtimeIsUsable, obj.usableVars);
+        }
+        else
+        {
+            textPrompt.printText("\n" + defaultValues.unknownCommand);
+        }
     }
 
     public void pickupObject(RoomObject obj)
     {
-        if (obj == null)
+        if (defaultValues.pickupActive)
         {
-            textPrompt.printText("\n" + defaultValues.pickupableNotFoundText);
-            return;
-        }
+            if (obj == null)
+            {
+                textPrompt.printText("\n" + defaultValues.pickupableNotFoundText);
+                return;
+            }
 
-        string defaultSuccessText = defaultValues.pickupableSuccessText.Replace("(NAME)", obj.name);
-        string defaultFailText = defaultValues.pickupableFailText.Replace("(NAME)", obj.name);
-        doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimePickupableFlavorText, obj.runtimeIsPickupable, obj.pickupableVars);
+            string defaultSuccessText = defaultValues.pickupableSuccessText.Replace("(NAME)", obj.name);
+            string defaultFailText = defaultValues.pickupableFailText.Replace("(NAME)", obj.name);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimePickupableFlavorText, obj.runtimeIsPickupable, obj.pickupableVars);
+        }
+        else
+        {
+            textPrompt.printText("\n" + defaultValues.unknownCommand);
+        }
     }
 
     public void wearObject(RoomObject obj)
     {
-        if (obj == null)
+        if (defaultValues.wearActive)
         {
-            textPrompt.printText("\n" + defaultValues.wearableNotFoundText);
-            return;
-        }
+            if (obj == null)
+            {
+                textPrompt.printText("\n" + defaultValues.wearableNotFoundText);
+                return;
+            }
 
-        string defaultSuccessText = defaultValues.wearableSuccessText.Replace("(NAME)", obj.name);
-        string defaultFailText = defaultValues.wearableFailText.Replace("(NAME)", obj.name);
-        doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeWearableFlavorText, obj.runtimeIsWearable, obj.wearableVars);
+            string defaultSuccessText = defaultValues.wearableSuccessText.Replace("(NAME)", obj.name);
+            string defaultFailText = defaultValues.wearableFailText.Replace("(NAME)", obj.name);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeWearableFlavorText, obj.runtimeIsWearable, obj.wearableVars);
+        }
+        else
+        {
+            textPrompt.printText("\n" + defaultValues.unknownCommand);
+        }
     }
 
     public void openObject(RoomObject obj)
     {
-        if (obj == null)
+        if (defaultValues.openActive)
         {
-            textPrompt.printText("\n" + defaultValues.openableNotFoundText);
-            return;
-        }
+            if (obj == null)
+            {
+                textPrompt.printText("\n" + defaultValues.openableNotFoundText);
+                return;
+            }
 
-        string defaultSuccessText = defaultValues.openableSuccessText.Replace("(NAME)", obj.name);
-        string defaultFailText = defaultValues.openableFailText.Replace("(NAME)", obj.name);
-        doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeOpenableFlavorText, obj.runtimeIsOpenable, obj.openableVars);
+            string defaultSuccessText = defaultValues.openableSuccessText.Replace("(NAME)", obj.name);
+            string defaultFailText = defaultValues.openableFailText.Replace("(NAME)", obj.name);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeOpenableFlavorText, obj.runtimeIsOpenable, obj.openableVars);
+        }
+        else
+        {
+            textPrompt.printText("\n" + defaultValues.unknownCommand);
+        }
     }
 
     public void lookAtObject(RoomObject obj)
     {
-        if (obj == null)
+        if (defaultValues.lookAtActive)
         {
-            textPrompt.printText("\n" + defaultValues.lookAtNotFoundText);
-            return;
-        }
+            if (obj == null)
+            {
+                textPrompt.printText("\n" + defaultValues.lookAtNotFoundText);
+                return;
+            }
 
-        if (System.String.IsNullOrWhiteSpace(obj.runtimeLookAtFlavorText))
+            if (System.String.IsNullOrWhiteSpace(obj.runtimeLookAtFlavorText))
+            {
+                textPrompt.printText("\n" + defaultValues.lookAtDefaultText.Replace("(NAME)", obj.name));
+                return;
+            }
+
+            textPrompt.printText("\n" + obj.runtimeLookAtFlavorText);
+        }
+        else
         {
-            textPrompt.printText("\n" + defaultValues.lookAtDefaultText.Replace("(NAME)", obj.name));
-            return;
+            textPrompt.printText("\n" + defaultValues.unknownCommand);
         }
-
-        textPrompt.printText("\n" + obj.runtimeLookAtFlavorText);
     }
 
     public void printCurrentRoomText()

@@ -9,75 +9,147 @@ public class RoomObjectEditor : Editor
     public override void OnInspectorGUI()
     {
         RoomObject obj = (RoomObject)target;
+        DefaultValues defaultValues = FindObjectOfType<DefaultValues>();
 
         // Using this method makes the variables in the object save properly when exiting Unity.
         // Otherwise, the enum lists reset on restart for whatever reason.
         EditorUtility.SetDirty(obj);
 
+        showActionBooleans(obj, defaultValues);
+        showFlavorTexts(obj, defaultValues);
+        showMiscTab(obj, defaultValues);
+    }
+
+    private void showActionBooleans(RoomObject obj, DefaultValues defaultValues)
+    {
         EditorGUILayout.LabelField(new GUIContent("Action booleans", "Set whether an action can happen on this object and its commands."), EditorStyles.boldLabel);
 
-        obj.isEdible = GUILayout.Toggle(obj.isEdible, new GUIContent("Is Edible", "Can you eat this object?"));
-        showActionTab(ref obj.isEdible, ref obj.edibleVars);
-        obj.isDrinkable = GUILayout.Toggle(obj.isDrinkable, new GUIContent("Is Drinkable", "Can you drink this object?"));
-        showActionTab(ref obj.isDrinkable, ref obj.drinkableVars);
-        obj.isTalkable = GUILayout.Toggle(obj.isTalkable, new GUIContent("Is Talkable", "Can you talk to this object/person?"));
-        showActionTab(ref obj.isTalkable, ref obj.talkableVars);
-        obj.isKillable = GUILayout.Toggle(obj.isKillable, new GUIContent("Is Killable", "Can you kill this object/person?"));
-        showActionTab(ref obj.isKillable, ref obj.killableVars);
-        obj.isBreakable = GUILayout.Toggle(obj.isBreakable, new GUIContent("Is Breakable", "Can you break this object?"));
-        showActionTab(ref obj.isBreakable, ref obj.breakableVars);
-        obj.isSittable = GUILayout.Toggle(obj.isSittable, new GUIContent("Is Sittable", "Can you sit on this object?"));
-        showActionTab(ref obj.isSittable, ref obj.sittableVars);
-        obj.isUsable = GUILayout.Toggle(obj.isUsable, new GUIContent("Is Usable", "Can you use this object?"));
-        showActionTab(ref obj.isUsable, ref obj.usableVars);
-        obj.isPickupable = GUILayout.Toggle(obj.isPickupable, new GUIContent("Is Pickupable", "Can you pick up this object?"));
-        showActionTab(ref obj.isPickupable, ref obj.pickupableVars);
-        obj.isWearable = GUILayout.Toggle(obj.isWearable, new GUIContent("Is Wearable", "Can you wear/equip this object?"));
-        showActionTab(ref obj.isWearable, ref obj.wearableVars);
-        obj.isOpenable = GUILayout.Toggle(obj.isOpenable, new GUIContent("Is Openable", "Can you open this object?"));
-        showActionTab(ref obj.isOpenable, ref obj.openableVars);
+        if (defaultValues.eatActive)
+        {
+            obj.isEdible = GUILayout.Toggle(obj.isEdible, new GUIContent("Is Edible", "Can you eat this object?"));
+            showActionTab(ref obj.isEdible, ref obj.edibleVars);
+        }
+        if (defaultValues.drinkActive)
+        {
+            obj.isDrinkable = GUILayout.Toggle(obj.isDrinkable, new GUIContent("Is Drinkable", "Can you drink this object?"));
+            showActionTab(ref obj.isDrinkable, ref obj.drinkableVars);
+        }
+        if (defaultValues.talkActive)
+        {
+            obj.isTalkable = GUILayout.Toggle(obj.isTalkable, new GUIContent("Is Talkable", "Can you talk to this object/person?"));
+            showActionTab(ref obj.isTalkable, ref obj.talkableVars);
+        }
+        if (defaultValues.killActive)
+        {
+            obj.isKillable = GUILayout.Toggle(obj.isKillable, new GUIContent("Is Killable", "Can you kill this object/person?"));
+            showActionTab(ref obj.isKillable, ref obj.killableVars);
+        }
+        if (defaultValues.breakActive)
+        {
+            obj.isBreakable = GUILayout.Toggle(obj.isBreakable, new GUIContent("Is Breakable", "Can you break this object?"));
+            showActionTab(ref obj.isBreakable, ref obj.breakableVars);
+        }
+        if (defaultValues.sitActive)
+        {
+            obj.isSittable = GUILayout.Toggle(obj.isSittable, new GUIContent("Is Sittable", "Can you sit on this object?"));
+            showActionTab(ref obj.isSittable, ref obj.sittableVars);
+        }
+        if (defaultValues.useActive)
+        {
+            obj.isUsable = GUILayout.Toggle(obj.isUsable, new GUIContent("Is Usable", "Can you use this object?"));
+            showActionTab(ref obj.isUsable, ref obj.usableVars);
+        }
+        if (defaultValues.pickupActive)
+        {
+            obj.isPickupable = GUILayout.Toggle(obj.isPickupable, new GUIContent("Is Pickupable", "Can you pick up this object?"));
+            showActionTab(ref obj.isPickupable, ref obj.pickupableVars);
+        }
+        if (defaultValues.wearActive)
+        {
+            obj.isWearable = GUILayout.Toggle(obj.isWearable, new GUIContent("Is Wearable", "Can you wear/equip this object?"));
+            showActionTab(ref obj.isWearable, ref obj.wearableVars);
+        }
+        if (defaultValues.openActive)
+        {
+            obj.isOpenable = GUILayout.Toggle(obj.isOpenable, new GUIContent("Is Openable", "Can you open this object?"));
+            showActionTab(ref obj.isOpenable, ref obj.openableVars);
+        }
+    }
 
+    private static void showFlavorTexts(RoomObject obj, DefaultValues defaultValues)
+    {
         EditorGUILayout.Space(10);
         EditorGUILayout.LabelField(new GUIContent("Flavor Texts", "Set the responses when something happens to this object. " +
             "Flavor texts get printed regardless of the action's success or not."), EditorStyles.boldLabel);
 
-        EditorGUILayout.PrefixLabel(new GUIContent("Edible Flavor Text", "The response that's printed when the player attempts to eat this object."));
-        obj.edibleFlavorText = EditorGUILayout.TextArea(obj.edibleFlavorText, EditorStyles.textArea);
-        EditorGUILayout.PrefixLabel(new GUIContent("Drinkable Flavor Text", "The response that's printed when the player attempts to drink this object."));
-        obj.drinkableFlavorText = EditorGUILayout.TextArea(obj.edibleFlavorText, EditorStyles.textArea);
-        EditorGUILayout.PrefixLabel(new GUIContent("Talkable Flavor Text", "The response that's printed when the player attempts to talk to this object."));
-        obj.talkableFlavorText = EditorGUILayout.TextArea(obj.talkableFlavorText, EditorStyles.textArea);
-        EditorGUILayout.PrefixLabel(new GUIContent("Killable Flavor Text", "The response that's printed when the player attemps to kill this object."));
-        obj.killableFlavorText = EditorGUILayout.TextArea(obj.killableFlavorText, EditorStyles.textArea);
-        EditorGUILayout.PrefixLabel(new GUIContent("Breakable Flavor Text", "The response that's printed when the player attempts to break this object."));
-        obj.breakableFlavorText = EditorGUILayout.TextArea(obj.breakableFlavorText, EditorStyles.textArea);
-        EditorGUILayout.PrefixLabel(new GUIContent("Sittable Flavor Text", "The response that's printed when the player attempts to sit on this object."));
-        obj.sittableFlavorText = EditorGUILayout.TextArea(obj.sittableFlavorText, EditorStyles.textArea);
-        EditorGUILayout.PrefixLabel(new GUIContent("Usable Flavor Text", "The response that's printed when the player attempts to use this object."));
-        obj.usableFlavorText = EditorGUILayout.TextArea(obj.usableFlavorText, EditorStyles.textArea);
-        EditorGUILayout.PrefixLabel(new GUIContent("Pickupable Flavor Text", "The response that's printed when the player attempts to pick up this object."));
-        obj.pickupableFlavorText = EditorGUILayout.TextArea(obj.pickupableFlavorText, EditorStyles.textArea);
-        EditorGUILayout.PrefixLabel(new GUIContent("Wearable Flavor Text", "The response that's printed when the player attempts to wear this object."));
-        obj.wearableFlavorText = EditorGUILayout.TextArea(obj.wearableFlavorText, EditorStyles.textArea);
-        EditorGUILayout.PrefixLabel(new GUIContent("Openable Flavor Text", "The response that's printed when the player attempts to open this object."));
-        obj.openableFlavorText = EditorGUILayout.TextArea(obj.openableFlavorText, EditorStyles.textArea);
+        if (defaultValues.eatActive)
+        {
+            EditorGUILayout.PrefixLabel(new GUIContent("Edible Flavor Text", "The response that's printed when the player attempts to eat this object."));
+            obj.edibleFlavorText = EditorGUILayout.TextArea(obj.edibleFlavorText, EditorStyles.textArea);
+        }
+        if (defaultValues.drinkActive)
+        {
+            EditorGUILayout.PrefixLabel(new GUIContent("Drinkable Flavor Text", "The response that's printed when the player attempts to drink this object."));
+            obj.drinkableFlavorText = EditorGUILayout.TextArea(obj.edibleFlavorText, EditorStyles.textArea);
+        }
+        if (defaultValues.talkActive)
+        {
+            EditorGUILayout.PrefixLabel(new GUIContent("Talkable Flavor Text", "The response that's printed when the player attempts to talk to this object."));
+            obj.talkableFlavorText = EditorGUILayout.TextArea(obj.talkableFlavorText, EditorStyles.textArea);
+        }
+        if (defaultValues.killActive)
+        {
+            EditorGUILayout.PrefixLabel(new GUIContent("Killable Flavor Text", "The response that's printed when the player attemps to kill this object."));
+            obj.killableFlavorText = EditorGUILayout.TextArea(obj.killableFlavorText, EditorStyles.textArea);
+        }
+        if (defaultValues.breakActive)
+        {
+            EditorGUILayout.PrefixLabel(new GUIContent("Breakable Flavor Text", "The response that's printed when the player attempts to break this object."));
+            obj.breakableFlavorText = EditorGUILayout.TextArea(obj.breakableFlavorText, EditorStyles.textArea);
+        }
+        if (defaultValues.sitActive)
+        {
+            EditorGUILayout.PrefixLabel(new GUIContent("Sittable Flavor Text", "The response that's printed when the player attempts to sit on this object."));
+            obj.sittableFlavorText = EditorGUILayout.TextArea(obj.sittableFlavorText, EditorStyles.textArea);
+        }
+        if (defaultValues.useActive)
+        {
+            EditorGUILayout.PrefixLabel(new GUIContent("Usable Flavor Text", "The response that's printed when the player attempts to use this object."));
+            obj.usableFlavorText = EditorGUILayout.TextArea(obj.usableFlavorText, EditorStyles.textArea);
+        }
+        if (defaultValues.pickupActive)
+        {
+            EditorGUILayout.PrefixLabel(new GUIContent("Pickupable Flavor Text", "The response that's printed when the player attempts to pick up this object."));
+            obj.pickupableFlavorText = EditorGUILayout.TextArea(obj.pickupableFlavorText, EditorStyles.textArea);
+        }
+        if (defaultValues.wearActive)
+        {
+            EditorGUILayout.PrefixLabel(new GUIContent("Wearable Flavor Text", "The response that's printed when the player attempts to wear this object."));
+            obj.wearableFlavorText = EditorGUILayout.TextArea(obj.wearableFlavorText, EditorStyles.textArea);
+        }
+        if (defaultValues.openActive)
+        {
+            EditorGUILayout.PrefixLabel(new GUIContent("Openable Flavor Text", "The response that's printed when the player attempts to open this object."));
+            obj.openableFlavorText = EditorGUILayout.TextArea(obj.openableFlavorText, EditorStyles.textArea);
+        }
+    }
 
+    private void showMiscTab(RoomObject obj, DefaultValues defaultValues)
+    {
         EditorGUILayout.Space(10);
         EditorGUILayout.LabelField(new GUIContent("Misc Variables", "Other options for this object"), EditorStyles.boldLabel);
 
-        showMiscTab(obj);
-    }
-
-    private void showMiscTab(RoomObject obj)
-    {
         GUIContent aliasContent = new GUIContent("RoomObject Aliases", "The different names of the object in-game, which the player types to interact with." +
                 " Aliases are separated by a comma. Leave empty to set it to the object's name in the editor by default.\nEx: Potion of Healing,Healing Potion,Red Potion");
         EditorGUILayout.PrefixLabel(aliasContent);
         showAdditionalTextArea(ref obj.objectAliases);
 
-        GUIContent lookAtContent = new GUIContent("Look At Flavor Text", "The text that's printed when the player looks at the object");
-        EditorGUILayout.PrefixLabel(lookAtContent);
-        obj.lookAtFlavorText = EditorGUILayout.TextArea(obj.lookAtFlavorText, EditorStyles.textArea);
+        if (defaultValues.lookAtActive)
+        {
+            GUIContent lookAtContent = new GUIContent("Look At Flavor Text", "The text that's printed when the player looks at the object");
+            EditorGUILayout.PrefixLabel(lookAtContent);
+            obj.lookAtFlavorText = EditorGUILayout.TextArea(obj.lookAtFlavorText, EditorStyles.textArea);
+        }
     }
 
     private void showActionTab(ref bool toggleBool, ref List<RoomObject.EditorVariables> objVars)

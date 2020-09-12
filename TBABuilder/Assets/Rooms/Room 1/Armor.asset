@@ -13,24 +13,30 @@ MonoBehaviour:
   m_Name: Armor
   m_EditorClassIdentifier: 
   isEdible: 0
+  isDrinkable: 0
   isTalkable: 0
   isKillable: 0
+  isBreakable: 0
   isSittable: 0
   isUsable: 0
   isPickupable: 0
   isWearable: 0
   isOpenable: 0
   runtimeIsEdible: 0
+  runtimeIsDrinkable: 0
   runtimeIsTalkable: 0
   runtimeIsKillable: 0
+  runtimeIsBreakable: 0
   runtimeIsSittable: 0
   runtimeIsUsable: 0
   runtimeIsPickupable: 0
-  runtimeIsWearable: 1
+  runtimeIsWearable: 0
   runtimeIsOpenable: 0
   edibleFlavorText: 
+  drinkableFlavorText: 
   talkableFlavorText: 
   killableFlavorText: 
+  breakableFlavorText: 
   sittableFlavorText: 
   usableFlavorText: 
   pickupableFlavorText: 
@@ -38,8 +44,10 @@ MonoBehaviour:
   openableFlavorText: 
   lookAtFlavorText: 
   runtimeEdibleFlavorText: 
+  runtimeDrinkableFlavorText: 
   runtimeTalkableFlavorText: 
   runtimeKillableFlavorText: 
+  runtimeBreakableFlavorText: 
   runtimeSittableFlavorText: 
   runtimeUsableFlavorText: 
   runtimePickupableFlavorText: 
@@ -47,11 +55,13 @@ MonoBehaviour:
   runtimeOpenableFlavorText: 
   runtimeLookAtFlavorText: 
   edibleVars: []
+  drinkableVars: []
   talkableVars: []
   killableVars: []
+  breakableVars: []
   sittableVars: []
   usableVars: []
-  pickupVars: []
+  pickupableVars: []
   wearableVars: []
   openableVars: []
   objectAliases: 

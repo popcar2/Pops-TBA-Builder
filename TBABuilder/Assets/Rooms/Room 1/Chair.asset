@@ -13,26 +13,32 @@ MonoBehaviour:
   m_Name: Chair
   m_EditorClassIdentifier: 
   isEdible: 0
+  isDrinkable: 0
   isTalkable: 0
   isKillable: 0
+  isBreakable: 0
   isSittable: 0
   isUsable: 0
   isPickupable: 0
   isWearable: 0
   isOpenable: 0
   runtimeIsEdible: 0
+  runtimeIsDrinkable: 0
   runtimeIsTalkable: 0
   runtimeIsKillable: 0
+  runtimeIsBreakable: 0
   runtimeIsSittable: 0
   runtimeIsUsable: 0
   runtimeIsPickupable: 0
   runtimeIsWearable: 0
   runtimeIsOpenable: 0
   edibleFlavorText: Why would you want to eat the chair???
+  drinkableFlavorText: Why would you want to eat the chair???
   talkableFlavorText: '"Hullo, chair."
 
     The chair stares at you silently'
   killableFlavorText: 
+  breakableFlavorText: 
   sittableFlavorText: You rest on the chair a while, then decide to stand up and
     do something useful.
   usableFlavorText: You rest on the chair a while, then decide to stand up and do
@@ -43,10 +49,12 @@ MonoBehaviour:
   openableFlavorText: 
   lookAtFlavorText: 
   runtimeEdibleFlavorText: Why would you want to eat the chair???
+  runtimeDrinkableFlavorText: Why would you want to eat the chair???
   runtimeTalkableFlavorText: '"Hullo, chair."
 
     The chair stares at you silently'
   runtimeKillableFlavorText: 
+  runtimeBreakableFlavorText: 
   runtimeSittableFlavorText: You rest on the chair a while, then decide to stand
     up and do something useful.
   runtimeUsableFlavorText: You rest on the chair a while, then decide to stand up
@@ -57,11 +65,13 @@ MonoBehaviour:
   runtimeOpenableFlavorText: 
   runtimeLookAtFlavorText: 
   edibleVars: []
+  drinkableVars: []
   talkableVars: []
   killableVars: []
+  breakableVars: []
   sittableVars: []
   usableVars: []
-  pickupVars: []
+  pickupableVars: []
   wearableVars: []
   openableVars: []
   objectAliases: 

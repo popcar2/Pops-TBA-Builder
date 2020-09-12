@@ -13,24 +13,30 @@ MonoBehaviour:
   m_Name: Apple
   m_EditorClassIdentifier: 
   isEdible: 1
+  isDrinkable: 0
   isTalkable: 0
   isKillable: 0
+  isBreakable: 0
   isSittable: 0
   isUsable: 0
   isPickupable: 0
   isWearable: 0
   isOpenable: 0
   runtimeIsEdible: 1
+  runtimeIsDrinkable: 0
   runtimeIsTalkable: 0
   runtimeIsKillable: 0
+  runtimeIsBreakable: 0
   runtimeIsSittable: 0
   runtimeIsUsable: 0
   runtimeIsPickupable: 0
   runtimeIsWearable: 0
   runtimeIsOpenable: 0
   edibleFlavorText: mmm delicious apple
+  drinkableFlavorText: mmm delicious apple
   talkableFlavorText: 
   killableFlavorText: 
+  breakableFlavorText: 
   sittableFlavorText: 
   usableFlavorText: 
   pickupableFlavorText: 
@@ -38,8 +44,10 @@ MonoBehaviour:
   openableFlavorText: 
   lookAtFlavorText: It's a healthy looking apple.
   runtimeEdibleFlavorText: mmm delicious apple
+  runtimeDrinkableFlavorText: 
   runtimeTalkableFlavorText: 
   runtimeKillableFlavorText: 
+  runtimeBreakableFlavorText: 
   runtimeSittableFlavorText: 
   runtimeUsableFlavorText: 
   runtimePickupableFlavorText: 
@@ -53,16 +61,20 @@ MonoBehaviour:
     roomAction: 0
     varsToChange:
       isEdible: 0
+      isDrinkable: 0
       isTalkable: 0
       isKillable: 0
+      isBreakable: 0
       isSittable: 0
       isUsable: 0
       isPickupable: 0
       isWearable: 0
       isOpenable: 0
       edibleFlavorText: 
+      drinkableFlavorText: 
       talkableFlavorText: 
       killableFlavorText: 
+      breakableFlavorText: 
       sittableFlavorText: 
       usableFlavorText: 
       pickupableFlavorText: 
@@ -78,16 +90,20 @@ MonoBehaviour:
     roomAction: 0
     varsToChange:
       isEdible: 0
+      isDrinkable: 0
       isTalkable: 0
       isKillable: 0
+      isBreakable: 0
       isSittable: 0
       isUsable: 0
       isPickupable: 0
       isWearable: 0
       isOpenable: 0
       edibleFlavorText: You've already eaten this apple.
+      drinkableFlavorText: 
       talkableFlavorText: 
       killableFlavorText: 
+      breakableFlavorText: 
       sittableFlavorText: 
       usableFlavorText: 
       pickupableFlavorText: 
@@ -103,16 +119,20 @@ MonoBehaviour:
     roomAction: 0
     varsToChange:
       isEdible: 0
+      isDrinkable: 0
       isTalkable: 0
       isKillable: 0
+      isBreakable: 0
       isSittable: 0
       isUsable: 0
       isPickupable: 0
       isWearable: 0
       isOpenable: 0
       edibleFlavorText: 
+      drinkableFlavorText: 
       talkableFlavorText: 
       killableFlavorText: 
+      breakableFlavorText: 
       sittableFlavorText: 
       usableFlavorText: 
       pickupableFlavorText: 
@@ -128,16 +148,20 @@ MonoBehaviour:
     roomAction: 3
     varsToChange:
       isEdible: 0
+      isDrinkable: 0
       isTalkable: 0
       isKillable: 0
+      isBreakable: 0
       isSittable: 0
       isUsable: 0
       isPickupable: 0
       isWearable: 0
       isOpenable: 0
       edibleFlavorText: 
+      drinkableFlavorText: 
       talkableFlavorText: 
       killableFlavorText: 
+      breakableFlavorText: 
       sittableFlavorText: 
       usableFlavorText: 
       pickupableFlavorText: 
@@ -147,11 +171,13 @@ MonoBehaviour:
       targetRoom: {fileID: 11400000, guid: 9d48b8f96ae5b134cac5e0d91f332df1, type: 2}
       roomText: Apple eaten
       targetObject: {fileID: 11400000}
+  drinkableVars: []
   talkableVars: []
   killableVars: []
+  breakableVars: []
   sittableVars: []
   usableVars: []
-  pickupVars: []
+  pickupableVars: []
   wearableVars: []
   openableVars: []
   objectAliases: 
