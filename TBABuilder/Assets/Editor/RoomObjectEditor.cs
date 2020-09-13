@@ -90,7 +90,7 @@ public class RoomObjectEditor : Editor
         if (defaultValues.drinkActive)
         {
             EditorGUILayout.PrefixLabel(new GUIContent("Drinkable Flavor Text", "The response that's printed when the player attempts to drink this object."));
-            obj.drinkableFlavorText = EditorGUILayout.TextArea(obj.edibleFlavorText, EditorStyles.textArea);
+            obj.drinkableFlavorText = EditorGUILayout.TextArea(obj.drinkableFlavorText, EditorStyles.textArea);
         }
         if (defaultValues.talkActive)
         {

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5914daa0bd6cb0447b2e55394046ccd6, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
-  isEdible: 1
+  isEdible: 0
   isDrinkable: 0
   isTalkable: 0
   isKillable: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   openableFlavorText: 
   lookAtFlavorText: It's a healthy looking apple.
   runtimeEdibleFlavorText: mmm delicious apple
-  runtimeDrinkableFlavorText: 
+  runtimeDrinkableFlavorText: mmm delicious apple
   runtimeTalkableFlavorText: 
   runtimeKillableFlavorText: 
   runtimeBreakableFlavorText: 
@@ -54,123 +54,7 @@ MonoBehaviour:
   runtimeWearableFlavorText: 
   runtimeOpenableFlavorText: 
   runtimeLookAtFlavorText: It's a healthy looking apple.
-  edibleVars:
-  - actionCategory: 1
-    playerAction: 0
-    objectAction: 1
-    roomAction: 0
-    varsToChange:
-      isEdible: 0
-      isDrinkable: 0
-      isTalkable: 0
-      isKillable: 0
-      isBreakable: 0
-      isSittable: 0
-      isUsable: 0
-      isPickupable: 0
-      isWearable: 0
-      isOpenable: 0
-      edibleFlavorText: 
-      drinkableFlavorText: 
-      talkableFlavorText: 
-      killableFlavorText: 
-      breakableFlavorText: 
-      sittableFlavorText: 
-      usableFlavorText: 
-      pickupableFlavorText: 
-      wearableFlavorText: 
-      openableFlavorText: 
-      lookAtFlavorText: 
-      targetRoom: {fileID: 0}
-      roomText: 
-      targetObject: {fileID: 11400000}
-  - actionCategory: 1
-    playerAction: 0
-    objectAction: 9
-    roomAction: 0
-    varsToChange:
-      isEdible: 0
-      isDrinkable: 0
-      isTalkable: 0
-      isKillable: 0
-      isBreakable: 0
-      isSittable: 0
-      isUsable: 0
-      isPickupable: 0
-      isWearable: 0
-      isOpenable: 0
-      edibleFlavorText: You've already eaten this apple.
-      drinkableFlavorText: 
-      talkableFlavorText: 
-      killableFlavorText: 
-      breakableFlavorText: 
-      sittableFlavorText: 
-      usableFlavorText: 
-      pickupableFlavorText: 
-      wearableFlavorText: 
-      openableFlavorText: 
-      lookAtFlavorText: 
-      targetRoom: {fileID: 0}
-      roomText: 
-      targetObject: {fileID: 11400000}
-  - actionCategory: 1
-    playerAction: 0
-    objectAction: 17
-    roomAction: 0
-    varsToChange:
-      isEdible: 0
-      isDrinkable: 0
-      isTalkable: 0
-      isKillable: 0
-      isBreakable: 0
-      isSittable: 0
-      isUsable: 0
-      isPickupable: 0
-      isWearable: 0
-      isOpenable: 0
-      edibleFlavorText: 
-      drinkableFlavorText: 
-      talkableFlavorText: 
-      killableFlavorText: 
-      breakableFlavorText: 
-      sittableFlavorText: 
-      usableFlavorText: 
-      pickupableFlavorText: 
-      wearableFlavorText: 
-      openableFlavorText: 
-      lookAtFlavorText: It's a half-eaten apple.
-      targetRoom: {fileID: 0}
-      roomText: 
-      targetObject: {fileID: 11400000}
-  - actionCategory: 2
-    playerAction: 0
-    objectAction: 0
-    roomAction: 3
-    varsToChange:
-      isEdible: 0
-      isDrinkable: 0
-      isTalkable: 0
-      isKillable: 0
-      isBreakable: 0
-      isSittable: 0
-      isUsable: 0
-      isPickupable: 0
-      isWearable: 0
-      isOpenable: 0
-      edibleFlavorText: 
-      drinkableFlavorText: 
-      talkableFlavorText: 
-      killableFlavorText: 
-      breakableFlavorText: 
-      sittableFlavorText: 
-      usableFlavorText: 
-      pickupableFlavorText: 
-      wearableFlavorText: 
-      openableFlavorText: 
-      lookAtFlavorText: 
-      targetRoom: {fileID: 11400000, guid: 9d48b8f96ae5b134cac5e0d91f332df1, type: 2}
-      roomText: Apple eaten
-      targetObject: {fileID: 11400000}
+  edibleVars: []
   drinkableVars: []
   talkableVars: []
   killableVars: []
