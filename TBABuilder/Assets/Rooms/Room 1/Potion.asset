@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5914daa0bd6cb0447b2e55394046ccd6, type: 3}
   m_Name: Potion
   m_EditorClassIdentifier: 
-  isEdible: 0
+  isEdible: 1
   isDrinkable: 0
   isTalkable: 0
   isKillable: 0
