@@ -109,6 +109,11 @@ public class RoomObject : ScriptableObject
         public ObjectAction objectAction = new ObjectAction();
         public RoomAction roomAction = new RoomAction();
         public CurrentVarsToChange varsToChange = new CurrentVarsToChange();
+
+        // Conditionals
+        public Conditional conditional = new Conditional();
+        public List<EditorVariables> conditionalVars = new List<EditorVariables>();
+        public bool conditionalBool = true;
     }
 
     // Exists in EditorVariables. Just here for tidying up the large amount of variables.
@@ -200,5 +205,13 @@ public class RoomObject : ScriptableObject
         AddObjectToRoom,
         SwitchRooms,
         ChangeRoomText
+    }
+
+    [Serializable]
+    public enum Conditional
+    {
+        ObjectExistsInRoom,
+        ObjectExistsInInventory,
+        ObjectExistsInEquipment
     }
 }

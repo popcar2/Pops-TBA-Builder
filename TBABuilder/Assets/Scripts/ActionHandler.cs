@@ -21,194 +21,233 @@ public class ActionHandler : MonoBehaviour
 
     public void executeActions(RoomObject obj, List<RoomObject.EditorVariables> objVars)
     {
-        string objName = obj.name;
         for (int i = 0; i < objVars.Count; i++)
         {
-            RoomObject.ActionCategory category = objVars[i].actionCategory;
-
-            // Execute player actions
-            if (category == RoomObject.ActionCategory.PlayerActions)
+            if (objVars[i].conditionalVars.Count == 0)
             {
-                RoomObject.PlayerAction playerAction = objVars[i].playerAction;
-
-                RoomObject targetObject = objVars[i].varsToChange.targetObject;
-
-                if (targetObject == null)
-                {
-                    Debug.Log($"{objName}: There's an object that wasn't set in an action");
-                    continue;
-                }
-
-                switch (playerAction)
-                {
-                    case RoomObject.PlayerAction.KillPlayer:
-                        textPrompt.killPlayer();
-                        textPrompt.printText("\n" + defaultValues.deathText);
-                        break;
-
-                    case RoomObject.PlayerAction.WinGame:
-                        textPrompt.winGame();
-                        textPrompt.printText("\n" + defaultValues.winText);
-                        break;
-
-                    case RoomObject.PlayerAction.AddToInventory:
-                        player.addItemToInventory(targetObject);
-                        roomTracker.getCurrentRoom().removeRoomObject(targetObject);
-                        player.removeEquippedItem(targetObject);
-                        break;
-
-                    case RoomObject.PlayerAction.RemoveFromInventory:
-                        player.removeItemFromInventory(targetObject);
-                        break;
-
-                    case RoomObject.PlayerAction.EquipItem:
-                        player.equipItem(targetObject);
-                        break;
-
-                    case RoomObject.PlayerAction.RemoveEquippedItem:
-                        player.removeEquippedItem(targetObject);
-                        break;
-
-                    default:
-                        Debug.Log($"Unknown PlayerAction enum at {obj.name}: you forgot to add what to do in ActionHandler!");
-                        break;
-                }
+                executeOneAction(obj, objVars[i]);
             }
-            else if (category == RoomObject.ActionCategory.ObjectActions)
+            else
             {
-                RoomObject.ObjectAction objectAction = objVars[i].objectAction;
-
-                RoomObject targetObject = objVars[i].varsToChange.targetObject;
-
-                if (targetObject == null)
-                {
-                    Debug.Log($"{objName}: There's an object that wasn't set in an action");
-                    continue;
-                }
-
-                // Execute object actions
-                switch (objectAction)
-                {
-                    case RoomObject.ObjectAction.DestroyObject:
-                        player.removeItemFromInventory(targetObject);
-                        player.removeEquippedItem(targetObject);
-                        roomTracker.getCurrentRoom().removeRoomObject(targetObject);
-                        break;
-
-                    case RoomObject.ObjectAction.SetIsEdible:
-                        targetObject.runtimeIsEdible = objVars[i].varsToChange.isEdible;
-                        break;
-
-                    case RoomObject.ObjectAction.SetIsDrinkable:
-                        targetObject.runtimeIsDrinkable = objVars[i].varsToChange.isDrinkable;
-                        break;
-
-                    case RoomObject.ObjectAction.SetIsTalkable:
-                        targetObject.runtimeIsTalkable = objVars[i].varsToChange.isTalkable;
-                        break;
-
-                    case RoomObject.ObjectAction.SetIsKillable:
-                        targetObject.runtimeIsKillable = objVars[i].varsToChange.isKillable;
-                        break;
-
-                    case RoomObject.ObjectAction.SetIsBreakable:
-                        targetObject.runtimeIsBreakable = objVars[i].varsToChange.isBreakable;
-                        break;
-
-                    case RoomObject.ObjectAction.SetIsSittable:
-                        targetObject.runtimeIsSittable = objVars[i].varsToChange.isSittable;
-                        break;
-
-                    case RoomObject.ObjectAction.SetIsUsable:
-                        targetObject.runtimeIsUsable = objVars[i].varsToChange.isUsable;
-                        break;
-
-                    case RoomObject.ObjectAction.SetIsWearable:
-                        targetObject.runtimeIsWearable = objVars[i].varsToChange.isWearable;
-                        break;
-
-                    case RoomObject.ObjectAction.SetIsOpenable:
-                        targetObject.runtimeIsOpenable = objVars[i].varsToChange.isOpenable;
-                        break;
-
-
-                    case RoomObject.ObjectAction.ChangeEdibleFlavorText:
-                        targetObject.runtimeEdibleFlavorText = objVars[i].varsToChange.edibleFlavorText;
-                        break;
-
-                    case RoomObject.ObjectAction.ChangeDrinkableFlavorText:
-                        targetObject.runtimeDrinkableFlavorText = objVars[i].varsToChange.drinkableFlavorText;
-                        break;
-
-                    case RoomObject.ObjectAction.ChangeKillableFlavorText:
-                        targetObject.runtimeKillableFlavorText = objVars[i].varsToChange.killableFlavorText;
-                        break;
-
-                    case RoomObject.ObjectAction.ChangeBreakableFlavorText:
-                        targetObject.runtimeBreakableFlavorText = objVars[i].varsToChange.breakableFlavorText;
-                        break;
-
-                    case RoomObject.ObjectAction.ChangePickupableFlavorText:
-                        targetObject.runtimePickupableFlavorText = objVars[i].varsToChange.pickupableFlavorText;
-                        break;
-
-                    case RoomObject.ObjectAction.ChangeSittableFlavorText:
-                        targetObject.runtimeSittableFlavorText = objVars[i].varsToChange.sittableFlavorText;
-                        break;
-
-                    case RoomObject.ObjectAction.ChangeTalkableFlavorText:
-                        targetObject.runtimeTalkableFlavorText = objVars[i].varsToChange.talkableFlavorText;
-                        break;
-
-                    case RoomObject.ObjectAction.ChangeUsableFlavorText:
-                        targetObject.runtimeUsableFlavorText = objVars[i].varsToChange.usableFlavorText;
-                        break;
-
-                    case RoomObject.ObjectAction.ChangeWearableFlavorText:
-                        targetObject.runtimeWearableFlavorText = objVars[i].varsToChange.wearableFlavorText;
-                        break;
-
-                    case RoomObject.ObjectAction.ChangeOpenableFlavorText:
-                        targetObject.runtimeOpenableFlavorText = objVars[i].varsToChange.openableFlavorText;
-                        break;
-
-                    case RoomObject.ObjectAction.ChangeLookAtFlavorText:
-                        targetObject.runtimeLookAtFlavorText = objVars[i].varsToChange.lookAtFlavorText;
-                        break;
-
-                    default:
-                        Debug.Log($"Unknown ObjectAction enum at {obj.name}: you forgot to add what to do in ActionHandler!");
-                        break;
-                }
-            }
-            else if (category == RoomObject.ActionCategory.RoomActions)
-            {
-                RoomObject.RoomAction roomAction = objVars[i].roomAction;
                 Room targetRoom = objVars[i].varsToChange.targetRoom;
+                RoomObject targetObject = objVars[i].varsToChange.targetObject;
+                bool conditionalBool = objVars[i].conditionalBool;
 
-                switch (roomAction) {
-                    case RoomObject.RoomAction.AddObjectToRoom:
-                        if (objVars[i].varsToChange.targetObject.isInitialized == false)
-                            objVars[i].varsToChange.targetObject.initializeRuntimeVariables();
-                        roomTracker.getCurrentRoom().addRoomObject(objVars[i].varsToChange.targetObject);
+                switch (objVars[i].conditional)
+                {
+                    case RoomObject.Conditional.ObjectExistsInRoom:
+                        if (targetRoom.runtimeRoomObjects.Contains(targetObject) == conditionalBool)
+                        {
+                            executeActions(obj, objVars[i].conditionalVars);
+                        }
                         break;
-
-                    case RoomObject.RoomAction.RemoveObjectFromRoom:
-                        roomTracker.getCurrentRoom().removeRoomObject(objVars[i].varsToChange.targetObject);
+                    case RoomObject.Conditional.ObjectExistsInInventory:
+                        if (player.getInventory().Contains(targetObject) == conditionalBool)
+                        {
+                            executeActions(obj, objVars[i].conditionalVars);
+                        }
                         break;
-
-                    case RoomObject.RoomAction.SwitchRooms:
-                        roomTracker.forceChangeRoom(objVars[i].varsToChange.targetRoom);
+                    case RoomObject.Conditional.ObjectExistsInEquipment:
+                        if (player.getEquippedItems().Contains(targetObject) == conditionalBool)
+                        {
+                            executeActions(obj, objVars[i].conditionalVars);
+                        }
                         break;
-
-                    case RoomObject.RoomAction.ChangeRoomText:
-                        targetRoom.runtimeRoomText = objVars[i].varsToChange.roomText;
-                        break;
-
                     default:
-                        Debug.Log($"Unknown RoomAction enum at {obj.name}: you forgot to add what to do in ActionHandler!");
+                        Debug.Log($"Unknown Conditional enum at {obj.name}: you forgot to add what to do in ActionHandler!");
                         break;
                 }
+            }
+        }
+    }
+
+    public void executeOneAction(RoomObject obj, RoomObject.EditorVariables action)
+    {
+        RoomObject.ActionCategory category = action.actionCategory;
+
+        // Execute player actions
+        if (category == RoomObject.ActionCategory.PlayerActions)
+        {
+            RoomObject.PlayerAction playerAction = action.playerAction;
+
+            RoomObject targetObject = action.varsToChange.targetObject;
+
+            if (targetObject == null)
+            {
+                Debug.Log($"{obj.name}: There's an object that wasn't set in an action");
+                return;
+            }
+
+            switch (playerAction)
+            {
+                case RoomObject.PlayerAction.KillPlayer:
+                    textPrompt.killPlayer();
+                    textPrompt.printText("\n" + defaultValues.deathText);
+                    break;
+
+                case RoomObject.PlayerAction.WinGame:
+                    textPrompt.winGame();
+                    textPrompt.printText("\n" + defaultValues.winText);
+                    break;
+
+                case RoomObject.PlayerAction.AddToInventory:
+                    player.addItemToInventory(targetObject);
+                    roomTracker.getCurrentRoom().removeRoomObject(targetObject);
+                    player.removeEquippedItem(targetObject);
+                    break;
+
+                case RoomObject.PlayerAction.RemoveFromInventory:
+                    player.removeItemFromInventory(targetObject);
+                    break;
+
+                case RoomObject.PlayerAction.EquipItem:
+                    player.equipItem(targetObject);
+                    break;
+
+                case RoomObject.PlayerAction.RemoveEquippedItem:
+                    player.removeEquippedItem(targetObject);
+                    break;
+
+                default:
+                    Debug.Log($"Unknown PlayerAction enum at {obj.name}: you forgot to add what to do in ActionHandler!");
+                    break;
+            }
+        }
+        else if (category == RoomObject.ActionCategory.ObjectActions)
+        {
+            RoomObject.ObjectAction objectAction = action.objectAction;
+
+            RoomObject targetObject = action.varsToChange.targetObject;
+
+            if (targetObject == null)
+            {
+                Debug.Log($"{obj.name}: There's an object that wasn't set in an action");
+                return;
+            }
+
+            // Execute object actions
+            switch (objectAction)
+            {
+                case RoomObject.ObjectAction.DestroyObject:
+                    player.removeItemFromInventory(targetObject);
+                    player.removeEquippedItem(targetObject);
+                    roomTracker.getCurrentRoom().removeRoomObject(targetObject);
+                    break;
+
+                case RoomObject.ObjectAction.SetIsEdible:
+                    targetObject.runtimeIsEdible = action.varsToChange.isEdible;
+                    break;
+
+                case RoomObject.ObjectAction.SetIsDrinkable:
+                    targetObject.runtimeIsDrinkable = action.varsToChange.isDrinkable;
+                    break;
+
+                case RoomObject.ObjectAction.SetIsTalkable:
+                    targetObject.runtimeIsTalkable = action.varsToChange.isTalkable;
+                    break;
+
+                case RoomObject.ObjectAction.SetIsKillable:
+                    targetObject.runtimeIsKillable = action.varsToChange.isKillable;
+                    break;
+
+                case RoomObject.ObjectAction.SetIsBreakable:
+                    targetObject.runtimeIsBreakable = action.varsToChange.isBreakable;
+                    break;
+
+                case RoomObject.ObjectAction.SetIsSittable:
+                    targetObject.runtimeIsSittable = action.varsToChange.isSittable;
+                    break;
+
+                case RoomObject.ObjectAction.SetIsUsable:
+                    targetObject.runtimeIsUsable = action.varsToChange.isUsable;
+                    break;
+
+                case RoomObject.ObjectAction.SetIsWearable:
+                    targetObject.runtimeIsWearable = action.varsToChange.isWearable;
+                    break;
+
+                case RoomObject.ObjectAction.SetIsOpenable:
+                    targetObject.runtimeIsOpenable = action.varsToChange.isOpenable;
+                    break;
+
+
+                case RoomObject.ObjectAction.ChangeEdibleFlavorText:
+                    targetObject.runtimeEdibleFlavorText = action.varsToChange.edibleFlavorText;
+                    break;
+
+                case RoomObject.ObjectAction.ChangeDrinkableFlavorText:
+                    targetObject.runtimeDrinkableFlavorText = action.varsToChange.drinkableFlavorText;
+                    break;
+
+                case RoomObject.ObjectAction.ChangeKillableFlavorText:
+                    targetObject.runtimeKillableFlavorText = action.varsToChange.killableFlavorText;
+                    break;
+
+                case RoomObject.ObjectAction.ChangeBreakableFlavorText:
+                    targetObject.runtimeBreakableFlavorText = action.varsToChange.breakableFlavorText;
+                    break;
+
+                case RoomObject.ObjectAction.ChangePickupableFlavorText:
+                    targetObject.runtimePickupableFlavorText = action.varsToChange.pickupableFlavorText;
+                    break;
+
+                case RoomObject.ObjectAction.ChangeSittableFlavorText:
+                    targetObject.runtimeSittableFlavorText = action.varsToChange.sittableFlavorText;
+                    break;
+
+                case RoomObject.ObjectAction.ChangeTalkableFlavorText:
+                    targetObject.runtimeTalkableFlavorText = action.varsToChange.talkableFlavorText;
+                    break;
+
+                case RoomObject.ObjectAction.ChangeUsableFlavorText:
+                    targetObject.runtimeUsableFlavorText = action.varsToChange.usableFlavorText;
+                    break;
+
+                case RoomObject.ObjectAction.ChangeWearableFlavorText:
+                    targetObject.runtimeWearableFlavorText = action.varsToChange.wearableFlavorText;
+                    break;
+
+                case RoomObject.ObjectAction.ChangeOpenableFlavorText:
+                    targetObject.runtimeOpenableFlavorText = action.varsToChange.openableFlavorText;
+                    break;
+
+                case RoomObject.ObjectAction.ChangeLookAtFlavorText:
+                    targetObject.runtimeLookAtFlavorText = action.varsToChange.lookAtFlavorText;
+                    break;
+
+                default:
+                    Debug.Log($"Unknown ObjectAction enum at {obj.name}: you forgot to add what to do in ActionHandler!");
+                    break;
+            }
+        }
+        else if (category == RoomObject.ActionCategory.RoomActions)
+        {
+            RoomObject.RoomAction roomAction = action.roomAction;
+            Room targetRoom = action.varsToChange.targetRoom;
+
+            switch (roomAction)
+            {
+                case RoomObject.RoomAction.AddObjectToRoom:
+                    if (action.varsToChange.targetObject.isInitialized == false)
+                        action.varsToChange.targetObject.initializeRuntimeVariables();
+                    roomTracker.getCurrentRoom().addRoomObject(action.varsToChange.targetObject);
+                    break;
+
+                case RoomObject.RoomAction.RemoveObjectFromRoom:
+                    roomTracker.getCurrentRoom().removeRoomObject(action.varsToChange.targetObject);
+                    break;
+
+                case RoomObject.RoomAction.SwitchRooms:
+                    roomTracker.forceChangeRoom(action.varsToChange.targetRoom);
+                    break;
+
+                case RoomObject.RoomAction.ChangeRoomText:
+                    targetRoom.runtimeRoomText = action.varsToChange.roomText;
+                    break;
+
+                default:
+                    Debug.Log($"Unknown RoomAction enum at {obj.name}: you forgot to add what to do in ActionHandler!");
+                    break;
             }
         }
     }
