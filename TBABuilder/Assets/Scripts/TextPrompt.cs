@@ -21,8 +21,9 @@ public class TextPrompt : MonoBehaviour
     private bool gameOver = false;
     private Queue<string> printQueue;
 
-    void Start()
+    void Awake()
     {
+        // Awake is used instead of Start because TextPrompt is the first thing that needs to be initialized before printing text
         textComponent = GetComponent<TextMeshProUGUI>();
         textComponent.text = "";
         inputField = FindObjectOfType<TMP_InputField>();
@@ -33,7 +34,6 @@ public class TextPrompt : MonoBehaviour
         printQueue = new Queue<string>();
         
         inputField.ActivateInputField();
-        actionHandler.printCurrentRoomText();
     }
 
     void Update()

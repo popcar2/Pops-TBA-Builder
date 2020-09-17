@@ -14,10 +14,23 @@ public class RoomTracker : MonoBehaviour
     {
         textPrompt = FindObjectOfType<TextPrompt>();
         player = FindObjectOfType<Player>();
-
         currentRoom = startingRoom;
-
         currentRoom.initializeRuntimeVariables();
+        textPrompt.printText(currentRoom.roomText);
+    }
+
+    public void printCurrentRoomText()
+    {
+        string roomText = currentRoom.runtimeRoomText;
+
+        if (System.String.IsNullOrEmpty(roomText))
+        {
+            textPrompt.printText("\n(You forgot to add Room Text for this current room)");
+        }
+        else
+        {
+            textPrompt.printText("\n" + roomText);
+        }
     }
 
     public Room getCurrentRoom()

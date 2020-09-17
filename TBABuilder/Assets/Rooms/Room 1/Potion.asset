@@ -54,7 +54,39 @@ MonoBehaviour:
   runtimeWearableFlavorText: 
   runtimeOpenableFlavorText: 
   runtimeLookAtFlavorText: The potion glows with intensity.
-  edibleVars: []
+  edibleVars:
+  - actionCategory: 3
+    playerAction: 0
+    objectAction: 0
+    roomAction: 0
+    varsToChange:
+      isEdible: 0
+      isDrinkable: 0
+      isTalkable: 0
+      isKillable: 0
+      isBreakable: 0
+      isSittable: 0
+      isUsable: 0
+      isPickupable: 0
+      isWearable: 0
+      isOpenable: 0
+      edibleFlavorText: 
+      drinkableFlavorText: 
+      talkableFlavorText: 
+      killableFlavorText: 
+      breakableFlavorText: 
+      sittableFlavorText: 
+      usableFlavorText: 
+      pickupableFlavorText: 
+      wearableFlavorText: 
+      openableFlavorText: 
+      lookAtFlavorText: 
+      targetRoom: {fileID: 0}
+      roomText: 
+      targetObject: {fileID: 11400000}
+    conditional: 0
+    conditionalVars: []
+    conditionalBool: 1
   drinkableVars: []
   talkableVars: []
   killableVars: []

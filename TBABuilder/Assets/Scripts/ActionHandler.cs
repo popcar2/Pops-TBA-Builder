@@ -484,18 +484,4 @@ public class ActionHandler : MonoBehaviour
             textPrompt.printText("\n" + defaultValues.unknownCommand);
         }
     }
-
-    public void printCurrentRoomText()
-    {
-        string roomText = roomTracker.getCurrentRoom().runtimeRoomText;
-
-        if (System.String.IsNullOrEmpty(roomText))
-        {
-            textPrompt.printText("\n(You forgot to add Room Text for this current room)");
-        }
-        else
-        {
-            textPrompt.printText("\n" + roomText);
-        }
-    }
 }

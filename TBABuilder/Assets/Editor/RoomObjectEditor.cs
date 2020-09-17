@@ -152,55 +152,20 @@ public class RoomObjectEditor : Editor
         }
     }
 
-    private void showActionTab(ref bool toggleBool, ref List<RoomObject.EditorVariables> objVars)
+    private void showActionTab(ref bool toggleBool, ref List<RoomObject.EditorVariables> objVars, int indentation = 0, int depth = 0)
     {
         GUILayout.BeginVertical(); 
         if (toggleBool)
         {
             for (int i = 0; i < objVars.Count; i++)
             {
-                GUILayout.BeginHorizontal();
-
-                GUILayout.Space(20);
-
-                // Delete an action
-                if (GUILayout.Button("-", GUILayout.MaxWidth(25))){
-                    objVars.Remove(objVars[i]);
-
-                    // Break out so it doesn't get an index out of range error when continuing
-                    break;
-                }
-
-                objVars[i].actionCategory = (RoomObject.ActionCategory)EditorGUILayout.EnumPopup(GUIContent.none, objVars[i].actionCategory, GUILayout.MaxWidth(150));
-
-                // Show Player Actions
-                if (objVars[i].actionCategory == RoomObject.ActionCategory.PlayerActions)
-                {
-                    objVars[i].playerAction = (RoomObject.PlayerAction)EditorGUILayout.EnumPopup(GUIContent.none, objVars[i].playerAction);
-                }
-
-                // Show Object Actions
-                else if (objVars[i].actionCategory == RoomObject.ActionCategory.ObjectActions)
-                {
-                    objVars[i].objectAction = (RoomObject.ObjectAction)EditorGUILayout.EnumPopup(GUIContent.none, objVars[i].objectAction);
-                }
-
-                // Show Room Actions
-                else if (objVars[i].actionCategory == RoomObject.ActionCategory.RoomActions)
-                {
-                    objVars[i].roomAction = (RoomObject.RoomAction)EditorGUILayout.EnumPopup(GUIContent.none, objVars[i].roomAction);
-                }
-
-                GUILayout.EndHorizontal();
-
-                // Show additional values that are required for some actions
-                showAllAdditionalVariables(ref objVars, i);
+                showOneAction(ref objVars, i, indentation, depth);
             }
 
             GUILayout.BeginHorizontal();
-            GUILayout.Space(20);
+            GUILayout.Space(20 + indentation);
 
-            if (GUILayout.Button("Add new action"))
+            if (GUILayout.Button($"Add new action ({depth})"))
             {
                 RoomObject.EditorVariables newVar = new RoomObject.EditorVariables();
                 newVar.varsToChange.targetObject = (RoomObject)target;
@@ -216,10 +181,63 @@ public class RoomObjectEditor : Editor
         GUILayout.EndVertical();
     }
 
-    private void showAllAdditionalVariables(ref List<RoomObject.EditorVariables> objVars, int i)
+    private void showOneAction(ref List<RoomObject.EditorVariables> objVars , int i, int indentation = 0, int depth = 0)
     {
         GUILayout.BeginHorizontal();
-        GUILayout.Space(50);
+
+        GUILayout.Space(20 + indentation);
+
+        // Delete an action
+        if (GUILayout.Button("-", GUILayout.MaxWidth(25)))
+        {
+            objVars.Remove(objVars[i]);
+
+            // Break out so it doesn't get an index out of range error when continuing
+            return;
+        }
+
+        objVars[i].actionCategory = (RoomObject.ActionCategory)EditorGUILayout.EnumPopup(GUIContent.none, objVars[i].actionCategory, GUILayout.MaxWidth(150));
+
+        // Show Player Actions
+        if (objVars[i].actionCategory == RoomObject.ActionCategory.PlayerActions)
+        {
+            objVars[i].playerAction = (RoomObject.PlayerAction)EditorGUILayout.EnumPopup(GUIContent.none, objVars[i].playerAction);
+        }
+
+        // Show Object Actions
+        else if (objVars[i].actionCategory == RoomObject.ActionCategory.ObjectActions)
+        {
+            objVars[i].objectAction = (RoomObject.ObjectAction)EditorGUILayout.EnumPopup(GUIContent.none, objVars[i].objectAction);
+        }
+
+        // Show Room Actions
+        else if (objVars[i].actionCategory == RoomObject.ActionCategory.RoomActions)
+        {
+            objVars[i].roomAction = (RoomObject.RoomAction)EditorGUILayout.EnumPopup(GUIContent.none, objVars[i].roomAction);
+        }
+
+        // Show a conditional and all of the actions inside it
+        else if (objVars[i].actionCategory == RoomObject.ActionCategory.Conditionals)
+        {
+            objVars[i].conditional = (RoomObject.Conditional)EditorGUILayout.EnumPopup(GUIContent.none, objVars[i].conditional);
+
+            GUILayout.EndHorizontal();
+            showAllAdditionalVariables(ref objVars, i, indentation);
+            bool needThisForRef = true;
+            showActionTab(ref needThisForRef, ref objVars[i].conditionalVars, indentation + 30, depth + 1);
+            return;
+        }
+
+        GUILayout.EndHorizontal();
+
+        // Show additional values that are required for some actions
+        showAllAdditionalVariables(ref objVars, i, indentation);
+    }
+
+    private void showAllAdditionalVariables(ref List<RoomObject.EditorVariables> objVars, int i, int indentation = 0)
+    {
+        GUILayout.BeginHorizontal();
+        GUILayout.Space(50 + indentation);
         GUILayout.BeginVertical();
 
         GUIContent targetObjectLabel = new GUIContent("Target Object", "The object that is affected by the selected action command. Set to the current object by default.");
@@ -378,6 +396,26 @@ public class RoomObjectEditor : Editor
             {
                 showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
                 showAdditionalTextArea(ref objVars[i].varsToChange.roomText);
+            }
+        }
+        else if (objVars[i].actionCategory == RoomObject.ActionCategory.Conditionals)
+        {
+            GUIContent conditionalBoolContent = new GUIContent("On True", "Determines whether the commands in this conditional will activate when it's true or false");
+            if (objVars[i].conditional == RoomObject.Conditional.ObjectExistsInRoom)
+            {
+                objVars[i].conditionalBool = GUILayout.Toggle(objVars[i].conditionalBool, conditionalBoolContent);
+                showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+            }
+            else if (objVars[i].conditional == RoomObject.Conditional.ObjectExistsInInventory)
+            {
+                objVars[i].conditionalBool = GUILayout.Toggle(objVars[i].conditionalBool, conditionalBoolContent);
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+            }
+            else if (objVars[i].conditional == RoomObject.Conditional.ObjectExistsInEquipment)
+            {
+                objVars[i].conditionalBool = GUILayout.Toggle(objVars[i].conditionalBool, conditionalBoolContent);
+                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
         }
         GUILayout.EndVertical();

@@ -155,7 +155,8 @@ public class RoomObject : ScriptableObject
     {
         PlayerActions,
         ObjectActions,
-        RoomActions
+        RoomActions,
+        Conditionals
     }
 
     [Serializable]
