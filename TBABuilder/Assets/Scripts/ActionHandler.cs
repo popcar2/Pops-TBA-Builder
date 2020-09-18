@@ -25,10 +25,12 @@ public class ActionHandler : MonoBehaviour
         {
             if (objVars[i].conditionalVars.Count == 0)
             {
+                // This isn't a conditional, execute action normally
                 executeOneAction(obj, objVars[i]);
             }
             else
             {
+                // This is a conditional, loop over every action inside of it through recursion
                 Room targetRoom = objVars[i].varsToChange.targetRoom;
                 RoomObject targetObject = objVars[i].varsToChange.targetObject;
                 bool conditionalBool = objVars[i].conditionalBool;
@@ -49,6 +51,12 @@ public class ActionHandler : MonoBehaviour
                         break;
                     case RoomObject.Conditional.ObjectExistsInEquipment:
                         if (player.getEquippedItems().Contains(targetObject) == conditionalBool)
+                        {
+                            executeActions(obj, objVars[i].conditionalVars);
+                        }
+                        break;
+                    case RoomObject.Conditional.RoomWasVisited:
+                        if (objVars[i].varsToChange.targetRoom.isInitialized == conditionalBool)
                         {
                             executeActions(obj, objVars[i].conditionalVars);
                         }
@@ -82,18 +90,18 @@ public class ActionHandler : MonoBehaviour
             {
                 case RoomObject.PlayerAction.KillPlayer:
                     textPrompt.killPlayer();
-                    textPrompt.printText("\n" + defaultValues.deathText);
+                    // The delay for printText is so the flavor text is printed first before death/win text.
+                    StartCoroutine(textPrompt.printTextAfterTime("\n" + defaultValues.deathText, 0.1f));
                     break;
 
                 case RoomObject.PlayerAction.WinGame:
                     textPrompt.winGame();
-                    textPrompt.printText("\n" + defaultValues.winText);
+                    // The delay for printText is so the flavor text is printed first before death/win text.
+                    StartCoroutine(textPrompt.printTextAfterTime("\n" + defaultValues.winText, 0.1f));
                     break;
 
                 case RoomObject.PlayerAction.AddToInventory:
                     player.addItemToInventory(targetObject);
-                    roomTracker.getCurrentRoom().removeRoomObject(targetObject);
-                    player.removeEquippedItem(targetObject);
                     break;
 
                 case RoomObject.PlayerAction.RemoveFromInventory:
@@ -255,10 +263,10 @@ public class ActionHandler : MonoBehaviour
     // Needs an unholy amount of variables but still better than copy pasting the same thing to each method
     public void doGenericAction(RoomObject obj, string defaultSuccessText, string defaultFailText, string flavorText, bool successBool, List<RoomObject.EditorVariables> objVars)
     {
-        bool successful = inputParser.printResponse(obj, successBool, defaultSuccessText, defaultFailText, flavorText);
-
-        if (successful)
+        if (successBool)
             executeActions(obj, objVars);
+
+        inputParser.printResponse(obj, successBool, defaultSuccessText, defaultFailText, flavorText);
     }
 
     public void eatObject(RoomObject obj)

@@ -400,22 +400,25 @@ public class RoomObjectEditor : Editor
         }
         else if (objVars[i].actionCategory == RoomObject.ActionCategory.Conditionals)
         {
-            GUIContent conditionalBoolContent = new GUIContent("On True", "Determines whether the commands in this conditional will activate when it's true or false");
+            GUIContent conditionalBoolContent = new GUIContent("Activate on true", "Determines whether the commands in this conditional will activate when it's true or false");
+            objVars[i].conditionalBool = GUILayout.Toggle(objVars[i].conditionalBool, conditionalBoolContent);
+
             if (objVars[i].conditional == RoomObject.Conditional.ObjectExistsInRoom)
             {
-                objVars[i].conditionalBool = GUILayout.Toggle(objVars[i].conditionalBool, conditionalBoolContent);
                 showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
                 showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].conditional == RoomObject.Conditional.ObjectExistsInInventory)
             {
-                objVars[i].conditionalBool = GUILayout.Toggle(objVars[i].conditionalBool, conditionalBoolContent);
                 showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
             else if (objVars[i].conditional == RoomObject.Conditional.ObjectExistsInEquipment)
             {
-                objVars[i].conditionalBool = GUILayout.Toggle(objVars[i].conditionalBool, conditionalBoolContent);
                 showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+            }
+            else if (objVars[i].conditional == RoomObject.Conditional.RoomWasVisited)
+            {
+                showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
             }
         }
         GUILayout.EndVertical();

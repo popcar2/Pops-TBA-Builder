@@ -9,12 +9,14 @@ public class Player : MonoBehaviour
     [SerializeField] private List<RoomObject> equippedItems;
 
     TextPrompt textPrompt;
+    DefaultValues defaultValues;
 
     private void Start()
     {
         inventory = new List<RoomObject>();
         equippedItems = new List<RoomObject>();
         textPrompt = FindObjectOfType<TextPrompt>();
+        defaultValues = FindObjectOfType<DefaultValues>();
     }
 
     public void addItemToInventory(RoomObject item)
@@ -34,45 +36,46 @@ public class Player : MonoBehaviour
         return inventory;
     }
 
-    // Might want to move to InputParser? Makes little sense making a command that only prints here, even though the inventory is in player
     public void openInventory()
     {
         if (inventory.Count == 0)
         {
-            textPrompt.printText("\nYou open your pouch of items, and find that it is empty.");
+            textPrompt.printText("\n" + defaultValues.emptyInventoryText);
             openEquipment();
             return;
         }
 
-        StringBuilder inv = new StringBuilder("\nYou open your pouch of items, its contents are: ");
+        StringBuilder itemList = new StringBuilder();
         foreach (RoomObject obj in inventory)
         {
-            inv.Append(obj.name + ", ");
+            itemList.Append(obj.name + ", ");
         }
-        inv.Remove(inv.Length - 2, 2);
-        inv.Append(".");
-        textPrompt.printText(inv.ToString());
+        itemList.Remove(itemList.Length - 2, 2);
+
+        string inv = "\n" + defaultValues.occupiedInventoryText.Replace("(ITEMS)", itemList.ToString());
+        textPrompt.printText(inv);
 
         openEquipment();
     }
 
     public void openEquipment()
     {
-        StringBuilder equipment = new StringBuilder("\nYour current equipped items are: ");
-        if (equippedItems.Count > 0)
+        if (equippedItems.Count == 0)
         {
-            foreach (RoomObject obj in equippedItems)
-            {
-                equipment.Append(obj.name + ", ");
-            }
-            equipment.Remove(equipment.Length - 2, 2);
-            equipment.Append(".");
-            textPrompt.printText(equipment.ToString());
+            textPrompt.printText("\n" + defaultValues.emptyEquipmentText);
+            return;
         }
-        else
+
+        StringBuilder equipmentList = new StringBuilder();
+        foreach (RoomObject obj in equippedItems)
         {
-            textPrompt.printText("\nYou have no items equipped.");
+            equipmentList.Append(obj.name + ", ");
         }
+        equipmentList.Remove(equipmentList.Length - 2, 2);
+
+        string equipment = "\n" + defaultValues.occupiedEquipmentText.Replace("(ITEMS)", equipmentList.ToString());
+
+        textPrompt.printText(equipment);
     }
 
     public void equipItem(RoomObject equipment)

@@ -213,6 +213,7 @@ public class RoomObject : ScriptableObject
     {
         ObjectExistsInRoom,
         ObjectExistsInInventory,
-        ObjectExistsInEquipment
+        ObjectExistsInEquipment,
+        RoomWasVisited
     }
 }

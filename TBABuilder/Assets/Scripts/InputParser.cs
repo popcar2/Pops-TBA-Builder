@@ -284,19 +284,17 @@ public class InputParser : MonoBehaviour
     }
 
     // Returns whether the operation was a success or a failure. objCheck is the bool you use to check objects, such as obj.IsEdible
-    public bool printResponse(RoomObject obj, bool objCheck, string defaultSuccess, string defaultFailure, string objFlavorText)
+    public void printResponse(RoomObject obj, bool successBool, string defaultSuccess, string defaultFailure, string objFlavorText)
     {
-        bool success = false;
         bool hasFlavorText = !String.IsNullOrEmpty(objFlavorText);
 
-        if (objCheck)
+        if (successBool)
         {
             // Success
             if (!hasFlavorText)
             {
                 textPrompt.printText("\n" + defaultSuccess);
             }
-            success = true;
         }
         else
         {
@@ -312,7 +310,5 @@ public class InputParser : MonoBehaviour
         {
             textPrompt.printText("\n" + objFlavorText);
         }
-
-        return success;
     }
 }

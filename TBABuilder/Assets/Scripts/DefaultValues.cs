@@ -60,5 +60,9 @@ public class DefaultValues : MonoBehaviour
 
     [SerializeField] public string winText;
     [SerializeField] public string deathText;
+    [SerializeField] public string emptyInventoryText;
+    [SerializeField] public string occupiedInventoryText;
+    [SerializeField] public string emptyEquipmentText;
+    [SerializeField] public string occupiedEquipmentText;
     [SerializeField] public string unknownCommand;
 }

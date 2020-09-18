@@ -88,4 +88,8 @@ MonoBehaviour:
   lookAtNotFoundText: Look at what?
   winText: YOU WON! (Press any button to restart)
   deathText: YOU DIED! (Press any button to restart)
+  emptyInventoryText: You open your pouch of items, and find that it is empty.
+  occupiedInventoryText: 'You open your pouch of items, its contents are: (ITEMS).'
+  emptyEquipmentText: You currently have no items equipped.
+  occupiedEquipmentText: 'Your currently equipped items are: (ITEMS).'
   unknownCommand: Unknown Command, type "help" for the list of commands

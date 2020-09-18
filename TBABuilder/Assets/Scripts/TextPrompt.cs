@@ -72,6 +72,12 @@ public class TextPrompt : MonoBehaviour
         }
     }
 
+    public IEnumerator printTextAfterTime(string text, float time)
+    {
+        yield return new WaitForSeconds(time);
+        printText(text);
+    }
+
     public void killPlayer()
     {
         gameOver = true;
