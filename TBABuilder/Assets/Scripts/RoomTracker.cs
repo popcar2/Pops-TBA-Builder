@@ -50,7 +50,9 @@ public class RoomTracker : MonoBehaviour
             room.initializeRuntimeVariables();
 
         currentRoom = room;
-        textPrompt.printText("\n" + currentRoom.runtimeRoomText);
+
+        // Is delayed so the flavor text can be printed before room text.
+        StartCoroutine(textPrompt.printTextAfterTime("\n" + currentRoom.runtimeRoomText, 0.1f));
     }
 
     public void changeRoomViaRoomConnection(string userInput)

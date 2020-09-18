@@ -21,7 +21,11 @@ public class Room : ScriptableObject
     {
         isInitialized = true;
         runtimeRoomObjects = roomObjects.ToList();
-        runtimeRoomText = roomText;
+
+        // In case the room text was changed via an action before initialization
+        if (String.IsNullOrEmpty(runtimeRoomText))
+            runtimeRoomText = roomText;
+
         runtimeRoomConnections = roomConnections;
 
         foreach (RoomObject obj in runtimeRoomObjects)
