@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RoomTracker : MonoBehaviour
 {
@@ -52,7 +50,7 @@ public class RoomTracker : MonoBehaviour
         currentRoom = room;
 
         // Is delayed so the flavor text can be printed before room text.
-        StartCoroutine(textPrompt.printTextAfterTime("\n" + currentRoom.runtimeRoomText, 0.1f));
+        StartCoroutine(textPrompt.printTextAfterDelay("\n" + currentRoom.runtimeRoomText, 0.1f));
     }
 
     public void changeRoomViaRoomConnection(string userInput)

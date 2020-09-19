@@ -1,0 +1,198 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5914daa0bd6cb0447b2e55394046ccd6, type: 3}
+  m_Name: rusty lock
+  m_EditorClassIdentifier: 
+  isEdible: 0
+  isDrinkable: 0
+  isTalkable: 0
+  isKillable: 0
+  isBreakable: 1
+  isSittable: 0
+  isUsable: 0
+  isPickupable: 0
+  isWearable: 0
+  isOpenable: 0
+  runtimeIsEdible: 0
+  runtimeIsDrinkable: 0
+  runtimeIsTalkable: 0
+  runtimeIsKillable: 0
+  runtimeIsBreakable: 1
+  runtimeIsSittable: 0
+  runtimeIsUsable: 0
+  runtimeIsPickupable: 0
+  runtimeIsWearable: 0
+  runtimeIsOpenable: 0
+  edibleFlavorText: 
+  drinkableFlavorText: 
+  talkableFlavorText: 
+  killableFlavorText: 
+  breakableFlavorText: 
+  sittableFlavorText: 
+  usableFlavorText: 
+  pickupableFlavorText: 
+  wearableFlavorText: 
+  openableFlavorText: 
+  lookAtFlavorText: It's a rusty lock holding the cell door shut. With the right
+    tool, it could come undone.
+  runtimeEdibleFlavorText: 
+  runtimeDrinkableFlavorText: 
+  runtimeTalkableFlavorText: 
+  runtimeKillableFlavorText: 
+  runtimeBreakableFlavorText: 
+  runtimeSittableFlavorText: 
+  runtimeUsableFlavorText: 
+  runtimePickupableFlavorText: 
+  runtimeWearableFlavorText: 
+  runtimeOpenableFlavorText: 
+  runtimeLookAtFlavorText: 
+  edibleVars: []
+  drinkableVars: []
+  talkableVars: []
+  killableVars: []
+  breakableVars:
+  - actionCategory: 3
+    playerAction: 0
+    objectAction: 0
+    roomAction: 0
+    varsToChange:
+      isEdible: 0
+      isDrinkable: 0
+      isTalkable: 0
+      isKillable: 0
+      isBreakable: 0
+      isSittable: 0
+      isUsable: 0
+      isPickupable: 0
+      isWearable: 0
+      isOpenable: 0
+      edibleFlavorText: 
+      drinkableFlavorText: 
+      talkableFlavorText: 
+      killableFlavorText: 
+      breakableFlavorText: 
+      sittableFlavorText: 
+      usableFlavorText: 
+      pickupableFlavorText: 
+      wearableFlavorText: 
+      openableFlavorText: 
+      lookAtFlavorText: 
+      targetRoom: {fileID: 0}
+      roomText: 
+      targetObject: {fileID: 11400000, guid: cb785a7d001eb2045a159400622ce926, type: 2}
+    conditional: 1
+    conditionalVars:
+    - actionCategory: 1
+      playerAction: 0
+      objectAction: 15
+      roomAction: 0
+      varsToChange:
+        isEdible: 0
+        isDrinkable: 0
+        isTalkable: 0
+        isKillable: 0
+        isBreakable: 0
+        isSittable: 0
+        isUsable: 0
+        isPickupable: 0
+        isWearable: 0
+        isOpenable: 0
+        edibleFlavorText: 
+        drinkableFlavorText: 
+        talkableFlavorText: 
+        killableFlavorText: 
+        breakableFlavorText: You smash the rusty lock with the wooden plank. The
+          door opens.
+        sittableFlavorText: 
+        usableFlavorText: 
+        pickupableFlavorText: 
+        wearableFlavorText: 
+        openableFlavorText: 
+        lookAtFlavorText: 
+        targetRoom: {fileID: 0}
+        roomText: 
+        targetObject: {fileID: 11400000}
+      conditional: 0
+      conditionalVars: []
+      conditionalBool: 1
+    conditionalBool: 1
+  - actionCategory: 3
+    playerAction: 0
+    objectAction: 0
+    roomAction: 0
+    varsToChange:
+      isEdible: 0
+      isDrinkable: 0
+      isTalkable: 0
+      isKillable: 0
+      isBreakable: 0
+      isSittable: 0
+      isUsable: 0
+      isPickupable: 0
+      isWearable: 0
+      isOpenable: 0
+      edibleFlavorText: 
+      drinkableFlavorText: 
+      talkableFlavorText: 
+      killableFlavorText: 
+      breakableFlavorText: 
+      sittableFlavorText: 
+      usableFlavorText: 
+      pickupableFlavorText: 
+      wearableFlavorText: 
+      openableFlavorText: 
+      lookAtFlavorText: 
+      targetRoom: {fileID: 11400000, guid: d6c86b163e249df4e8ae5a5d5a3d267d, type: 2}
+      roomText: 
+      targetObject: {fileID: 11400000, guid: cb785a7d001eb2045a159400622ce926, type: 2}
+    conditional: 1
+    conditionalVars:
+    - actionCategory: 1
+      playerAction: 0
+      objectAction: 15
+      roomAction: 0
+      varsToChange:
+        isEdible: 0
+        isDrinkable: 0
+        isTalkable: 0
+        isKillable: 0
+        isBreakable: 0
+        isSittable: 0
+        isUsable: 0
+        isPickupable: 0
+        isWearable: 0
+        isOpenable: 0
+        edibleFlavorText: 
+        drinkableFlavorText: 
+        talkableFlavorText: 
+        killableFlavorText: 
+        breakableFlavorText: The lock isn't so flimsy that it would break from a
+          punch. If only you had something to break it with.
+        sittableFlavorText: 
+        usableFlavorText: 
+        pickupableFlavorText: 
+        wearableFlavorText: 
+        openableFlavorText: 
+        lookAtFlavorText: 
+        targetRoom: {fileID: 0}
+        roomText: 
+        targetObject: {fileID: 11400000}
+      conditional: 0
+      conditionalVars: []
+      conditionalBool: 1
+    conditionalBool: 0
+  sittableVars: []
+  usableVars: []
+  pickupableVars: []
+  wearableVars: []
+  openableVars: []
+  objectAliases: lock

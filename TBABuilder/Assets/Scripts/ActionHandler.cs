@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ActionHandler : MonoBehaviour
@@ -91,13 +90,13 @@ public class ActionHandler : MonoBehaviour
                 case RoomObject.PlayerAction.KillPlayer:
                     textPrompt.killPlayer();
                     // The delay for printText is so the flavor text is printed first before death/win text.
-                    StartCoroutine(textPrompt.printTextAfterTime("\n" + defaultValues.deathText, 0.1f));
+                    StartCoroutine(textPrompt.printTextAfterDelay("\n" + defaultValues.deathText, 0.1f));
                     break;
 
                 case RoomObject.PlayerAction.WinGame:
                     textPrompt.winGame();
                     // The delay for printText is so the flavor text is printed first before death/win text.
-                    StartCoroutine(textPrompt.printTextAfterTime("\n" + defaultValues.winText, 0.1f));
+                    StartCoroutine(textPrompt.printTextAfterDelay("\n" + defaultValues.winText, 0.1f));
                     break;
 
                 case RoomObject.PlayerAction.AddToInventory:
@@ -261,12 +260,12 @@ public class ActionHandler : MonoBehaviour
     }
 
     // Needs an unholy amount of variables but still better than copy pasting the same thing to each method
-    public void doGenericAction(RoomObject obj, string defaultSuccessText, string defaultFailText, string flavorText, bool successBool, List<RoomObject.EditorVariables> objVars)
+    public void doGenericAction(RoomObject obj, string defaultSuccessText, string defaultFailText, ref string flavorText, bool successBool, List<RoomObject.EditorVariables> objVars)
     {
         if (successBool)
             executeActions(obj, objVars);
 
-        inputParser.printResponse(obj, successBool, defaultSuccessText, defaultFailText, flavorText);
+        inputParser.printResponse(obj, successBool, defaultSuccessText, defaultFailText, ref flavorText);
     }
 
     public void eatObject(RoomObject obj)
@@ -281,7 +280,7 @@ public class ActionHandler : MonoBehaviour
 
             string defaultSuccessText = defaultValues.edibleSuccessText.Replace("(NAME)", obj.name);
             string defaultFailText = defaultValues.edibleFailText.Replace("(NAME)", obj.name);
-            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeEdibleFlavorText, obj.runtimeIsEdible, obj.edibleVars);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, ref obj.runtimeEdibleFlavorText, obj.runtimeIsEdible, obj.edibleVars);
         }
         else
         {
@@ -301,7 +300,7 @@ public class ActionHandler : MonoBehaviour
 
             string defaultSuccessText = defaultValues.drinkableSuccessText.Replace("(NAME)", obj.name);
             string defaultFailText = defaultValues.drinkableFailText.Replace("(NAME)", obj.name);
-            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeDrinkableFlavorText, obj.runtimeIsDrinkable, obj.drinkableVars);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, ref obj.runtimeDrinkableFlavorText, obj.runtimeIsDrinkable, obj.drinkableVars);
         }
         else
         {
@@ -321,7 +320,7 @@ public class ActionHandler : MonoBehaviour
 
             string defaultSuccessText = defaultValues.talkableSuccessText.Replace("(NAME)", obj.name);
             string defaultFailText = defaultValues.talkableFailText.Replace("(NAME)", obj.name);
-            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeTalkableFlavorText, obj.runtimeIsTalkable, obj.talkableVars);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, ref obj.runtimeTalkableFlavorText, obj.runtimeIsTalkable, obj.talkableVars);
         }
         else
         {
@@ -341,7 +340,7 @@ public class ActionHandler : MonoBehaviour
 
             string defaultSuccessText = defaultValues.killableSuccessText.Replace("(NAME)", obj.name);
             string defaultFailText = defaultValues.killableFailText.Replace("(NAME)", obj.name);
-            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeKillableFlavorText, obj.runtimeIsKillable, obj.killableVars);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, ref obj.runtimeKillableFlavorText, obj.runtimeIsKillable, obj.killableVars);
         }
         else
         {
@@ -361,7 +360,7 @@ public class ActionHandler : MonoBehaviour
 
             string defaultSuccessText = defaultValues.breakableSuccessText.Replace("(NAME)", obj.name);
             string defaultFailText = defaultValues.breakableFailText.Replace("(NAME)", obj.name);
-            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeBreakableFlavorText, obj.runtimeIsBreakable, obj.breakableVars);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, ref obj.runtimeBreakableFlavorText, obj.runtimeIsBreakable, obj.breakableVars);
         }
         else
         {
@@ -381,7 +380,7 @@ public class ActionHandler : MonoBehaviour
 
             string defaultSuccessText = defaultValues.sittableSuccessText.Replace("(NAME)", obj.name);
             string defaultFailText = defaultValues.sittableFailText.Replace("(NAME)", obj.name);
-            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeSittableFlavorText, obj.runtimeIsSittable, obj.sittableVars);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, ref obj.runtimeSittableFlavorText, obj.runtimeIsSittable, obj.sittableVars);
         }
         else
         {
@@ -401,7 +400,7 @@ public class ActionHandler : MonoBehaviour
 
             string defaultSuccessText = defaultValues.usableSuccessText.Replace("(NAME)", obj.name);
             string defaultFailText = defaultValues.usableFailText.Replace("(NAME)", obj.name);
-            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeUsableFlavorText, obj.runtimeIsUsable, obj.usableVars);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, ref obj.runtimeUsableFlavorText, obj.runtimeIsUsable, obj.usableVars);
         }
         else
         {
@@ -421,7 +420,7 @@ public class ActionHandler : MonoBehaviour
 
             string defaultSuccessText = defaultValues.pickupableSuccessText.Replace("(NAME)", obj.name);
             string defaultFailText = defaultValues.pickupableFailText.Replace("(NAME)", obj.name);
-            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimePickupableFlavorText, obj.runtimeIsPickupable, obj.pickupableVars);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, ref obj.runtimePickupableFlavorText, obj.runtimeIsPickupable, obj.pickupableVars);
         }
         else
         {
@@ -441,7 +440,7 @@ public class ActionHandler : MonoBehaviour
 
             string defaultSuccessText = defaultValues.wearableSuccessText.Replace("(NAME)", obj.name);
             string defaultFailText = defaultValues.wearableFailText.Replace("(NAME)", obj.name);
-            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeWearableFlavorText, obj.runtimeIsWearable, obj.wearableVars);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, ref obj.runtimeWearableFlavorText, obj.runtimeIsWearable, obj.wearableVars);
         }
         else
         {
@@ -461,7 +460,7 @@ public class ActionHandler : MonoBehaviour
 
             string defaultSuccessText = defaultValues.openableSuccessText.Replace("(NAME)", obj.name);
             string defaultFailText = defaultValues.openableFailText.Replace("(NAME)", obj.name);
-            doGenericAction(obj, defaultSuccessText, defaultFailText, obj.runtimeOpenableFlavorText, obj.runtimeIsOpenable, obj.openableVars);
+            doGenericAction(obj, defaultSuccessText, defaultFailText, ref obj.runtimeOpenableFlavorText, obj.runtimeIsOpenable, obj.openableVars);
         }
         else
         {

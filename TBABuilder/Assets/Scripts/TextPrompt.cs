@@ -72,7 +72,7 @@ public class TextPrompt : MonoBehaviour
         }
     }
 
-    public IEnumerator printTextAfterTime(string text, float time)
+    public IEnumerator printTextAfterDelay(string text, float time)
     {
         yield return new WaitForSeconds(time);
         printText(text);

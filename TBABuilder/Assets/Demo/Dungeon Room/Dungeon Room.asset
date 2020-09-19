@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dcd6244e17fc2f48bb2776edd8547f8, type: 3}
+  m_Name: Dungeon Room
+  m_EditorClassIdentifier: 
+  roomObjects:
+  - {fileID: 11400000, guid: 36516c10f07d46f42af302104f232948, type: 2}
+  - {fileID: 11400000, guid: a8c8005ede9094243826dc314c651567, type: 2}
+  roomText: You awake in a dungeon cell. It is barren and reeks of EVIL INTENT. The
+    door to your dungeon is rusty and worn. The only thing in your room is a wooden
+    chair.
+  roomConnections: []
+  runtimeRoomObjects:
+  - {fileID: 11400000, guid: a8c8005ede9094243826dc314c651567, type: 2}
+  - {fileID: 11400000, guid: 281f02f37a7ca104c851d90c1943fc0a, type: 2}
+  - {fileID: 11400000, guid: cb785a7d001eb2045a159400622ce926, type: 2}
+  runtimeRoomText: You awake in a dungeon cell. It is barren and reeks of EVIL INTENT.
+    The door to your dungeon is rusty and worn. Next to you is a broken chair and
+    a wooden plank that used to be its leg.
+  runtimeRoomConnections: []

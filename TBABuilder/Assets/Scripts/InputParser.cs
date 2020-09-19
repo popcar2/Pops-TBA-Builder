@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System;
 using System.Text;
 using UnityEngine;
@@ -220,6 +219,7 @@ public class InputParser : MonoBehaviour
             case "pickup":
             case "grab":
             case "pick":
+            case "take":
             case "steal":
                 actionHandler.pickupObject(targetObject);
                 break;
@@ -284,7 +284,7 @@ public class InputParser : MonoBehaviour
     }
 
     // Returns whether the operation was a success or a failure. objCheck is the bool you use to check objects, such as obj.IsEdible
-    public void printResponse(RoomObject obj, bool successBool, string defaultSuccess, string defaultFailure, string objFlavorText)
+    public void printResponse(RoomObject obj, bool successBool, string defaultSuccess, string defaultFailure, ref string objFlavorText)
     {
         bool hasFlavorText = !String.IsNullOrEmpty(objFlavorText);
 

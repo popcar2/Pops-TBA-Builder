@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5914daa0bd6cb0447b2e55394046ccd6, type: 3}
-  m_Name: Potion
+  m_Name: wooden plank
   m_EditorClassIdentifier: 
   isEdible: 0
   isDrinkable: 0
@@ -19,7 +19,7 @@ MonoBehaviour:
   isBreakable: 0
   isSittable: 0
   isUsable: 0
-  isPickupable: 0
+  isPickupable: 1
   isWearable: 0
   isOpenable: 0
   runtimeIsEdible: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
   runtimeIsBreakable: 0
   runtimeIsSittable: 0
   runtimeIsUsable: 0
-  runtimeIsPickupable: 0
+  runtimeIsPickupable: 1
   runtimeIsWearable: 0
   runtimeIsOpenable: 0
   edibleFlavorText: 
@@ -42,7 +42,7 @@ MonoBehaviour:
   pickupableFlavorText: 
   wearableFlavorText: 
   openableFlavorText: 
-  lookAtFlavorText: The potion glows with intensity.
+  lookAtFlavorText: 
   runtimeEdibleFlavorText: 
   runtimeDrinkableFlavorText: 
   runtimeTalkableFlavorText: 
@@ -53,7 +53,7 @@ MonoBehaviour:
   runtimePickupableFlavorText: 
   runtimeWearableFlavorText: 
   runtimeOpenableFlavorText: 
-  runtimeLookAtFlavorText: The potion glows with intensity.
+  runtimeLookAtFlavorText: 
   edibleVars: []
   drinkableVars: []
   talkableVars: []
@@ -61,7 +61,39 @@ MonoBehaviour:
   breakableVars: []
   sittableVars: []
   usableVars: []
-  pickupableVars: []
+  pickupableVars:
+  - actionCategory: 0
+    playerAction: 2
+    objectAction: 0
+    roomAction: 0
+    varsToChange:
+      isEdible: 0
+      isDrinkable: 0
+      isTalkable: 0
+      isKillable: 0
+      isBreakable: 0
+      isSittable: 0
+      isUsable: 0
+      isPickupable: 0
+      isWearable: 0
+      isOpenable: 0
+      edibleFlavorText: 
+      drinkableFlavorText: 
+      talkableFlavorText: 
+      killableFlavorText: 
+      breakableFlavorText: 
+      sittableFlavorText: 
+      usableFlavorText: 
+      pickupableFlavorText: 
+      wearableFlavorText: 
+      openableFlavorText: 
+      lookAtFlavorText: 
+      targetRoom: {fileID: 0}
+      roomText: 
+      targetObject: {fileID: 11400000}
+    conditional: 0
+    conditionalVars: []
+    conditionalBool: 1
   wearableVars: []
   openableVars: []
-  objectAliases: Potion,Healing Juice
+  objectAliases: Plank
