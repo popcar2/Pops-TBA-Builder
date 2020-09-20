@@ -202,6 +202,7 @@ public class InputParser : MonoBehaviour
                 break;
             // break
             case "break":
+            case "smash":
             case "destroy":
                 actionHandler.BreakObject(targetObject);
                 break;

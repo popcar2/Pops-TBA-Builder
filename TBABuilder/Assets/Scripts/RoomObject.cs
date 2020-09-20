@@ -143,6 +143,7 @@ public class RoomObject : ScriptableObject
         public string lookAtFlavorText;
 
         public Room targetRoom;
+        public Room targetRoomToActivate; // Used in activating/deactivating room connections
 
         public string roomText;
 
@@ -203,6 +204,8 @@ public class RoomObject : ScriptableObject
     {
         RemoveObjectFromRoom,
         AddObjectToRoom,
+        ActivateRoomConnection,
+        DisableRoomConnection,
         SwitchRooms,
         ChangeRoomText
     }

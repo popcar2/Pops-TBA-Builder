@@ -40,6 +40,8 @@ public class Room : ScriptableObject
     {
         public Room room;
         public string roomAlias;
+        public string roomInactiveText;
+        public bool isActive = true;
     }
 
     public void removeRoomObject(RoomObject obj)

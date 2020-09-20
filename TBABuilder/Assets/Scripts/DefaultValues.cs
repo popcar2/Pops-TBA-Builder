@@ -62,5 +62,6 @@ public class DefaultValues : MonoBehaviour
     [SerializeField] public string occupiedInventoryText;
     [SerializeField] public string emptyEquipmentText;
     [SerializeField] public string occupiedEquipmentText;
+    [SerializeField] public string roomNotFoundText;
     [SerializeField] public string unknownCommand;
 }

@@ -6,12 +6,13 @@ public class RoomTracker : MonoBehaviour
     Room currentRoom = null;
 
     TextPrompt textPrompt;
-    Player player;
+    DefaultValues defaultValues;
 
     private void Start()
     {
         textPrompt = FindObjectOfType<TextPrompt>();
-        player = FindObjectOfType<Player>();
+        defaultValues = FindObjectOfType<DefaultValues>();
+
         currentRoom = startingRoom;
         currentRoom.initializeRuntimeVariables();
         textPrompt.printText(currentRoom.roomText);
@@ -40,7 +41,7 @@ public class RoomTracker : MonoBehaviour
     {
         if (room == null)
         {
-            textPrompt.printText("\nThere's nothing in that direction.");
+            Debug.Log("You forgot to add a target room to move in this action.");
             return;
         }
 
@@ -58,10 +59,7 @@ public class RoomTracker : MonoBehaviour
         Room newRoom = findRoomConnection(userInput);
 
         if (newRoom == null)
-        {
-            textPrompt.printText($"\nThere's nothing in that direction.");
             return;
-        }
 
         if (newRoom.isInitialized == false)
             newRoom.initializeRuntimeVariables();
@@ -81,7 +79,14 @@ public class RoomTracker : MonoBehaviour
             {
                 if (userInput.ToLower().Contains(roomConnection.room.name.ToLower()))
                 {
+                    // If room inactive
+                    if (!roomConnection.isActive)
+                    {
+                        textPrompt.printText("\n" + roomConnection.roomInactiveText);
+                        return null;
+                    }
                     newRoom = roomConnection.room;
+                    break;
                 }
             }
 
@@ -93,6 +98,12 @@ public class RoomTracker : MonoBehaviour
                 {
                     if (userInput.ToLower().Contains(roomAlias.ToLower()))
                     {
+                        // If room inactive
+                        if (!roomConnection.isActive)
+                        {
+                            textPrompt.printText("\n" + roomConnection.roomInactiveText);
+                            return null;
+                        }
                         newRoom = roomConnection.room;
                         break;
                     }
@@ -103,6 +114,11 @@ public class RoomTracker : MonoBehaviour
             {
                 break;
             }
+        }
+
+        if (newRoom == null)
+        {
+            textPrompt.printText("\n" + defaultValues.roomNotFoundText);
         }
 
         return newRoom;

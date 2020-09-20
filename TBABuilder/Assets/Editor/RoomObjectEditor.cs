@@ -396,6 +396,16 @@ public class RoomObjectEditor : Editor
                 showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
                 showAdditionalTextArea(ref objVars[i].varsToChange.roomText);
             }
+            else if (objVars[i].roomAction == RoomObject.RoomAction.ActivateRoomConnection)
+            {
+                showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
+                showSelectableRoom(new GUIContent("Room To Activate", "The room that's going to be activated in Target Room."), ref objVars[i].varsToChange.targetRoomToActivate);
+            }
+            else if (objVars[i].roomAction == RoomObject.RoomAction.DisableRoomConnection)
+            {
+                showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
+                showSelectableRoom(new GUIContent("Room To Activate", "The room that's going to be activated in Target Room."), ref objVars[i].varsToChange.targetRoomToActivate);
+            }
         }
         else if (objVars[i].actionCategory == RoomObject.ActionCategory.Conditionals)
         {

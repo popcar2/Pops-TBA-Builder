@@ -252,6 +252,13 @@ public class ActionHandler : MonoBehaviour
                     targetRoom.runtimeRoomText = action.varsToChange.roomText;
                     break;
 
+                case RoomObject.RoomAction.ActivateRoomConnection:
+                    setActiveRoomConnection(action.varsToChange.targetRoom, action.varsToChange.targetRoomToActivate, true);
+                    break;
+                case RoomObject.RoomAction.DisableRoomConnection:
+                    setActiveRoomConnection(action.varsToChange.targetRoom, action.varsToChange.targetRoomToActivate, false);
+                    break;
+
                 default:
                     Debug.Log($"Unknown RoomAction enum at {obj.name}: you forgot to add what to do in ActionHandler!");
                     break;
@@ -489,6 +496,17 @@ public class ActionHandler : MonoBehaviour
         else
         {
             textPrompt.printText("\n" + defaultValues.unknownCommand);
+        }
+    }
+
+    private void setActiveRoomConnection(Room targetRoom, Room roomConnection, bool activeBool)
+    {
+        foreach (Room.RoomConnectionVars roomConnectionVars in targetRoom.roomConnections)
+        {
+            if (roomConnectionVars.room == roomConnection)
+            {
+                roomConnectionVars.isActive = activeBool;
+            }
         }
     }
 }
