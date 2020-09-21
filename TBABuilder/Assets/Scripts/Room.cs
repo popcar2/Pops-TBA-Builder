@@ -53,4 +53,10 @@ public class Room : ScriptableObject
     {
         runtimeRoomObjects.Add(obj);
     }
+
+    // Is needed to reset runtime room text when the game starts.
+    private void OnEnable()
+    {
+        runtimeRoomText = roomText;
+    }
 }

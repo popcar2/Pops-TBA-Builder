@@ -54,7 +54,8 @@ MonoBehaviour:
   runtimePickupableFlavorText: 
   runtimeWearableFlavorText: 
   runtimeOpenableFlavorText: 
-  runtimeLookAtFlavorText: 
+  runtimeLookAtFlavorText: It's a rusty lock holding the cell door shut. With the
+    right tool, it could come undone.
   edibleVars: []
   drinkableVars: []
   talkableVars: []
@@ -87,6 +88,7 @@ MonoBehaviour:
       openableFlavorText: 
       lookAtFlavorText: 
       targetRoom: {fileID: 0}
+      targetRoomToActivate: {fileID: 0}
       roomText: 
       targetObject: {fileID: 11400000, guid: cb785a7d001eb2045a159400622ce926, type: 2}
     conditional: 1
@@ -119,6 +121,7 @@ MonoBehaviour:
         openableFlavorText: 
         lookAtFlavorText: 
         targetRoom: {fileID: 0}
+        targetRoomToActivate: {fileID: 0}
         roomText: 
         targetObject: {fileID: 11400000}
       conditional: 0
@@ -152,6 +155,7 @@ MonoBehaviour:
       openableFlavorText: 
       lookAtFlavorText: 
       targetRoom: {fileID: 11400000, guid: d6c86b163e249df4e8ae5a5d5a3d267d, type: 2}
+      targetRoomToActivate: {fileID: 0}
       roomText: 
       targetObject: {fileID: 11400000, guid: cb785a7d001eb2045a159400622ce926, type: 2}
     conditional: 1
@@ -184,6 +188,7 @@ MonoBehaviour:
         openableFlavorText: 
         lookAtFlavorText: 
         targetRoom: {fileID: 0}
+        targetRoomToActivate: {fileID: 0}
         roomText: 
         targetObject: {fileID: 11400000}
       conditional: 0

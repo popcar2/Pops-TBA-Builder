@@ -89,6 +89,7 @@ MonoBehaviour:
       openableFlavorText: 
       lookAtFlavorText: 
       targetRoom: {fileID: 0}
+      targetRoomToActivate: {fileID: 0}
       roomText: 
       targetObject: {fileID: 11400000}
     conditional: 0

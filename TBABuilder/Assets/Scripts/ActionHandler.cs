@@ -249,6 +249,7 @@ public class ActionHandler : MonoBehaviour
                     break;
 
                 case RoomObject.RoomAction.ChangeRoomText:
+                    Debug.Log(obj.name + " is changing room text");
                     targetRoom.runtimeRoomText = action.varsToChange.roomText;
                     break;
 

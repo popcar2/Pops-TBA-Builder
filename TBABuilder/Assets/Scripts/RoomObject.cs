@@ -202,8 +202,8 @@ public class RoomObject : ScriptableObject
     [Serializable]
     public enum RoomAction
     {
-        RemoveObjectFromRoom,
         AddObjectToRoom,
+        RemoveObjectFromRoom,
         ActivateRoomConnection,
         DisableRoomConnection,
         SwitchRooms,

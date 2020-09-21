@@ -18,12 +18,18 @@ MonoBehaviour:
   roomText: You awake in a dungeon cell. It is barren and reeks of EVIL INTENT. The
     door to your dungeon is rusty and worn. The only thing in your room is a wooden
     chair.
-  roomConnections: []
+  roomConnections:
+  - room: {fileID: 11400000, guid: 89266a7e1e0717f4cbce3d97a66d1179, type: 2}
+    roomAlias: outside
+    roomInactiveText: You would love to go outside, but the cell door is locked shut.
+    isActive: 1
   runtimeRoomObjects:
+  - {fileID: 11400000, guid: 36516c10f07d46f42af302104f232948, type: 2}
   - {fileID: 11400000, guid: a8c8005ede9094243826dc314c651567, type: 2}
-  - {fileID: 11400000, guid: 281f02f37a7ca104c851d90c1943fc0a, type: 2}
-  - {fileID: 11400000, guid: cb785a7d001eb2045a159400622ce926, type: 2}
-  runtimeRoomText: You awake in a dungeon cell. It is barren and reeks of EVIL INTENT.
-    The door to your dungeon is rusty and worn. Next to you is a broken chair and
-    a wooden plank that used to be its leg.
-  runtimeRoomConnections: []
+  runtimeRoomText: You are in a dungeon cell. The door to your dungeon is held shut
+    by a rusty lock. There is a broken chair and a wooden plank on the floor.
+  runtimeRoomConnections:
+  - room: {fileID: 11400000, guid: 89266a7e1e0717f4cbce3d97a66d1179, type: 2}
+    roomAlias: outside
+    roomInactiveText: You would love to go outside, but the cell door is locked shut.
+    isActive: 1
