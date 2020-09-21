@@ -15,12 +15,12 @@ public class RoomTracker : MonoBehaviour
 
         currentRoom = startingRoom;
         currentRoom.initializeRuntimeVariables();
-        textPrompt.printText(currentRoom.roomText);
+        textPrompt.printText(currentRoom.roomEntryText);
     }
 
     public void printCurrentRoomText()
     {
-        string roomText = currentRoom.runtimeRoomText;
+        string roomText = currentRoom.runtimeLookText;
 
         if (System.String.IsNullOrEmpty(roomText))
         {
@@ -51,7 +51,7 @@ public class RoomTracker : MonoBehaviour
         currentRoom = room;
 
         // Is delayed so the flavor text can be printed before room text.
-        StartCoroutine(textPrompt.printTextAfterDelay("\n" + currentRoom.runtimeRoomText, 0.1f));
+        StartCoroutine(textPrompt.printTextAfterDelay("\n" + currentRoom.runtimeRoomEntryText, 0.1f));
     }
 
     public void changeRoomViaRoomConnection(string userInput)
@@ -65,7 +65,7 @@ public class RoomTracker : MonoBehaviour
             newRoom.initializeRuntimeVariables();
 
         currentRoom = newRoom;
-        textPrompt.printText("\n" + currentRoom.runtimeRoomText);
+        textPrompt.printText("\n" + currentRoom.runtimeRoomEntryText);
     }
 
     private Room findRoomConnection(string userInput)

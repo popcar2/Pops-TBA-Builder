@@ -9,11 +9,13 @@ public class Room : ScriptableObject
     [NonSerialized] public bool isInitialized = false;
 
     [SerializeField] public List<RoomObject> roomObjects;
-    [TextArea(1, 10)] [SerializeField] public string roomText;
+    [TextArea(1, 10)] [SerializeField] public string roomEntryText;
+    [TextArea(1, 10)] [SerializeField] public string lookText;
     [HideInInspector] public List<RoomConnectionVars> roomConnections = new List<RoomConnectionVars>();
 
     [HideInInspector] public List<RoomObject> runtimeRoomObjects = new List<RoomObject>();
-    [HideInInspector] public string runtimeRoomText;
+    [HideInInspector] public string runtimeRoomEntryText;
+    [HideInInspector] public string runtimeLookText;
     [HideInInspector] public List<RoomConnectionVars> runtimeRoomConnections = new List<RoomConnectionVars>();
 
     public void initializeRuntimeVariables()
@@ -22,8 +24,10 @@ public class Room : ScriptableObject
         runtimeRoomObjects = roomObjects.ToList();
 
         // In case the room text was changed via an action before initialization
-        if (String.IsNullOrEmpty(runtimeRoomText))
-            runtimeRoomText = roomText;
+        if (String.IsNullOrEmpty(runtimeLookText))
+            runtimeLookText = lookText;
+        if (String.IsNullOrEmpty(runtimeRoomEntryText))
+            runtimeRoomEntryText = roomEntryText;
 
         runtimeRoomConnections = roomConnections;
 
@@ -57,6 +61,7 @@ public class Room : ScriptableObject
     // Is needed to reset runtime room text when the game starts.
     private void OnEnable()
     {
-        runtimeRoomText = roomText;
+        runtimeLookText = lookText;
+        runtimeRoomEntryText = roomEntryText;
     }
 }
