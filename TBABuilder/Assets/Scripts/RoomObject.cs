@@ -145,7 +145,8 @@ public class RoomObject : ScriptableObject
         public Room targetRoom;
         public Room targetRoomToActivate; // Used in activating/deactivating room connections
 
-        public string roomText;
+        public string roomLookText;
+        public string roomEntryText;
 
         public RoomObject targetObject;
     }
@@ -207,7 +208,8 @@ public class RoomObject : ScriptableObject
         ActivateRoomConnection,
         DisableRoomConnection,
         SwitchRooms,
-        ChangeRoomText
+        ChangeRoomLookText,
+        ChangeRoomEntryText
     }
 
     [Serializable]

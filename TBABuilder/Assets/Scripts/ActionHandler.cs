@@ -248,8 +248,12 @@ public class ActionHandler : MonoBehaviour
                     roomTracker.forceChangeRoom(action.varsToChange.targetRoom);
                     break;
 
-                case RoomObject.RoomAction.ChangeRoomText:
-                    targetRoom.runtimeLookText = action.varsToChange.roomText;
+                case RoomObject.RoomAction.ChangeRoomEntryText:
+                    targetRoom.runtimeRoomEntryText = action.varsToChange.roomEntryText;
+                    break;
+
+                case RoomObject.RoomAction.ChangeRoomLookText:
+                    targetRoom.runtimeLookText = action.varsToChange.roomLookText;
                     break;
 
                 case RoomObject.RoomAction.ActivateRoomConnection:

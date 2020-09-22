@@ -391,10 +391,15 @@ public class RoomObjectEditor : Editor
             {
                 showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
             }
-            else if (objVars[i].roomAction == RoomObject.RoomAction.ChangeRoomText)
+            else if (objVars[i].roomAction == RoomObject.RoomAction.ChangeRoomEntryText)
             {
                 showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
-                showAdditionalTextArea(ref objVars[i].varsToChange.roomText);
+                showAdditionalTextArea(ref objVars[i].varsToChange.roomEntryText);
+            }
+            else if (objVars[i].roomAction == RoomObject.RoomAction.ChangeRoomLookText)
+            {
+                showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
+                showAdditionalTextArea(ref objVars[i].varsToChange.roomLookText);
             }
             else if (objVars[i].roomAction == RoomObject.RoomAction.ActivateRoomConnection)
             {
