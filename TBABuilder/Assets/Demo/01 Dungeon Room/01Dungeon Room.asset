@@ -15,19 +15,26 @@ MonoBehaviour:
   roomObjects:
   - {fileID: 11400000, guid: 36516c10f07d46f42af302104f232948, type: 2}
   - {fileID: 11400000, guid: a8c8005ede9094243826dc314c651567, type: 2}
-  roomText: You awake in a dungeon cell. It is barren and reeks of EVIL INTENT. The
-    door to your dungeon is rusty and worn. The only thing in your room is a wooden
-    chair.
+  - {fileID: 11400000, guid: 1b23d3dd14bd25d44b2906741193dba6, type: 2}
+  roomEntryText: 'You awake in an old dungeon cell with no recollection of how you
+    got here, and your head is spinning. The only thing around you is a worn chair,
+    and the cell door is held shut by a rusty lock. '
+  lookText: You are in a dungeon cell. Next to you is a worn chair, and the cell
+    door is held shut by a rusty lock.
   roomConnections:
   - room: {fileID: 11400000, guid: 89266a7e1e0717f4cbce3d97a66d1179, type: 2}
     roomAlias: outside
     roomInactiveText: You would love to go outside, but the cell door is locked shut.
     isActive: 1
   runtimeRoomObjects:
+  - {fileID: 11400000, guid: 36516c10f07d46f42af302104f232948, type: 2}
   - {fileID: 11400000, guid: a8c8005ede9094243826dc314c651567, type: 2}
-  runtimeRoomText: You awake in a dungeon cell. It is barren and reeks of EVIL INTENT.
-    The door to your dungeon is rusty and worn. The only thing in your room is a
-    wooden chair.
+  - {fileID: 11400000, guid: 1b23d3dd14bd25d44b2906741193dba6, type: 2}
+  runtimeRoomEntryText: 'You awake in an old dungeon cell with no recollection of
+    how you got here, and your head is spinning. The only thing around you is a worn
+    chair, and the cell door is held shut by a rusty lock. '
+  runtimeLookText: You are in a dungeon cell. Next to you is a worn chair, and the
+    cell door is held shut by a rusty lock.
   runtimeRoomConnections:
   - room: {fileID: 11400000, guid: 89266a7e1e0717f4cbce3d97a66d1179, type: 2}
     roomAlias: outside

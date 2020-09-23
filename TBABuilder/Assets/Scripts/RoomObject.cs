@@ -109,6 +109,8 @@ public class RoomObject : ScriptableObject
         public RoomAction roomAction = new RoomAction();
         public CurrentVarsToChange varsToChange = new CurrentVarsToChange();
 
+        public bool isDelayed = false; // Delays the action to happen after flavor text is printed, not before
+
         // Conditionals
         public Conditional conditional = new Conditional();
         public List<EditorVariables> conditionalVars = new List<EditorVariables>();

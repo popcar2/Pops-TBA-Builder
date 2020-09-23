@@ -91,7 +91,8 @@ MonoBehaviour:
       lookAtFlavorText: 
       targetRoom: {fileID: 0}
       targetRoomToActivate: {fileID: 0}
-      roomText: 
+      roomLookText: 
+      roomEntryText: 
       targetObject: {fileID: 11400000}
     conditional: 0
     conditionalVars: []
@@ -99,7 +100,7 @@ MonoBehaviour:
   - actionCategory: 2
     playerAction: 0
     objectAction: 0
-    roomAction: 1
+    roomAction: 0
     varsToChange:
       isEdible: 0
       isDrinkable: 0
@@ -124,7 +125,8 @@ MonoBehaviour:
       lookAtFlavorText: 
       targetRoom: {fileID: 0}
       targetRoomToActivate: {fileID: 0}
-      roomText: 
+      roomLookText: 
+      roomEntryText: 
       targetObject: {fileID: 11400000, guid: 281f02f37a7ca104c851d90c1943fc0a, type: 2}
     conditional: 0
     conditionalVars: []
@@ -132,7 +134,7 @@ MonoBehaviour:
   - actionCategory: 2
     playerAction: 0
     objectAction: 0
-    roomAction: 1
+    roomAction: 0
     varsToChange:
       isEdible: 0
       isDrinkable: 0
@@ -157,7 +159,8 @@ MonoBehaviour:
       lookAtFlavorText: 
       targetRoom: {fileID: 0}
       targetRoomToActivate: {fileID: 0}
-      roomText: 
+      roomLookText: 
+      roomEntryText: 
       targetObject: {fileID: 11400000, guid: cb785a7d001eb2045a159400622ce926, type: 2}
     conditional: 0
     conditionalVars: []
@@ -190,8 +193,10 @@ MonoBehaviour:
       lookAtFlavorText: 
       targetRoom: {fileID: 11400000, guid: d6c86b163e249df4e8ae5a5d5a3d267d, type: 2}
       targetRoomToActivate: {fileID: 0}
-      roomText: You are in a dungeon cell. The door to your dungeon is held shut
-        by a rusty lock. There is a broken chair and a wooden plank on the floor.
+      roomLookText: You are in a dungeon cell. Next to you is a broken chair and
+        a wooden plank that used to be its leg. The cell door is held shut by a rusty
+        lock.
+      roomEntryText: 
       targetObject: {fileID: 11400000}
     conditional: 0
     conditionalVars: []
@@ -225,7 +230,8 @@ MonoBehaviour:
       lookAtFlavorText: 
       targetRoom: {fileID: 0}
       targetRoomToActivate: {fileID: 0}
-      roomText: 
+      roomLookText: 
+      roomEntryText: 
       targetObject: {fileID: 11400000}
     conditional: 0
     conditionalVars: []
@@ -258,7 +264,8 @@ MonoBehaviour:
       lookAtFlavorText: 
       targetRoom: {fileID: 0}
       targetRoomToActivate: {fileID: 0}
-      roomText: 
+      roomLookText: 
+      roomEntryText: 
       targetObject: {fileID: 11400000, guid: 281f02f37a7ca104c851d90c1943fc0a, type: 2}
     conditional: 0
     conditionalVars: []
@@ -291,7 +298,8 @@ MonoBehaviour:
       lookAtFlavorText: 
       targetRoom: {fileID: 0}
       targetRoomToActivate: {fileID: 0}
-      roomText: 
+      roomLookText: 
+      roomEntryText: 
       targetObject: {fileID: 11400000, guid: cb785a7d001eb2045a159400622ce926, type: 2}
     conditional: 0
     conditionalVars: []
@@ -324,8 +332,10 @@ MonoBehaviour:
       lookAtFlavorText: 
       targetRoom: {fileID: 11400000, guid: d6c86b163e249df4e8ae5a5d5a3d267d, type: 2}
       targetRoomToActivate: {fileID: 0}
-      roomText: You are in a dungeon cell. The door to your dungeon is held shut
-        by a rusty lock. There is a broken chair and a wooden plank on the floor.
+      roomLookText: You are in a dungeon cell. Next to you is a broken chair and
+        a wooden plank that used to be its leg. The cell door is held shut by a rusty
+        lock.
+      roomEntryText: 
       targetObject: {fileID: 11400000}
     conditional: 0
     conditionalVars: []

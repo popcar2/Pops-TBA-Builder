@@ -98,7 +98,7 @@ public class TextPrompt : MonoBehaviour
         StringBuilder printedText = new StringBuilder(textComponent.text);
         for (int i = 0; i < textLength; i++)
         {
-            yield return new WaitForSeconds(typeSpeed);
+            yield return new WaitForSeconds(1 / typeSpeed);
             printedText.Append(text[i]);
             updateText(printedText);
         }

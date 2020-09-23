@@ -90,11 +90,12 @@ MonoBehaviour:
       lookAtFlavorText: 
       targetRoom: {fileID: 0}
       targetRoomToActivate: {fileID: 0}
-      roomText: 
+      roomLookText: 
+      roomEntryText: 
       targetObject: {fileID: 11400000}
     conditional: 0
     conditionalVars: []
     conditionalBool: 1
   wearableVars: []
   openableVars: []
-  objectAliases: Plank
+  objectAliases: Plank,Chair leg

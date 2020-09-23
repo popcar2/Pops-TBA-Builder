@@ -9,6 +9,9 @@ public class ActionHandler : MonoBehaviour
     TextPrompt textPrompt;
     DefaultValues defaultValues;
 
+    List<RoomObject.EditorVariables> delayedActions;
+    bool checkDelayed = true;
+
     private void Start()
     {
         inputParser = FindObjectOfType<InputParser>();
@@ -16,6 +19,8 @@ public class ActionHandler : MonoBehaviour
         player = FindObjectOfType<Player>();
         textPrompt = FindObjectOfType<TextPrompt>();
         defaultValues = FindObjectOfType<DefaultValues>();
+
+        delayedActions = new List<RoomObject.EditorVariables>();
     }
 
     public void executeActions(RoomObject obj, List<RoomObject.EditorVariables> objVars)
@@ -70,6 +75,15 @@ public class ActionHandler : MonoBehaviour
 
     public void executeOneAction(RoomObject obj, RoomObject.EditorVariables action)
     {
+        if (checkDelayed)
+        {
+            if (action.isDelayed)
+            {
+                delayedActions.Add(action);
+                return;
+            }
+        }
+
         RoomObject.ActionCategory category = action.actionCategory;
 
         // Execute player actions
@@ -167,6 +181,10 @@ public class ActionHandler : MonoBehaviour
 
                 case RoomObject.ObjectAction.SetIsUsable:
                     targetObject.runtimeIsUsable = action.varsToChange.isUsable;
+                    break;
+
+                case RoomObject.ObjectAction.SetIsPickupable:
+                    targetObject.runtimeIsPickupable = action.varsToChange.isPickupable;
                     break;
 
                 case RoomObject.ObjectAction.SetIsWearable:
@@ -277,6 +295,15 @@ public class ActionHandler : MonoBehaviour
             executeActions(obj, objVars);
 
         inputParser.printResponse(obj, successBool, defaultSuccessText, defaultFailText, ref flavorText);
+        checkDelayed = false;
+
+        if (successBool)
+        {
+            executeActions(obj, delayedActions);
+            delayedActions.Clear();
+        }
+
+        checkDelayed = true;
     }
 
     public void eatObject(RoomObject obj)

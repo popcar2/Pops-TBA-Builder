@@ -41,7 +41,7 @@ MonoBehaviour:
   usableFlavorText: 
   pickupableFlavorText: 
   wearableFlavorText: 
-  openableFlavorText: 
+  openableFlavorText: It needs either a key or brute force to unlock.
   lookAtFlavorText: It's a rusty lock holding the cell door shut. With the right
     tool, it could come undone.
   runtimeEdibleFlavorText: 
@@ -89,7 +89,8 @@ MonoBehaviour:
       lookAtFlavorText: 
       targetRoom: {fileID: 0}
       targetRoomToActivate: {fileID: 0}
-      roomText: 
+      roomLookText: 
+      roomEntryText: 
       targetObject: {fileID: 11400000, guid: cb785a7d001eb2045a159400622ce926, type: 2}
     conditional: 1
     conditionalVars:
@@ -122,7 +123,8 @@ MonoBehaviour:
         lookAtFlavorText: 
         targetRoom: {fileID: 0}
         targetRoomToActivate: {fileID: 0}
-        roomText: 
+        roomLookText: 
+        roomEntryText: 
         targetObject: {fileID: 11400000}
       conditional: 0
       conditionalVars: []
@@ -156,7 +158,8 @@ MonoBehaviour:
       lookAtFlavorText: 
       targetRoom: {fileID: 11400000, guid: d6c86b163e249df4e8ae5a5d5a3d267d, type: 2}
       targetRoomToActivate: {fileID: 0}
-      roomText: 
+      roomLookText: 
+      roomEntryText: 
       targetObject: {fileID: 11400000, guid: cb785a7d001eb2045a159400622ce926, type: 2}
     conditional: 1
     conditionalVars:
@@ -189,7 +192,8 @@ MonoBehaviour:
         lookAtFlavorText: 
         targetRoom: {fileID: 0}
         targetRoomToActivate: {fileID: 0}
-        roomText: 
+        roomLookText: 
+        roomEntryText: 
         targetObject: {fileID: 11400000}
       conditional: 0
       conditionalVars: []

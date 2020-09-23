@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5914daa0bd6cb0447b2e55394046ccd6, type: 3}
-  m_Name: broken chair
+  m_Name: rusty door
   m_EditorClassIdentifier: 
   isEdible: 0
   isDrinkable: 0
@@ -36,12 +36,12 @@ MonoBehaviour:
   drinkableFlavorText: 
   talkableFlavorText: 
   killableFlavorText: 
-  breakableFlavorText: The broken chair has had enough for one day.
+  breakableFlavorText: 
   sittableFlavorText: 
   usableFlavorText: 
   pickupableFlavorText: 
   wearableFlavorText: 
-  openableFlavorText: 
+  openableFlavorText: The door is held shut by a rusty lock. It won't budge.
   lookAtFlavorText: 
   runtimeEdibleFlavorText: 
   runtimeDrinkableFlavorText: 
@@ -52,7 +52,7 @@ MonoBehaviour:
   runtimeUsableFlavorText: 
   runtimePickupableFlavorText: 
   runtimeWearableFlavorText: 
-  runtimeOpenableFlavorText: 
+  runtimeOpenableFlavorText: The door is held shut by a rusty lock. It won't budge.
   runtimeLookAtFlavorText: 
   edibleVars: []
   drinkableVars: []
@@ -64,4 +64,4 @@ MonoBehaviour:
   pickupableVars: []
   wearableVars: []
   openableVars: []
-  objectAliases: Chair
+  objectAliases: 
