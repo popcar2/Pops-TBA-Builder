@@ -29,7 +29,7 @@ MonoBehaviour:
   runtimeIsBreakable: 0
   runtimeIsSittable: 0
   runtimeIsUsable: 0
-  runtimeIsPickupable: 1
+  runtimeIsPickupable: 0
   runtimeIsWearable: 0
   runtimeIsOpenable: 0
   edibleFlavorText: 
@@ -42,7 +42,7 @@ MonoBehaviour:
   pickupableFlavorText: 
   wearableFlavorText: 
   openableFlavorText: 
-  lookAtFlavorText: 
+  lookAtFlavorText: 'It''s a wooden plank that used to be the chair''s leg. '
   runtimeEdibleFlavorText: 
   runtimeDrinkableFlavorText: 
   runtimeTalkableFlavorText: 
@@ -50,10 +50,10 @@ MonoBehaviour:
   runtimeBreakableFlavorText: 
   runtimeSittableFlavorText: 
   runtimeUsableFlavorText: 
-  runtimePickupableFlavorText: 
+  runtimePickupableFlavorText: You already picked up the wooden plank.
   runtimeWearableFlavorText: 
   runtimeOpenableFlavorText: 
-  runtimeLookAtFlavorText: 
+  runtimeLookAtFlavorText: 'It''s a wooden plank that used to be the chair''s leg. '
   edibleVars: []
   drinkableVars: []
   talkableVars: []
@@ -93,6 +93,77 @@ MonoBehaviour:
       roomLookText: 
       roomEntryText: 
       targetObject: {fileID: 11400000}
+    isDelayed: 0
+    conditional: 0
+    conditionalVars: []
+    conditionalBool: 1
+  - actionCategory: 1
+    playerAction: 0
+    objectAction: 18
+    roomAction: 0
+    varsToChange:
+      isEdible: 0
+      isDrinkable: 0
+      isTalkable: 0
+      isKillable: 0
+      isBreakable: 0
+      isSittable: 0
+      isUsable: 0
+      isPickupable: 0
+      isWearable: 0
+      isOpenable: 0
+      edibleFlavorText: 
+      drinkableFlavorText: 
+      talkableFlavorText: 
+      killableFlavorText: 
+      breakableFlavorText: 
+      sittableFlavorText: 
+      usableFlavorText: 
+      pickupableFlavorText: You already picked up the wooden plank.
+      wearableFlavorText: 
+      openableFlavorText: 
+      lookAtFlavorText: 
+      targetRoom: {fileID: 0}
+      targetRoomToActivate: {fileID: 0}
+      roomLookText: 
+      roomEntryText: 
+      targetObject: {fileID: 11400000}
+    isDelayed: 1
+    conditional: 0
+    conditionalVars: []
+    conditionalBool: 1
+  - actionCategory: 1
+    playerAction: 0
+    objectAction: 8
+    roomAction: 0
+    varsToChange:
+      isEdible: 0
+      isDrinkable: 0
+      isTalkable: 0
+      isKillable: 0
+      isBreakable: 0
+      isSittable: 0
+      isUsable: 0
+      isPickupable: 0
+      isWearable: 0
+      isOpenable: 0
+      edibleFlavorText: 
+      drinkableFlavorText: 
+      talkableFlavorText: 
+      killableFlavorText: 
+      breakableFlavorText: 
+      sittableFlavorText: 
+      usableFlavorText: 
+      pickupableFlavorText: 
+      wearableFlavorText: 
+      openableFlavorText: 
+      lookAtFlavorText: 
+      targetRoom: {fileID: 0}
+      targetRoomToActivate: {fileID: 0}
+      roomLookText: 
+      roomEntryText: 
+      targetObject: {fileID: 11400000}
+    isDelayed: 0
     conditional: 0
     conditionalVars: []
     conditionalBool: 1

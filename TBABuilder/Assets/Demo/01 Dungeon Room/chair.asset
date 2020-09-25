@@ -94,6 +94,7 @@ MonoBehaviour:
       roomLookText: 
       roomEntryText: 
       targetObject: {fileID: 11400000}
+    isDelayed: 0
     conditional: 0
     conditionalVars: []
     conditionalBool: 1
@@ -128,6 +129,7 @@ MonoBehaviour:
       roomLookText: 
       roomEntryText: 
       targetObject: {fileID: 11400000, guid: 281f02f37a7ca104c851d90c1943fc0a, type: 2}
+    isDelayed: 0
     conditional: 0
     conditionalVars: []
     conditionalBool: 1
@@ -162,6 +164,7 @@ MonoBehaviour:
       roomLookText: 
       roomEntryText: 
       targetObject: {fileID: 11400000, guid: cb785a7d001eb2045a159400622ce926, type: 2}
+    isDelayed: 0
     conditional: 0
     conditionalVars: []
     conditionalBool: 1
@@ -198,6 +201,7 @@ MonoBehaviour:
         lock.
       roomEntryText: 
       targetObject: {fileID: 11400000}
+    isDelayed: 0
     conditional: 0
     conditionalVars: []
     conditionalBool: 1
@@ -233,6 +237,7 @@ MonoBehaviour:
       roomLookText: 
       roomEntryText: 
       targetObject: {fileID: 11400000}
+    isDelayed: 0
     conditional: 0
     conditionalVars: []
     conditionalBool: 1
@@ -267,6 +272,7 @@ MonoBehaviour:
       roomLookText: 
       roomEntryText: 
       targetObject: {fileID: 11400000, guid: 281f02f37a7ca104c851d90c1943fc0a, type: 2}
+    isDelayed: 0
     conditional: 0
     conditionalVars: []
     conditionalBool: 1
@@ -301,6 +307,7 @@ MonoBehaviour:
       roomLookText: 
       roomEntryText: 
       targetObject: {fileID: 11400000, guid: cb785a7d001eb2045a159400622ce926, type: 2}
+    isDelayed: 0
     conditional: 0
     conditionalVars: []
     conditionalBool: 1
@@ -337,6 +344,7 @@ MonoBehaviour:
         lock.
       roomEntryText: 
       targetObject: {fileID: 11400000}
+    isDelayed: 0
     conditional: 0
     conditionalVars: []
     conditionalBool: 1

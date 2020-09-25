@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5914daa0bd6cb0447b2e55394046ccd6, type: 3}
-  m_Name: rusty door
+  m_Name: Test Object
   m_EditorClassIdentifier: 
   isEdible: 0
-  isDrinkable: 0
+  isDrinkable: 1
   isTalkable: 0
   isKillable: 0
   isBreakable: 0
@@ -23,7 +23,7 @@ MonoBehaviour:
   isWearable: 0
   isOpenable: 0
   runtimeIsEdible: 0
-  runtimeIsDrinkable: 0
+  runtimeIsDrinkable: 1
   runtimeIsTalkable: 0
   runtimeIsKillable: 0
   runtimeIsBreakable: 0
@@ -33,31 +33,64 @@ MonoBehaviour:
   runtimeIsWearable: 0
   runtimeIsOpenable: 0
   edibleFlavorText: 
-  drinkableFlavorText: 
+  drinkableFlavorText: It was poisoned!
   talkableFlavorText: 
   killableFlavorText: 
-  breakableFlavorText: The bars are made of thick metal. It won't break no matter
-    how hard you try.
+  breakableFlavorText: 
   sittableFlavorText: 
   usableFlavorText: 
   pickupableFlavorText: 
   wearableFlavorText: 
-  openableFlavorText: The door is held shut by a rusty lock. It won't budge.
-  lookAtFlavorText: 'It''s a cell door, made of metal bars. '
+  openableFlavorText: 
+  lookAtFlavorText: 
   runtimeEdibleFlavorText: 
-  runtimeDrinkableFlavorText: 
+  runtimeDrinkableFlavorText: It was poisoned!
   runtimeTalkableFlavorText: 
   runtimeKillableFlavorText: 
-  runtimeBreakableFlavorText: The bars are made of thick metal. It won't break no
-    matter how hard you try.
+  runtimeBreakableFlavorText: 
   runtimeSittableFlavorText: 
   runtimeUsableFlavorText: 
   runtimePickupableFlavorText: 
   runtimeWearableFlavorText: 
-  runtimeOpenableFlavorText: The door is already open, it leads north.
-  runtimeLookAtFlavorText: 'It''s a cell door, made of metal bars. '
+  runtimeOpenableFlavorText: 
+  runtimeLookAtFlavorText: 
   edibleVars: []
-  drinkableVars: []
+  drinkableVars:
+  - actionCategory: 0
+    playerAction: 0
+    objectAction: 0
+    roomAction: 0
+    varsToChange:
+      isEdible: 0
+      isDrinkable: 0
+      isTalkable: 0
+      isKillable: 0
+      isBreakable: 0
+      isSittable: 0
+      isUsable: 0
+      isPickupable: 0
+      isWearable: 0
+      isOpenable: 0
+      edibleFlavorText: 
+      drinkableFlavorText: 
+      talkableFlavorText: 
+      killableFlavorText: 
+      breakableFlavorText: 
+      sittableFlavorText: 
+      usableFlavorText: 
+      pickupableFlavorText: 
+      wearableFlavorText: 
+      openableFlavorText: 
+      lookAtFlavorText: 
+      targetRoom: {fileID: 0}
+      targetRoomToActivate: {fileID: 0}
+      roomLookText: 
+      roomEntryText: 
+      targetObject: {fileID: 11400000}
+    isDelayed: 0
+    conditional: 0
+    conditionalVars: []
+    conditionalBool: 1
   talkableVars: []
   killableVars: []
   breakableVars: []
@@ -66,4 +99,4 @@ MonoBehaviour:
   pickupableVars: []
   wearableVars: []
   openableVars: []
-  objectAliases: door
+  objectAliases: potion,healing juice,health potion

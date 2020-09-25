@@ -18,6 +18,8 @@ public class Room : ScriptableObject
     [HideInInspector] public string runtimeLookText;
     [HideInInspector] public List<RoomConnectionVars> runtimeRoomConnections = new List<RoomConnectionVars>();
 
+    [HideInInspector] public List<RoomObject.EditorVariables> roomEntryActions = new List<RoomObject.EditorVariables>();
+
     public void initializeRuntimeVariables()
     {
         isInitialized = true;

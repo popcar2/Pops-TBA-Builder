@@ -13,8 +13,6 @@ public class TextPrompt : MonoBehaviour
     TextMeshProUGUI textComponent;
     TMP_InputField inputField;
     InputParser inputParser;
-    RoomTracker roomTracker;
-    ActionHandler actionHandler;
 
     // Helper variables
     private bool isPrinting = false;
@@ -28,11 +26,9 @@ public class TextPrompt : MonoBehaviour
         textComponent.text = "";
         inputField = FindObjectOfType<TMP_InputField>();
         inputParser = FindObjectOfType<InputParser>();
-        roomTracker = FindObjectOfType<RoomTracker>();
-        actionHandler = FindObjectOfType<ActionHandler>();
 
         printQueue = new Queue<string>();
-        
+
         inputField.ActivateInputField();
     }
 
@@ -94,13 +90,17 @@ public class TextPrompt : MonoBehaviour
 
     private IEnumerator printTextCoroutine(string text)
     {
-        int textLength = text.Length;
-        StringBuilder printedText = new StringBuilder(textComponent.text);
-        for (int i = 0; i < textLength; i++)
+        if (!string.IsNullOrWhiteSpace(text))
         {
-            yield return new WaitForSeconds(1 / typeSpeed);
-            printedText.Append(text[i]);
-            updateText(printedText);
+
+            int textLength = text.Length;
+            StringBuilder printedText = new StringBuilder(textComponent.text);
+            for (int i = 0; i < textLength; i++)
+            {
+                yield return new WaitForSeconds(1 / typeSpeed);
+                printedText.Append(text[i]);
+                updateText(printedText);
+            }
         }
     }
 

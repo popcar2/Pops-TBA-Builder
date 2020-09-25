@@ -12,7 +12,7 @@ public class ActionHandler : MonoBehaviour
     List<RoomObject.EditorVariables> delayedActions;
     bool checkDelayed = true;
 
-    private void Start()
+    private void Awake()
     {
         inputParser = FindObjectOfType<InputParser>();
         roomTracker = FindObjectOfType<RoomTracker>();
@@ -23,7 +23,7 @@ public class ActionHandler : MonoBehaviour
         delayedActions = new List<RoomObject.EditorVariables>();
     }
 
-    public void executeActions(RoomObject obj, List<RoomObject.EditorVariables> objVars)
+    public void executeActions(Object obj, List<RoomObject.EditorVariables> objVars)
     {
         for (int i = 0; i < objVars.Count; i++)
         {
@@ -73,7 +73,7 @@ public class ActionHandler : MonoBehaviour
         }
     }
 
-    public void executeOneAction(RoomObject obj, RoomObject.EditorVariables action)
+    public void executeOneAction(Object obj, RoomObject.EditorVariables action)
     {
         if (checkDelayed)
         {
@@ -92,12 +92,6 @@ public class ActionHandler : MonoBehaviour
             RoomObject.PlayerAction playerAction = action.playerAction;
 
             RoomObject targetObject = action.varsToChange.targetObject;
-
-            if (targetObject == null)
-            {
-                Debug.Log($"{obj.name}: There's an object that wasn't set in an action");
-                return;
-            }
 
             switch (playerAction)
             {
@@ -289,12 +283,12 @@ public class ActionHandler : MonoBehaviour
     }
 
     // Needs an unholy amount of variables but still better than copy pasting the same thing to each method
-    public void doGenericAction(RoomObject obj, string defaultSuccessText, string defaultFailText, ref string flavorText, bool successBool, List<RoomObject.EditorVariables> objVars)
+    public void doGenericAction(Object obj, string defaultSuccessText, string defaultFailText, ref string flavorText, bool successBool, List<RoomObject.EditorVariables> objVars)
     {
         if (successBool)
             executeActions(obj, objVars);
 
-        inputParser.printResponse(obj, successBool, defaultSuccessText, defaultFailText, ref flavorText);
+        inputParser.printResponse(successBool, defaultSuccessText, defaultFailText, ref flavorText);
         checkDelayed = false;
 
         if (successBool)

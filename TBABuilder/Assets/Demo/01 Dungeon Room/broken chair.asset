@@ -47,7 +47,7 @@ MonoBehaviour:
   runtimeDrinkableFlavorText: 
   runtimeTalkableFlavorText: 
   runtimeKillableFlavorText: 
-  runtimeBreakableFlavorText: 
+  runtimeBreakableFlavorText: The broken chair has had enough for one day.
   runtimeSittableFlavorText: 
   runtimeUsableFlavorText: 
   runtimePickupableFlavorText: 

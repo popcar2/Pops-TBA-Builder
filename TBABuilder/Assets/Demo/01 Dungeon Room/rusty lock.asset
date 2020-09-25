@@ -26,7 +26,7 @@ MonoBehaviour:
   runtimeIsDrinkable: 0
   runtimeIsTalkable: 0
   runtimeIsKillable: 0
-  runtimeIsBreakable: 1
+  runtimeIsBreakable: 0
   runtimeIsSittable: 0
   runtimeIsUsable: 0
   runtimeIsPickupable: 0
@@ -48,14 +48,13 @@ MonoBehaviour:
   runtimeDrinkableFlavorText: 
   runtimeTalkableFlavorText: 
   runtimeKillableFlavorText: 
-  runtimeBreakableFlavorText: 
+  runtimeBreakableFlavorText: The rusty lock has already been broken.
   runtimeSittableFlavorText: 
   runtimeUsableFlavorText: 
   runtimePickupableFlavorText: 
   runtimeWearableFlavorText: 
-  runtimeOpenableFlavorText: 
-  runtimeLookAtFlavorText: It's a rusty lock holding the cell door shut. With the
-    right tool, it could come undone.
+  runtimeOpenableFlavorText: It needs either a key or brute force to unlock.
+  runtimeLookAtFlavorText: The rusty lock lies broken on the floor.
   edibleVars: []
   drinkableVars: []
   talkableVars: []
@@ -92,6 +91,7 @@ MonoBehaviour:
       roomLookText: 
       roomEntryText: 
       targetObject: {fileID: 11400000, guid: cb785a7d001eb2045a159400622ce926, type: 2}
+    isDelayed: 0
     conditional: 1
     conditionalVars:
     - actionCategory: 1
@@ -126,6 +126,183 @@ MonoBehaviour:
         roomLookText: 
         roomEntryText: 
         targetObject: {fileID: 11400000}
+      isDelayed: 0
+      conditional: 0
+      conditionalVars: []
+      conditionalBool: 1
+    - actionCategory: 2
+      playerAction: 0
+      objectAction: 0
+      roomAction: 2
+      varsToChange:
+        isEdible: 0
+        isDrinkable: 0
+        isTalkable: 0
+        isKillable: 0
+        isBreakable: 0
+        isSittable: 0
+        isUsable: 0
+        isPickupable: 0
+        isWearable: 0
+        isOpenable: 0
+        edibleFlavorText: 
+        drinkableFlavorText: 
+        talkableFlavorText: 
+        killableFlavorText: 
+        breakableFlavorText: 
+        sittableFlavorText: 
+        usableFlavorText: 
+        pickupableFlavorText: 
+        wearableFlavorText: 
+        openableFlavorText: 
+        lookAtFlavorText: 
+        targetRoom: {fileID: 11400000, guid: d6c86b163e249df4e8ae5a5d5a3d267d, type: 2}
+        targetRoomToActivate: {fileID: 11400000, guid: fd21078d478fe05488f0d7c2518a218a,
+          type: 2}
+        roomLookText: 
+        roomEntryText: 
+        targetObject: {fileID: 11400000}
+      isDelayed: 0
+      conditional: 0
+      conditionalVars: []
+      conditionalBool: 1
+    - actionCategory: 1
+      playerAction: 0
+      objectAction: 5
+      roomAction: 0
+      varsToChange:
+        isEdible: 0
+        isDrinkable: 0
+        isTalkable: 0
+        isKillable: 0
+        isBreakable: 0
+        isSittable: 0
+        isUsable: 0
+        isPickupable: 0
+        isWearable: 0
+        isOpenable: 0
+        edibleFlavorText: 
+        drinkableFlavorText: 
+        talkableFlavorText: 
+        killableFlavorText: 
+        breakableFlavorText: 
+        sittableFlavorText: 
+        usableFlavorText: 
+        pickupableFlavorText: 
+        wearableFlavorText: 
+        openableFlavorText: 
+        lookAtFlavorText: 
+        targetRoom: {fileID: 0}
+        targetRoomToActivate: {fileID: 0}
+        roomLookText: 
+        roomEntryText: 
+        targetObject: {fileID: 11400000}
+      isDelayed: 0
+      conditional: 0
+      conditionalVars: []
+      conditionalBool: 1
+    - actionCategory: 1
+      playerAction: 0
+      objectAction: 15
+      roomAction: 0
+      varsToChange:
+        isEdible: 0
+        isDrinkable: 0
+        isTalkable: 0
+        isKillable: 0
+        isBreakable: 0
+        isSittable: 0
+        isUsable: 0
+        isPickupable: 0
+        isWearable: 0
+        isOpenable: 0
+        edibleFlavorText: 
+        drinkableFlavorText: 
+        talkableFlavorText: 
+        killableFlavorText: 
+        breakableFlavorText: The rusty lock has already been broken.
+        sittableFlavorText: 
+        usableFlavorText: 
+        pickupableFlavorText: 
+        wearableFlavorText: 
+        openableFlavorText: 
+        lookAtFlavorText: 
+        targetRoom: {fileID: 0}
+        targetRoomToActivate: {fileID: 0}
+        roomLookText: 
+        roomEntryText: 
+        targetObject: {fileID: 11400000}
+      isDelayed: 1
+      conditional: 0
+      conditionalVars: []
+      conditionalBool: 1
+    - actionCategory: 1
+      playerAction: 0
+      objectAction: 21
+      roomAction: 0
+      varsToChange:
+        isEdible: 0
+        isDrinkable: 0
+        isTalkable: 0
+        isKillable: 0
+        isBreakable: 0
+        isSittable: 0
+        isUsable: 0
+        isPickupable: 0
+        isWearable: 0
+        isOpenable: 0
+        edibleFlavorText: 
+        drinkableFlavorText: 
+        talkableFlavorText: 
+        killableFlavorText: 
+        breakableFlavorText: 
+        sittableFlavorText: 
+        usableFlavorText: 
+        pickupableFlavorText: 
+        wearableFlavorText: 
+        openableFlavorText: 
+        lookAtFlavorText: The rusty lock lies broken on the floor.
+        targetRoom: {fileID: 0}
+        targetRoomToActivate: {fileID: 0}
+        roomLookText: 
+        roomEntryText: 
+        targetObject: {fileID: 11400000}
+      isDelayed: 0
+      conditional: 0
+      conditionalVars: []
+      conditionalBool: 1
+    - actionCategory: 1
+      playerAction: 0
+      objectAction: 20
+      roomAction: 0
+      varsToChange:
+        isEdible: 0
+        isDrinkable: 0
+        isTalkable: 0
+        isKillable: 0
+        isBreakable: 0
+        isSittable: 0
+        isUsable: 0
+        isPickupable: 0
+        isWearable: 0
+        isOpenable: 0
+        edibleFlavorText: 
+        drinkableFlavorText: 
+        talkableFlavorText: 
+        killableFlavorText: 
+        breakableFlavorText: 
+        sittableFlavorText: 
+        usableFlavorText: 
+        pickupableFlavorText: 
+        wearableFlavorText: 
+        openableFlavorText: The door is already open, it leads north.
+        lookAtFlavorText: 
+        targetRoom: {fileID: 0}
+        targetRoomToActivate: {fileID: 0}
+        roomLookText: 
+        roomEntryText: 
+        targetObject: {fileID: 11400000, guid: 1b23d3dd14bd25d44b2906741193dba6, type: 2}
+      isDelayed: 0
       conditional: 0
       conditionalVars: []
       conditionalBool: 1
@@ -161,6 +338,7 @@ MonoBehaviour:
       roomLookText: 
       roomEntryText: 
       targetObject: {fileID: 11400000, guid: cb785a7d001eb2045a159400622ce926, type: 2}
+    isDelayed: 0
     conditional: 1
     conditionalVars:
     - actionCategory: 1
@@ -195,6 +373,7 @@ MonoBehaviour:
         roomLookText: 
         roomEntryText: 
         targetObject: {fileID: 11400000}
+      isDelayed: 0
       conditional: 0
       conditionalVars: []
       conditionalBool: 1

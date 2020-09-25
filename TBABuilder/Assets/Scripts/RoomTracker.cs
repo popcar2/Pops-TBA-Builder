@@ -7,15 +7,18 @@ public class RoomTracker : MonoBehaviour
 
     TextPrompt textPrompt;
     DefaultValues defaultValues;
+    ActionHandler actionHandler;
 
     private void Start()
     {
         textPrompt = FindObjectOfType<TextPrompt>();
         defaultValues = FindObjectOfType<DefaultValues>();
+        actionHandler = FindObjectOfType<ActionHandler>();
 
         currentRoom = startingRoom;
         currentRoom.initializeRuntimeVariables();
         textPrompt.printText(currentRoom.roomEntryText);
+        actionHandler.executeActions(currentRoom, currentRoom.roomEntryActions);
     }
 
     public void printCurrentRoomText()
@@ -51,6 +54,7 @@ public class RoomTracker : MonoBehaviour
         currentRoom = room;
 
         // Is delayed so the flavor text can be printed before room text.
+        actionHandler.executeActions(currentRoom, currentRoom.roomEntryActions);
         StartCoroutine(textPrompt.printTextAfterDelay("\n" + currentRoom.runtimeRoomEntryText, 0.1f));
     }
 
@@ -65,6 +69,7 @@ public class RoomTracker : MonoBehaviour
             newRoom.initializeRuntimeVariables();
 
         currentRoom = newRoom;
+        actionHandler.executeActions(currentRoom, currentRoom.roomEntryActions);
         textPrompt.printText("\n" + currentRoom.runtimeRoomEntryText);
     }
 

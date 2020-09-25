@@ -7,6 +7,8 @@ using UnityEditor;
 public class RoomEditor : Editor
 {
     bool foldRoomConnections = true;
+    bool foldRoomEntryActions = true;
+
     public override void OnInspectorGUI()
     {
         Room room = (Room)target;
@@ -14,6 +16,17 @@ public class RoomEditor : Editor
 
         base.OnInspectorGUI();
         showConnectedRooms(room.roomConnections);
+        showRoomEntryActions(room);
+    }
+
+    private void showRoomEntryActions(Room room)
+    {
+        foldRoomEntryActions = EditorGUILayout.Foldout(foldRoomEntryActions, "Room Entry Actions", true);
+        if (!foldRoomEntryActions)
+            return;
+
+        bool isTrue = true;
+        RoomObjectEditor.showActionTab(ref isTrue, ref room.roomEntryActions, target, -20);
     }
 
     private void showConnectedRooms(List<Room.RoomConnectionVars> roomConnections)

@@ -26,52 +26,52 @@ public class RoomObjectEditor : Editor
         if (defaultValues.eatActive)
         {
             obj.isEdible = GUILayout.Toggle(obj.isEdible, new GUIContent("Is Edible", "Can you eat this object?"));
-            showActionTab(ref obj.isEdible, ref obj.edibleVars);
+            showActionTab(ref obj.isEdible, ref obj.edibleVars, target);
         }
         if (defaultValues.drinkActive)
         {
             obj.isDrinkable = GUILayout.Toggle(obj.isDrinkable, new GUIContent("Is Drinkable", "Can you drink this object?"));
-            showActionTab(ref obj.isDrinkable, ref obj.drinkableVars);
+            showActionTab(ref obj.isDrinkable, ref obj.drinkableVars, target);
         }
         if (defaultValues.talkActive)
         {
             obj.isTalkable = GUILayout.Toggle(obj.isTalkable, new GUIContent("Is Talkable", "Can you talk to this object/person?"));
-            showActionTab(ref obj.isTalkable, ref obj.talkableVars);
+            showActionTab(ref obj.isTalkable, ref obj.talkableVars, target);
         }
         if (defaultValues.killActive)
         {
             obj.isKillable = GUILayout.Toggle(obj.isKillable, new GUIContent("Is Killable", "Can you kill this object/person?"));
-            showActionTab(ref obj.isKillable, ref obj.killableVars);
+            showActionTab(ref obj.isKillable, ref obj.killableVars, target);
         }
         if (defaultValues.breakActive)
         {
             obj.isBreakable = GUILayout.Toggle(obj.isBreakable, new GUIContent("Is Breakable", "Can you break this object?"));
-            showActionTab(ref obj.isBreakable, ref obj.breakableVars);
+            showActionTab(ref obj.isBreakable, ref obj.breakableVars, target);
         }
         if (defaultValues.sitActive)
         {
             obj.isSittable = GUILayout.Toggle(obj.isSittable, new GUIContent("Is Sittable", "Can you sit on this object?"));
-            showActionTab(ref obj.isSittable, ref obj.sittableVars);
+            showActionTab(ref obj.isSittable, ref obj.sittableVars, target);
         }
         if (defaultValues.useActive)
         {
             obj.isUsable = GUILayout.Toggle(obj.isUsable, new GUIContent("Is Usable", "Can you use this object?"));
-            showActionTab(ref obj.isUsable, ref obj.usableVars);
+            showActionTab(ref obj.isUsable, ref obj.usableVars, target);
         }
         if (defaultValues.pickupActive)
         {
             obj.isPickupable = GUILayout.Toggle(obj.isPickupable, new GUIContent("Is Pickupable", "Can you pick up this object?"));
-            showActionTab(ref obj.isPickupable, ref obj.pickupableVars);
+            showActionTab(ref obj.isPickupable, ref obj.pickupableVars, target);
         }
         if (defaultValues.wearActive)
         {
             obj.isWearable = GUILayout.Toggle(obj.isWearable, new GUIContent("Is Wearable", "Can you wear/equip this object?"));
-            showActionTab(ref obj.isWearable, ref obj.wearableVars);
+            showActionTab(ref obj.isWearable, ref obj.wearableVars, target);
         }
         if (defaultValues.openActive)
         {
             obj.isOpenable = GUILayout.Toggle(obj.isOpenable, new GUIContent("Is Openable", "Can you open this object?"));
-            showActionTab(ref obj.isOpenable, ref obj.openableVars);
+            showActionTab(ref obj.isOpenable, ref obj.openableVars, target);
         }
     }
 
@@ -151,14 +151,14 @@ public class RoomObjectEditor : Editor
         }
     }
 
-    private void showActionTab(ref bool toggleBool, ref List<RoomObject.EditorVariables> objVars, int indentation = 0, int depth = 0)
+    public static void showActionTab(ref bool toggleBool, ref List<RoomObject.EditorVariables> objVars, object targetObj, int indentation = 0, int depth = 0)
     {
         GUILayout.BeginVertical(); 
         if (toggleBool)
         {
             for (int i = 0; i < objVars.Count; i++)
             {
-                showOneAction(ref objVars, i, indentation, depth);
+                showOneAction(ref objVars, i, targetObj, indentation, depth);
             }
 
             GUILayout.BeginHorizontal();
@@ -167,7 +167,12 @@ public class RoomObjectEditor : Editor
             if (GUILayout.Button($"Add new action ({depth})"))
             {
                 RoomObject.EditorVariables newVar = new RoomObject.EditorVariables();
-                newVar.varsToChange.targetObject = (RoomObject)target;
+
+                // Check whether this is a RoomObjectEditor or RoomEditor, and apply current object as default target object.
+                if (targetObj as RoomObject != null)
+                    newVar.varsToChange.targetObject = (RoomObject)targetObj;
+                else
+                    newVar.varsToChange.targetRoom = (Room)targetObj;
                 objVars.Add(newVar);
 
             }
@@ -180,7 +185,7 @@ public class RoomObjectEditor : Editor
         GUILayout.EndVertical();
     }
 
-    private void showOneAction(ref List<RoomObject.EditorVariables> objVars , int i, int indentation = 0, int depth = 0)
+    private static void showOneAction(ref List<RoomObject.EditorVariables> objVars , int i, object targetObj, int indentation = 0, int depth = 0)
     {
         GUILayout.BeginHorizontal();
 
@@ -223,7 +228,7 @@ public class RoomObjectEditor : Editor
             GUILayout.EndHorizontal();
             showAllAdditionalVariables(ref objVars, i, indentation);
             bool needThisForRef = true;
-            showActionTab(ref needThisForRef, ref objVars[i].conditionalVars, indentation + 30, depth + 1);
+            showActionTab(ref needThisForRef, ref objVars[i].conditionalVars, targetObj, indentation + 30, depth + 1);
             return;
         }
 
@@ -233,7 +238,7 @@ public class RoomObjectEditor : Editor
         showAllAdditionalVariables(ref objVars, i, indentation);
     }
 
-    private void showAllAdditionalVariables(ref List<RoomObject.EditorVariables> objVars, int i, int indentation = 0)
+    private static void showAllAdditionalVariables(ref List<RoomObject.EditorVariables> objVars, int i, int indentation = 0)
     {
         GUILayout.BeginHorizontal();
         GUILayout.Space(50 + indentation);
@@ -452,12 +457,12 @@ public class RoomObjectEditor : Editor
         GUILayout.EndHorizontal();
     }
 
-    private void showAdditionalTextArea(ref string text)
+    private static void showAdditionalTextArea(ref string text)
     {
         text = EditorGUILayout.TextArea(text, EditorStyles.textArea);
     }
 
-    private void showSelectableRoomObject(GUIContent label, ref RoomObject obj)
+    private static void showSelectableRoomObject(GUIContent label, ref RoomObject obj)
     {
         GUILayout.BeginHorizontal();
         EditorGUILayout.PrefixLabel(label);
@@ -465,7 +470,7 @@ public class RoomObjectEditor : Editor
         GUILayout.EndHorizontal();
     }
 
-    private void showSelectableRoom(GUIContent label, ref Room room)
+    private static void showSelectableRoom(GUIContent label, ref Room room)
     {
         GUILayout.BeginHorizontal();
         EditorGUILayout.PrefixLabel(label);

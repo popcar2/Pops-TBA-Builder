@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     TextPrompt textPrompt;
     DefaultValues defaultValues;
 
-    private void Start()
+    private void Awake()
     {
         inventory = new List<RoomObject>();
         equippedItems = new List<RoomObject>();
@@ -21,13 +21,21 @@ public class Player : MonoBehaviour
 
     public void addItemToInventory(RoomObject item)
     {
-        //item.isPickupable = false;
-        //item.PickupableFlavorText = "You're already holding the " + item.name.ToLower() + ".";
+        if (item == null)
+        {
+            Debug.LogError($"{item.name}: There's an object that wasn't set in an action");
+            return;
+        }
         inventory.Add(item);
     }
 
     public void removeItemFromInventory(RoomObject item)
     {
+        if (item == null)
+        {
+            Debug.LogError($"{item.name}: There's an object that wasn't set in an action");
+            return;
+        }
         inventory.Remove(item);
     }
 
@@ -78,14 +86,24 @@ public class Player : MonoBehaviour
         textPrompt.printText(equipment);
     }
 
-    public void equipItem(RoomObject equipment)
+    public void equipItem(RoomObject item)
     {
-        equippedItems.Add(equipment);
+        if (item == null)
+        {
+            Debug.LogError($"{item.name}: There's an object that wasn't set in an action");
+            return;
+        }
+        equippedItems.Add(item);
     }
 
-    public void removeEquippedItem(RoomObject equipment)
+    public void removeEquippedItem(RoomObject item)
     {
-        equippedItems.Remove(equipment);
+        if (item == null)
+        {
+            Debug.LogError($"{item.name}: There's an object that wasn't set in an action");
+            return;
+        }
+        equippedItems.Remove(item);
     }
 
     public List<RoomObject> getEquippedItems()
