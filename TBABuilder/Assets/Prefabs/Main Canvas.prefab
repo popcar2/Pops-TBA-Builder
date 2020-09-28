@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 944664487582927086}
   - component: {fileID: 944664487582927081}
   m_Layer: 5
-  m_Name: Text Prompt
+  m_Name: Text Prompt (Click me!)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,7 +256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 927f52b150346204cb796c1318b3a95a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeSpeed: 0.02
+  standardTypingSpeed: 60
+  spedUpTypingSpeed: 180
 --- !u!222 &944664487582927086
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -782,7 +783,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1440, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

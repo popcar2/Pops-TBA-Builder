@@ -54,7 +54,7 @@ MonoBehaviour:
   runtimeUsableFlavorText: 
   runtimePickupableFlavorText: 
   runtimeWearableFlavorText: 
-  runtimeOpenableFlavorText: The door is already open, it leads north.
+  runtimeOpenableFlavorText: The door is held shut by a rusty lock. It won't budge.
   runtimeLookAtFlavorText: 'It''s a cell door, made of metal bars. '
   edibleVars: []
   drinkableVars: []

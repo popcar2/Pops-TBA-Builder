@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using UnityEditor.IMGUI;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(RoomObject))]
@@ -77,7 +78,7 @@ public class RoomObjectEditor : Editor
 
     private static void showFlavorTexts(RoomObject obj, DefaultValues defaultValues)
     {
-        EditorGUILayout.Space(10);
+        GUILayout.Space(10);
         EditorGUILayout.LabelField(new GUIContent("Flavor Texts", "Set the responses when something happens to this object. " +
             "Flavor texts get printed regardless of the action's success or not."), EditorStyles.boldLabel);
 
@@ -135,7 +136,7 @@ public class RoomObjectEditor : Editor
 
     private void showMiscTab(RoomObject obj, DefaultValues defaultValues)
     {
-        EditorGUILayout.Space(10);
+        GUILayout.Space(10);
         EditorGUILayout.LabelField(new GUIContent("Misc Variables", "Other options for this object"), EditorStyles.boldLabel);
 
         GUIContent aliasContent = new GUIContent("RoomObject Aliases", "The different names of the object in-game, which the player types to interact with." +

@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class TextPrompt : MonoBehaviour
 {
-    [SerializeField] float typeSpeed = 0.02f;
+    [SerializeField] int standardTypingSpeed = 60;
+    [SerializeField] int spedUpTypingSpeed = 180;
+    int currentTypingSpeed;
 
     // Cached Variables
     TextMeshProUGUI textComponent;
@@ -24,12 +26,15 @@ public class TextPrompt : MonoBehaviour
         // Awake is used instead of Start because TextPrompt is the first thing that needs to be initialized before printing text
         textComponent = GetComponent<TextMeshProUGUI>();
         textComponent.text = "";
+
         inputField = FindObjectOfType<TMP_InputField>();
         inputParser = FindObjectOfType<InputParser>();
 
         printQueue = new Queue<string>();
 
         inputField.ActivateInputField();
+
+        currentTypingSpeed = standardTypingSpeed;
     }
 
     void Update()
@@ -42,21 +47,19 @@ public class TextPrompt : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return) && !string.IsNullOrWhiteSpace(inputField.text) && !gameOver)
         {
             // Input text
-            inputField.ActivateInputField();
             string userInput = inputField.text;
             inputField.text = "";
             printText("\n\n> " + userInput);
             inputParser.parseInput(userInput);
         }
-        else
+
+        if (Input.GetKeyDown(KeyCode.Space) && string.IsNullOrWhiteSpace(inputField.text))
         {
-            inputField.ActivateInputField();
+            currentTypingSpeed = spedUpTypingSpeed;
+            inputField.text = null;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !gameOver)
-        {
-            inputField.ActivateInputField();
-        }
+        inputField.ActivateInputField();
     }
 
     public void printText(string text)
@@ -92,12 +95,11 @@ public class TextPrompt : MonoBehaviour
     {
         if (!string.IsNullOrWhiteSpace(text))
         {
-
             int textLength = text.Length;
             StringBuilder printedText = new StringBuilder(textComponent.text);
             for (int i = 0; i < textLength; i++)
             {
-                yield return new WaitForSeconds(1 / typeSpeed);
+                yield return new WaitForSeconds(1 / (float)currentTypingSpeed);
                 printedText.Append(text[i]);
                 updateText(printedText);
             }
@@ -118,5 +120,6 @@ public class TextPrompt : MonoBehaviour
             yield return StartCoroutine(printTextCoroutine(currentText));
         }
         isPrinting = false;
+        currentTypingSpeed = standardTypingSpeed;
     }
 }

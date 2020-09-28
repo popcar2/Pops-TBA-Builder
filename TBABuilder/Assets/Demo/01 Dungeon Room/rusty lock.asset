@@ -26,7 +26,7 @@ MonoBehaviour:
   runtimeIsDrinkable: 0
   runtimeIsTalkable: 0
   runtimeIsKillable: 0
-  runtimeIsBreakable: 0
+  runtimeIsBreakable: 1
   runtimeIsSittable: 0
   runtimeIsUsable: 0
   runtimeIsPickupable: 0
@@ -48,13 +48,14 @@ MonoBehaviour:
   runtimeDrinkableFlavorText: 
   runtimeTalkableFlavorText: 
   runtimeKillableFlavorText: 
-  runtimeBreakableFlavorText: The rusty lock has already been broken.
+  runtimeBreakableFlavorText: 
   runtimeSittableFlavorText: 
   runtimeUsableFlavorText: 
   runtimePickupableFlavorText: 
   runtimeWearableFlavorText: 
   runtimeOpenableFlavorText: It needs either a key or brute force to unlock.
-  runtimeLookAtFlavorText: The rusty lock lies broken on the floor.
+  runtimeLookAtFlavorText: It's a rusty lock holding the cell door shut. With the
+    right tool, it could come undone.
   edibleVars: []
   drinkableVars: []
   talkableVars: []
@@ -302,6 +303,79 @@ MonoBehaviour:
         roomLookText: 
         roomEntryText: 
         targetObject: {fileID: 11400000, guid: 1b23d3dd14bd25d44b2906741193dba6, type: 2}
+      isDelayed: 0
+      conditional: 0
+      conditionalVars: []
+      conditionalBool: 1
+    - actionCategory: 2
+      playerAction: 0
+      objectAction: 0
+      roomAction: 5
+      varsToChange:
+        isEdible: 0
+        isDrinkable: 0
+        isTalkable: 0
+        isKillable: 0
+        isBreakable: 0
+        isSittable: 0
+        isUsable: 0
+        isPickupable: 0
+        isWearable: 0
+        isOpenable: 0
+        edibleFlavorText: 
+        drinkableFlavorText: 
+        talkableFlavorText: 
+        killableFlavorText: 
+        breakableFlavorText: 
+        sittableFlavorText: 
+        usableFlavorText: 
+        pickupableFlavorText: 
+        wearableFlavorText: 
+        openableFlavorText: 
+        lookAtFlavorText: 
+        targetRoom: {fileID: 11400000, guid: d6c86b163e249df4e8ae5a5d5a3d267d, type: 2}
+        targetRoomToActivate: {fileID: 0}
+        roomLookText: You are in a dungeon cell. There is a broken chair and a broken
+          rusty lock on the floor. The cell door is open and leads north.
+        roomEntryText: 
+        targetObject: {fileID: 11400000}
+      isDelayed: 0
+      conditional: 0
+      conditionalVars: []
+      conditionalBool: 1
+    - actionCategory: 2
+      playerAction: 0
+      objectAction: 0
+      roomAction: 6
+      varsToChange:
+        isEdible: 0
+        isDrinkable: 0
+        isTalkable: 0
+        isKillable: 0
+        isBreakable: 0
+        isSittable: 0
+        isUsable: 0
+        isPickupable: 0
+        isWearable: 0
+        isOpenable: 0
+        edibleFlavorText: 
+        drinkableFlavorText: 
+        talkableFlavorText: 
+        killableFlavorText: 
+        breakableFlavorText: 
+        sittableFlavorText: 
+        usableFlavorText: 
+        pickupableFlavorText: 
+        wearableFlavorText: 
+        openableFlavorText: 
+        lookAtFlavorText: 
+        targetRoom: {fileID: 11400000, guid: d6c86b163e249df4e8ae5a5d5a3d267d, type: 2}
+        targetRoomToActivate: {fileID: 0}
+        roomLookText: 
+        roomEntryText: You enter the dungeon cell. This is where you first woke up.
+          There is a broken chair and a broken rusty lock on the floor. The cell
+          door is open and leads north.
+        targetObject: {fileID: 11400000}
       isDelayed: 0
       conditional: 0
       conditionalVars: []

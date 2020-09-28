@@ -23,21 +23,21 @@ MonoBehaviour:
     door is held shut by a rusty lock.
   roomConnections:
   - room: {fileID: 11400000, guid: 89266a7e1e0717f4cbce3d97a66d1179, type: 2}
-    roomAlias: outside, hallway
+    roomAlias: outside, hallway, north
     roomInactiveText: You would love to go outside, but the cell door is locked shut.
     isActive: 0
   runtimeRoomObjects:
+  - {fileID: 11400000, guid: 36516c10f07d46f42af302104f232948, type: 2}
   - {fileID: 11400000, guid: a8c8005ede9094243826dc314c651567, type: 2}
   - {fileID: 11400000, guid: 1b23d3dd14bd25d44b2906741193dba6, type: 2}
-  - {fileID: 11400000, guid: 281f02f37a7ca104c851d90c1943fc0a, type: 2}
-  - {fileID: 11400000, guid: cb785a7d001eb2045a159400622ce926, type: 2}
   runtimeRoomEntryText: 'You awake in an old dungeon cell with no recollection of
     how you got here, and your head is spinning. The only thing around you is a worn
     chair, and the cell door is held shut by a rusty lock. '
-  runtimeLookText: You are in a dungeon cell. Next to you is a broken chair and a
-    wooden plank that used to be its leg. The cell door is held shut by a rusty lock.
+  runtimeLookText: You are in a dungeon cell. Next to you is a worn chair, and the
+    cell door is held shut by a rusty lock.
   runtimeRoomConnections:
   - room: {fileID: 11400000, guid: 89266a7e1e0717f4cbce3d97a66d1179, type: 2}
-    roomAlias: outside, hallway
+    roomAlias: outside, hallway, north
     roomInactiveText: You would love to go outside, but the cell door is locked shut.
     isActive: 0
+  roomEntryActions: []
