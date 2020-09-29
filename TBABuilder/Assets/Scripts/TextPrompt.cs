@@ -62,6 +62,10 @@ public class TextPrompt : MonoBehaviour
         inputField.ActivateInputField();
     }
 
+    /// <summary>
+    /// Adds text to the text queue and begins printing if it isn't already.
+    /// </summary>
+    /// <param name="text"></param>
     public void printText(string text)
     {
         printQueue.Enqueue(text);
@@ -71,12 +75,21 @@ public class TextPrompt : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Begins printing text after a set delay.
+    /// </summary>
+    /// <param name="text"></param>
+    /// <param name="time">Seconds before printing</param>
+    /// <returns></returns>
     public IEnumerator printTextAfterDelay(string text, float time)
     {
         yield return new WaitForSeconds(time);
         printText(text);
     }
 
+    /// <summary>
+    /// Lists kill message and restarts the game when any key is pressed.
+    /// </summary>
     public void killPlayer()
     {
         gameOver = true;
@@ -84,6 +97,9 @@ public class TextPrompt : MonoBehaviour
         inputField.transform.position = new Vector2(0, -100);
     }
 
+    /// <summary>
+    /// Lists win message and restarts the game when any key is pressed. 
+    /// </summary>
     public void winGame()
     {
         gameOver = true;
@@ -91,6 +107,11 @@ public class TextPrompt : MonoBehaviour
         inputField.transform.position = new Vector2(0, -100);
     }
 
+    /// <summary>
+    /// The coroutine which prints the text. Use printText for general use.
+    /// </summary>
+    /// <param name="text"></param>
+    /// <returns></returns>
     private IEnumerator printTextCoroutine(string text)
     {
         if (!string.IsNullOrWhiteSpace(text))
@@ -106,11 +127,19 @@ public class TextPrompt : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the text prompt.
+    /// </summary>
+    /// <param name="textBuilder"></param>
     private void updateText(StringBuilder textBuilder)
     {
         textComponent.text = textBuilder.ToString();
     }
 
+    /// <summary>
+    /// Repeatedly calls printTextCoroutine while printQueue isn't empty. Use printText for general use.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator printQueuedText()
     {
         isPrinting = true;

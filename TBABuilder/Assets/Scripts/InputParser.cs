@@ -20,13 +20,16 @@ public class InputParser : MonoBehaviour
         defaultValues = FindObjectOfType<DefaultValues>();
     }
 
+    /// <summary>
+    /// Returns all words in user input separated by a space as a string array. Also removes additional whitespace. 
+    /// </summary>
+    /// <param name="text"></param>
     private string[] trimText(string text)
     {
-        // TODO: Remove unnecessary elements of trimText since text parsing was rewritten
         StringBuilder sb = new StringBuilder();
         bool spaceFlag = false;
 
-        // Remove repeated whitespace so no error is caused
+        // Remove repeated whitespace
         for (int i = 0; i < text.Length; i++)
         {
             if (text[i] == ' ')
@@ -59,33 +62,8 @@ public class InputParser : MonoBehaviour
         
 
         // Transform it into a string array, make another string array to remove unnecessary words
-        string[] wordsTemp = sb.ToString().ToLower().Split(' ');
-        string[] words = new string[wordsTemp.Length];
-        int wordsLength = 0;
+        string[] words = sb.ToString().ToLower().Split(' ');
 
-        // Remove fluff words
-        foreach (string s in wordsTemp)
-        {
-            switch (s)
-            {
-                case "to":
-                case "as":
-                case "the":
-                case "on":
-                case "is":
-                case "was":
-                case "in":
-                case "at":
-                case "a":
-                case "of":
-                    break;
-                default:
-                    words[wordsLength] = s;
-                    wordsLength++;
-                    break;
-            }
-        }
-        Array.Resize(ref words, wordsLength);
         return words;
     }
 
@@ -119,9 +97,13 @@ public class InputParser : MonoBehaviour
         return null;
     }
 
+    /// <summary>
+    /// Finds and returns the RoomObject with the same name or alias in input. Searches in current room, inventory, and equipment. Returns null if nothing found.
+    /// </summary>
+    /// <param name="input">The user's input</param>
     private RoomObject findObjectFromInput(string input)
     {
-        RoomObject foundObject = null;
+        RoomObject foundObject;
 
         foundObject = findObjectFromList(input, roomTracker.getCurrentRoom().runtimeRoomObjects);
 
@@ -138,6 +120,10 @@ public class InputParser : MonoBehaviour
         return foundObject;
     }
 
+    /// <summary>
+    /// Scrapes user input to find commands and the object referenced and directs it to ActionHandler.
+    /// </summary>
+    /// <param name="input">The user's input</param>
     public void parseInput(string input)
     {
         string[] words = trimText(input);
@@ -173,6 +159,11 @@ public class InputParser : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Checks if the string is a regular command and forwards targetObject to ActionHandler.
+    /// </summary>
+    /// <param name="command">The first word in the user's input</param>
+    /// <param name="targetObject">The object found in user's input</param>
     private void parseRegularCommands(string command, RoomObject targetObject)
     {
         switch (command)
@@ -247,7 +238,12 @@ public class InputParser : MonoBehaviour
         }
     }
 
-    // Is a bool because the main InputParser function would know whether to keep going or return
+    /// <summary>
+    /// Checks if the command is a player command and calls appropriate methods. Returns false if unsuccessful.
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="input"></param>
+    /// <returns>Returns true if successful</returns>
     private bool parsePlayerCommands(string command, string input)
     {
         bool successFlag = true;
@@ -284,7 +280,13 @@ public class InputParser : MonoBehaviour
         return successFlag;
     }
 
-    // Returns whether the operation was a success or a failure. objCheck is the bool you use to check objects, such as obj.IsEdible
+    /// <summary>
+    /// Prints flavor text or default success/failure of a generic command.
+    /// </summary>
+    /// <param name="successBool">Whether the command was successful or not</param>
+    /// <param name="defaultSuccess">Default success flavor text</param>
+    /// <param name="defaultFailure">Default failure flavor text</param>
+    /// <param name="objFlavorText">The object's custom flavor text. Leave empty or null if it doesn't exist.</param>
     public void printResponse(bool successBool, string defaultSuccess, string defaultFailure, ref string objFlavorText)
     {
         bool hasFlavorText = !String.IsNullOrEmpty(objFlavorText);

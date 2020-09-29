@@ -23,6 +23,11 @@ public class ActionHandler : MonoBehaviour
         delayedActions = new List<RoomObject.EditorVariables>();
     }
 
+    /// <summary>
+    /// Execute the action list in an object.
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <param name="objVars">The editor variables list (actions) inside of the target object</param>
     public void executeActions(Object obj, List<RoomObject.EditorVariables> objVars)
     {
         for (int i = 0; i < objVars.Count; i++)
@@ -72,7 +77,12 @@ public class ActionHandler : MonoBehaviour
             }
         }
     }
-
+    
+    /// <summary>
+    /// Execute one action.
+    /// </summary>
+    /// <param name="obj">The parent object</param>
+    /// <param name="action">The action to execute</param>
     public void executeOneAction(Object obj, RoomObject.EditorVariables action)
     {
         if (checkDelayed)
@@ -283,6 +293,15 @@ public class ActionHandler : MonoBehaviour
     }
 
     // Needs an unholy amount of variables but still better than copy pasting the same thing to each method
+    /// <summary>
+    /// Execute actions in a generic command and prints response.
+    /// </summary>
+    /// <param name="obj">The object which called the action</param>
+    /// <param name="defaultSuccessText">Default success flavor text</param>
+    /// <param name="defaultFailText">Default failure flavor text</param>
+    /// <param name="flavorText">Custom flavor text, leave empty or null if it doesn't exist</param>
+    /// <param name="successBool">Whether the action is successful or not</param>
+    /// <param name="objVars">The list of actions</param>
     public void doGenericAction(Object obj, string defaultSuccessText, string defaultFailText, ref string flavorText, bool successBool, List<RoomObject.EditorVariables> objVars)
     {
         if (successBool)
@@ -524,6 +543,12 @@ public class ActionHandler : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets whether a room connection is accessible or not
+    /// </summary>
+    /// <param name="targetRoom">The room you want to alter</param>
+    /// <param name="roomConnection">The room connection</param>
+    /// <param name="activeBool"></param>
     private void setActiveRoomConnection(Room targetRoom, Room roomConnection, bool activeBool)
     {
         foreach (Room.RoomConnectionVars roomConnectionVars in targetRoom.roomConnections)

@@ -20,6 +20,9 @@ public class Room : ScriptableObject
 
     [HideInInspector] public List<RoomObject.EditorVariables> roomEntryActions = new List<RoomObject.EditorVariables>();
 
+    /// <summary>
+    /// Initializes runtime variables, is called when the player enters the room.
+    /// </summary>
     public void initializeRuntimeVariables()
     {
         isInitialized = true;

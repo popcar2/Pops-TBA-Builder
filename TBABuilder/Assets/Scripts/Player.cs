@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
         defaultValues = FindObjectOfType<DefaultValues>();
     }
 
+    /// <summary>
+    /// Adds a RoomObject to the inventory list.
+    /// </summary>
     public void addItemToInventory(RoomObject item)
     {
         if (item == null)
@@ -29,6 +32,10 @@ public class Player : MonoBehaviour
         inventory.Add(item);
     }
 
+    /// <summary>
+    /// Removes a RoomObject from the inventory list.
+    /// </summary>
+    /// <param name="item"></param>
     public void removeItemFromInventory(RoomObject item)
     {
         if (item == null)
@@ -44,6 +51,9 @@ public class Player : MonoBehaviour
         return inventory;
     }
 
+    /// <summary>
+    /// Prints all objects in the inventory. Listed objects replace (ITEMS) in the default string.
+    /// </summary>
     public void openInventory()
     {
         if (inventory.Count == 0)
@@ -66,6 +76,9 @@ public class Player : MonoBehaviour
         openEquipment();
     }
 
+    /// <summary>
+    /// Prints all objects that are currently equipped. Listed objects replace (ITEMS) in the default string.
+    /// </summary>
     public void openEquipment()
     {
         if (equippedItems.Count == 0)
@@ -86,6 +99,10 @@ public class Player : MonoBehaviour
         textPrompt.printText(equipment);
     }
 
+    /// <summary>
+    /// Adds a RoomObject to the equipment list.
+    /// </summary>
+    /// <param name="item"></param>
     public void equipItem(RoomObject item)
     {
         if (item == null)
@@ -95,7 +112,11 @@ public class Player : MonoBehaviour
         }
         equippedItems.Add(item);
     }
-
+    
+    /// <summary>
+    /// Removes a RoomObject from the equipment list.
+    /// </summary>
+    /// <param name="item"></param>
     public void removeEquippedItem(RoomObject item)
     {
         if (item == null)

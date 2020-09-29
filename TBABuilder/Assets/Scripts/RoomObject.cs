@@ -58,6 +58,9 @@ public class RoomObject : ScriptableObject
     public string runtimeOpenableFlavorText;
     public string runtimeLookAtFlavorText;
 
+    /// <summary>
+    /// Initializes runtime variables. Runs whenever the object is called. 
+    /// </summary>
     public void initializeRuntimeVariables() {
         isInitialized = true;
 
