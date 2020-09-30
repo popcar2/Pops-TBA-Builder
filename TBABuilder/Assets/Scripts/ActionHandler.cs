@@ -108,13 +108,13 @@ public class ActionHandler : MonoBehaviour
                 case RoomObject.PlayerAction.KillPlayer:
                     textPrompt.killPlayer();
                     // The delay for printText is so the flavor text is printed first before death/win text.
-                    StartCoroutine(textPrompt.printTextAfterDelay("\n" + defaultValues.deathText, 0.1f));
+                    StartCoroutine(textPrompt.printTextAfterDelay(defaultValues.deathText, 0.1f));
                     break;
 
                 case RoomObject.PlayerAction.WinGame:
                     textPrompt.winGame();
                     // The delay for printText is so the flavor text is printed first before death/win text.
-                    StartCoroutine(textPrompt.printTextAfterDelay("\n" + defaultValues.winText, 0.1f));
+                    StartCoroutine(textPrompt.printTextAfterDelay(defaultValues.winText, 0.1f));
                     break;
 
                 case RoomObject.PlayerAction.AddToInventory:
@@ -325,7 +325,7 @@ public class ActionHandler : MonoBehaviour
         {
             if (obj == null)
             {
-                textPrompt.printText("\n" + defaultValues.edibleNotFoundText);
+                textPrompt.printText(defaultValues.edibleNotFoundText);
                 return;
             }
 
@@ -335,7 +335,7 @@ public class ActionHandler : MonoBehaviour
         }
         else
         {
-            textPrompt.printText("\n" + defaultValues.unknownCommand);
+            textPrompt.printText(defaultValues.unknownCommand);
         }
     }
 
@@ -345,7 +345,7 @@ public class ActionHandler : MonoBehaviour
         {
             if (obj == null)
             {
-                textPrompt.printText("\n" + defaultValues.drinkableNotFoundText);
+                textPrompt.printText(defaultValues.drinkableNotFoundText);
                 return;
             }
 
@@ -355,7 +355,7 @@ public class ActionHandler : MonoBehaviour
         }
         else
         {
-            textPrompt.printText("\n" + defaultValues.unknownCommand);
+            textPrompt.printText(defaultValues.unknownCommand);
         }
     }
 
@@ -365,7 +365,7 @@ public class ActionHandler : MonoBehaviour
         {
             if (obj == null)
             {
-                textPrompt.printText("\n" + defaultValues.talkableNotFoundText);
+                textPrompt.printText(defaultValues.talkableNotFoundText);
                 return;
             }
 
@@ -375,7 +375,7 @@ public class ActionHandler : MonoBehaviour
         }
         else
         {
-            textPrompt.printText("\n" + defaultValues.unknownCommand);
+            textPrompt.printText(defaultValues.unknownCommand);
         }
     }
 
@@ -385,7 +385,7 @@ public class ActionHandler : MonoBehaviour
         {
             if (obj == null)
             {
-                textPrompt.printText("\n" + defaultValues.killableNotFoundText);
+                textPrompt.printText(defaultValues.killableNotFoundText);
                 return;
             }
 
@@ -395,7 +395,7 @@ public class ActionHandler : MonoBehaviour
         }
         else
         {
-            textPrompt.printText("\n" + defaultValues.unknownCommand);
+            textPrompt.printText(defaultValues.unknownCommand);
         }
     }
 
@@ -405,7 +405,7 @@ public class ActionHandler : MonoBehaviour
         {
             if (obj == null)
             {
-                textPrompt.printText("\n" + defaultValues.breakableNotFoundText);
+                textPrompt.printText(defaultValues.breakableNotFoundText);
                 return;
             }
 
@@ -415,7 +415,7 @@ public class ActionHandler : MonoBehaviour
         }
         else
         {
-            textPrompt.printText("\n" + defaultValues.unknownCommand);
+            textPrompt.printText(defaultValues.unknownCommand);
         }
     }
 
@@ -425,7 +425,7 @@ public class ActionHandler : MonoBehaviour
         {
             if (obj == null)
             {
-                textPrompt.printText("\n" + defaultValues.sittableNotFoundText);
+                textPrompt.printText(defaultValues.sittableNotFoundText);
                 return;
             }
 
@@ -435,7 +435,7 @@ public class ActionHandler : MonoBehaviour
         }
         else
         {
-            textPrompt.printText("\n" + defaultValues.unknownCommand);
+            textPrompt.printText(defaultValues.unknownCommand);
         }
     }
 
@@ -445,7 +445,7 @@ public class ActionHandler : MonoBehaviour
         {
             if (obj == null)
             {
-                textPrompt.printText("\n" + defaultValues.usableNotFoundText);
+                textPrompt.printText(defaultValues.usableNotFoundText);
                 return;
             }
 
@@ -455,7 +455,7 @@ public class ActionHandler : MonoBehaviour
         }
         else
         {
-            textPrompt.printText("\n" + defaultValues.unknownCommand);
+            textPrompt.printText(defaultValues.unknownCommand);
         }
     }
 
@@ -465,7 +465,7 @@ public class ActionHandler : MonoBehaviour
         {
             if (obj == null)
             {
-                textPrompt.printText("\n" + defaultValues.pickupableNotFoundText);
+                textPrompt.printText(defaultValues.pickupableNotFoundText);
                 return;
             }
 
@@ -475,7 +475,7 @@ public class ActionHandler : MonoBehaviour
         }
         else
         {
-            textPrompt.printText("\n" + defaultValues.unknownCommand);
+            textPrompt.printText(defaultValues.unknownCommand);
         }
     }
 
@@ -485,7 +485,7 @@ public class ActionHandler : MonoBehaviour
         {
             if (obj == null)
             {
-                textPrompt.printText("\n" + defaultValues.wearableNotFoundText);
+                textPrompt.printText(defaultValues.wearableNotFoundText);
                 return;
             }
 
@@ -495,7 +495,7 @@ public class ActionHandler : MonoBehaviour
         }
         else
         {
-            textPrompt.printText("\n" + defaultValues.unknownCommand);
+            textPrompt.printText(defaultValues.unknownCommand);
         }
     }
 
@@ -505,7 +505,7 @@ public class ActionHandler : MonoBehaviour
         {
             if (obj == null)
             {
-                textPrompt.printText("\n" + defaultValues.openableNotFoundText);
+                textPrompt.printText(defaultValues.openableNotFoundText);
                 return;
             }
 
@@ -515,7 +515,7 @@ public class ActionHandler : MonoBehaviour
         }
         else
         {
-            textPrompt.printText("\n" + defaultValues.unknownCommand);
+            textPrompt.printText(defaultValues.unknownCommand);
         }
     }
 
@@ -525,21 +525,21 @@ public class ActionHandler : MonoBehaviour
         {
             if (obj == null)
             {
-                textPrompt.printText("\n" + defaultValues.lookAtNotFoundText);
+                textPrompt.printText(defaultValues.lookAtNotFoundText);
                 return;
             }
 
             if (System.String.IsNullOrWhiteSpace(obj.runtimeLookAtFlavorText))
             {
-                textPrompt.printText("\n" + defaultValues.lookAtDefaultText.Replace("(NAME)", obj.name));
+                textPrompt.printText(defaultValues.lookAtDefaultText.Replace("(NAME)", obj.name));
                 return;
             }
 
-            textPrompt.printText("\n" + obj.runtimeLookAtFlavorText);
+            textPrompt.printText(obj.runtimeLookAtFlavorText);
         }
         else
         {
-            textPrompt.printText("\n" + defaultValues.unknownCommand);
+            textPrompt.printText(defaultValues.unknownCommand);
         }
     }
 

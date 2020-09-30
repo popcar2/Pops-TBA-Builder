@@ -132,7 +132,7 @@ public class InputParser : MonoBehaviour
         // and regular commands need a minimum of 2 words to work whereas player commands (like "inv") can be one word.
         // Check player commands. If one activates, return.
 
-        string failText = "\n" + defaultValues.unknownCommand;
+        string failText = defaultValues.unknownCommand;
 
         if (words.Length == 0)
         {
@@ -156,7 +156,51 @@ public class InputParser : MonoBehaviour
 
         // Regular Commands: Eat, Talk, Kill, Sit, Use, Pickup, Wear
         parseRegularCommands(command, targetObject);
-        
+    }
+
+    /// <summary>
+    /// Checks if the command is a player command and calls appropriate methods. Returns false if unsuccessful.
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="input"></param>
+    /// <returns>Returns true if successful</returns>
+    private bool parsePlayerCommands(string command, string input)
+    {
+        bool successFlag = true;
+
+        switch (command)
+        {
+            case "inv":
+            case "inventory":
+            case "i":
+                player.openInventory();
+                break;
+            case "look":
+                if (input.Split(' ').Length != 1)
+                {
+                    successFlag = false;
+                    break;
+                }
+                roomTracker.printCurrentRoomText();
+                break;
+            case "move":
+            case "go":
+                roomTracker.changeRoomViaRoomConnection(input);
+                break;
+            case "help":
+                textPrompt.printText(defaultValues.HelpText);
+                break;
+            // Fluff/secret commands
+            case "die":
+                textPrompt.printText("\"Eh, guess I'll die\". You suffocate yourself to death. Not sure why you'd want to do that.");
+                textPrompt.killPlayer();
+                break;
+            default:
+                successFlag = false;
+                break;
+        }
+
+        return successFlag;
     }
 
     /// <summary>
@@ -233,51 +277,9 @@ public class InputParser : MonoBehaviour
                 break;
             // unknown command
             default:
-                textPrompt.printText("\n" + defaultValues.unknownCommand);
+                textPrompt.printText(defaultValues.unknownCommand);
                 break;
         }
-    }
-
-    /// <summary>
-    /// Checks if the command is a player command and calls appropriate methods. Returns false if unsuccessful.
-    /// </summary>
-    /// <param name="command"></param>
-    /// <param name="input"></param>
-    /// <returns>Returns true if successful</returns>
-    private bool parsePlayerCommands(string command, string input)
-    {
-        bool successFlag = true;
-
-        switch (command)
-        {
-            case "inv":
-            case "inventory":
-            case "i":
-                player.openInventory();
-                break;
-            case "look":
-                if (input.Split(' ').Length != 1)
-                {
-                    successFlag = false;
-                    break;
-                }
-                roomTracker.printCurrentRoomText();
-                break;
-            case "move":
-            case "go":
-                roomTracker.changeRoomViaRoomConnection(input);
-                break;
-            // Fluff/secret commands
-            case "die":
-                textPrompt.printText("\n\"Eh, guess I'll die\". You suffocate yourself to death. Not sure why you'd want to do that.");
-                textPrompt.killPlayer();
-                break;
-            default:
-                successFlag = false;
-                break;
-        }
-
-        return successFlag;
     }
 
     /// <summary>
@@ -296,7 +298,7 @@ public class InputParser : MonoBehaviour
             // Success
             if (!hasFlavorText)
             {
-                textPrompt.printText("\n" + defaultSuccess);
+                textPrompt.printText(defaultSuccess);
             }
         }
         else
@@ -304,14 +306,14 @@ public class InputParser : MonoBehaviour
             // Failure 
             if (!hasFlavorText)
             {
-                textPrompt.printText("\n" + defaultFailure);
+                textPrompt.printText(defaultFailure);
             }
         }
 
         // print flavor text regardless
         if (hasFlavorText)
         {
-            textPrompt.printText("\n" + objFlavorText);
+            textPrompt.printText(objFlavorText);
         }
     }
 }

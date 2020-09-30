@@ -2,6 +2,7 @@
 
 public class DefaultValues : MonoBehaviour
 {
+    [Tooltip("Which commands are usable in-game")]
     [Header("Activated Commands")]
     [SerializeField] public bool eatActive = true;
     [SerializeField] public bool drinkActive = true;
@@ -15,6 +16,7 @@ public class DefaultValues : MonoBehaviour
     [SerializeField] public bool openActive = true;
     [SerializeField] public bool lookAtActive = true;
 
+    [Tooltip("The default flavor texts of generic actions")]
     [Header("Default Action Texts")]
 
     [SerializeField] public string edibleSuccessText;
@@ -40,6 +42,7 @@ public class DefaultValues : MonoBehaviour
 
     [SerializeField] public string lookAtDefaultText;
 
+    [Tooltip("Other default flavor texts of generic actions")]
     [Header("Other Action Texts")]
 
     [SerializeField] public string edibleNotFoundText;
@@ -54,6 +57,7 @@ public class DefaultValues : MonoBehaviour
     [SerializeField] public string openableNotFoundText;
     [SerializeField] public string lookAtNotFoundText;
 
+    [Tooltip("Miscellaneous default texts in the game")]
     [Header("Misc Texts")]
 
     [SerializeField] public string winText;
@@ -64,4 +68,5 @@ public class DefaultValues : MonoBehaviour
     [SerializeField] public string occupiedEquipmentText;
     [SerializeField] public string roomNotFoundText;
     [SerializeField] public string unknownCommand;
+    [TextArea(1, 2)] [SerializeField] public string HelpText;
 }

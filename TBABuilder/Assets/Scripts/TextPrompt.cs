@@ -49,7 +49,7 @@ public class TextPrompt : MonoBehaviour
             // Input text
             string userInput = inputField.text;
             inputField.text = "";
-            printText("\n\n> " + userInput);
+            printText("\n> " + userInput);
             inputParser.parseInput(userInput);
         }
 
@@ -65,10 +65,15 @@ public class TextPrompt : MonoBehaviour
     /// <summary>
     /// Adds text to the text queue and begins printing if it isn't already.
     /// </summary>
-    /// <param name="text"></param>
-    public void printText(string text)
+    /// <param name="text">The text you wish to print</param>
+    /// <param name="newLine">Whether the text is printed on a new line or not</param>
+    public void printText(string text, bool newLine = true)
     {
-        printQueue.Enqueue(text);
+        if (newLine)
+            printQueue.Enqueue("\n" + text);
+        else
+            printQueue.Enqueue(text);
+
         if (!isPrinting)
         {
             StartCoroutine(printQueuedText());
@@ -79,8 +84,7 @@ public class TextPrompt : MonoBehaviour
     /// Begins printing text after a set delay.
     /// </summary>
     /// <param name="text"></param>
-    /// <param name="time">Seconds before printing</param>
-    /// <returns></returns>
+    /// <param name="time">Delay in seconds</param>
     public IEnumerator printTextAfterDelay(string text, float time)
     {
         yield return new WaitForSeconds(time);

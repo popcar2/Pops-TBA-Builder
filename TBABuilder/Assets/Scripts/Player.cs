@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
     {
         if (inventory.Count == 0)
         {
-            textPrompt.printText("\n" + defaultValues.emptyInventoryText);
+            textPrompt.printText(defaultValues.emptyInventoryText);
             openEquipment();
             return;
         }
@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
         }
         itemList.Remove(itemList.Length - 2, 2);
 
-        string inv = "\n" + defaultValues.occupiedInventoryText.Replace("(ITEMS)", itemList.ToString());
+        string inv = defaultValues.occupiedInventoryText.Replace("(ITEMS)", itemList.ToString());
         textPrompt.printText(inv);
 
         openEquipment();
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
     {
         if (equippedItems.Count == 0)
         {
-            textPrompt.printText("\n" + defaultValues.emptyEquipmentText);
+            textPrompt.printText(defaultValues.emptyEquipmentText);
             return;
         }
 
@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
         }
         equipmentList.Remove(equipmentList.Length - 2, 2);
 
-        string equipment = "\n" + defaultValues.occupiedEquipmentText.Replace("(ITEMS)", equipmentList.ToString());
+        string equipment = defaultValues.occupiedEquipmentText.Replace("(ITEMS)", equipmentList.ToString());
 
         textPrompt.printText(equipment);
     }

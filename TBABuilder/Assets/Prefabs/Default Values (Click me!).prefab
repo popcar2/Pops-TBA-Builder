@@ -94,3 +94,5 @@ MonoBehaviour:
   occupiedEquipmentText: 'Your currently equipped items are: (ITEMS).'
   roomNotFoundText: There's nothing in that direction.
   unknownCommand: Unknown Command, type "help" for the list of commands
+  HelpText: 'Commands: Eat, drink, talk, kill, break, sit, use, pick up, equip, open,
+    look at.'

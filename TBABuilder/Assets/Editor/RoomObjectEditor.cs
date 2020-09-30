@@ -250,185 +250,151 @@ public class RoomObjectEditor : Editor
         GUIContent isDelayedLabel = new GUIContent("Is Delayed", "Whether the flavor text should be changed BEFORE the text is printed or AFTER the text is printed " +
             "(having it not delayed changes flavor text instantly, possibly printing the new flavor text if you're editing the current command), leave unchecked if unsure.");
 
-        // Change this to a Switch statement later
         if (objVars[i].actionCategory == RoomObject.ActionCategory.PlayerActions)
         {
-            if (objVars[i].playerAction == RoomObject.PlayerAction.AddToInventory)
+            switch (objVars[i].playerAction)
             {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-            }
-            else if (objVars[i].playerAction == RoomObject.PlayerAction.RemoveFromInventory)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-            }
-            else if (objVars[i].playerAction == RoomObject.PlayerAction.EquipItem)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-            }
-            else if (objVars[i].playerAction == RoomObject.PlayerAction.RemoveEquippedItem)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                case RoomObject.PlayerAction.AddToInventory:
+                case RoomObject.PlayerAction.RemoveFromInventory:
+                case RoomObject.PlayerAction.EquipItem:
+                case RoomObject.PlayerAction.RemoveEquippedItem:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    break;
             }
         }
         else if (objVars[i].actionCategory == RoomObject.ActionCategory.ObjectActions)
         {
-            if (objVars[i].objectAction == RoomObject.ObjectAction.DestroyObject)
+            switch (objVars[i].objectAction)
             {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsEdible)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                objVars[i].varsToChange.isEdible = GUILayout.Toggle(objVars[i].varsToChange.isEdible, "Become Edible");
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsDrinkable)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                objVars[i].varsToChange.isDrinkable = GUILayout.Toggle(objVars[i].varsToChange.isDrinkable, "Become Drinkable");
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsTalkable)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                objVars[i].varsToChange.isTalkable = GUILayout.Toggle(objVars[i].varsToChange.isTalkable, "Become Talkable");
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsKillable)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                objVars[i].varsToChange.isKillable = GUILayout.Toggle(objVars[i].varsToChange.isKillable, "Become Killable");
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsBreakable)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                objVars[i].varsToChange.isBreakable = GUILayout.Toggle(objVars[i].varsToChange.isBreakable, "Become Breakable");
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsSittable)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                objVars[i].varsToChange.isSittable = GUILayout.Toggle(objVars[i].varsToChange.isSittable, "Become Sittable");
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsUsable)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                objVars[i].varsToChange.isUsable = GUILayout.Toggle(objVars[i].varsToChange.isUsable, "Become Usable");
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsPickupable)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                objVars[i].varsToChange.isPickupable = GUILayout.Toggle(objVars[i].varsToChange.isPickupable, "Become Pickupable");
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsWearable)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                objVars[i].varsToChange.isWearable = GUILayout.Toggle(objVars[i].varsToChange.isWearable, "Become Wearable");
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.SetIsOpenable)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                objVars[i].varsToChange.isOpenable = GUILayout.Toggle(objVars[i].varsToChange.isWearable, "Become Openable");
-            }
+                case RoomObject.ObjectAction.DestroyObject:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    break;
+                case RoomObject.ObjectAction.SetIsEdible:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    objVars[i].varsToChange.isEdible = GUILayout.Toggle(objVars[i].varsToChange.isEdible, "Become Edible");
+                    break;
+                case RoomObject.ObjectAction.SetIsDrinkable:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    objVars[i].varsToChange.isDrinkable = GUILayout.Toggle(objVars[i].varsToChange.isDrinkable, "Become Drinkable");
+                    break;
+                case RoomObject.ObjectAction.SetIsTalkable:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    objVars[i].varsToChange.isTalkable = GUILayout.Toggle(objVars[i].varsToChange.isTalkable, "Become Talkable");
+                    break;
+                case RoomObject.ObjectAction.SetIsKillable:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    objVars[i].varsToChange.isKillable = GUILayout.Toggle(objVars[i].varsToChange.isKillable, "Become Killable");
+                    break;
+                case RoomObject.ObjectAction.SetIsBreakable:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    objVars[i].varsToChange.isBreakable = GUILayout.Toggle(objVars[i].varsToChange.isBreakable, "Become Breakable");
+                    break;
+                case RoomObject.ObjectAction.SetIsSittable:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    objVars[i].varsToChange.isSittable = GUILayout.Toggle(objVars[i].varsToChange.isSittable, "Become Sittable");
+                    break;
+                case RoomObject.ObjectAction.SetIsUsable:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    objVars[i].varsToChange.isUsable = GUILayout.Toggle(objVars[i].varsToChange.isUsable, "Become Usable");
+                    break;
+                case RoomObject.ObjectAction.SetIsPickupable:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    objVars[i].varsToChange.isPickupable = GUILayout.Toggle(objVars[i].varsToChange.isPickupable, "Become Pickupable");
+                    break;
+                case RoomObject.ObjectAction.SetIsWearable:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    objVars[i].varsToChange.isWearable = GUILayout.Toggle(objVars[i].varsToChange.isWearable, "Become Wearable");
+                    break;
+                case RoomObject.ObjectAction.SetIsOpenable:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    objVars[i].varsToChange.isOpenable = GUILayout.Toggle(objVars[i].varsToChange.isWearable, "Become Openable");
+                    break;
 
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeEdibleFlavorText)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                showAdditionalTextArea(ref objVars[i].varsToChange.edibleFlavorText);
-                objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeDrinkableFlavorText)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                showAdditionalTextArea(ref objVars[i].varsToChange.drinkableFlavorText);
-                objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeKillableFlavorText)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                showAdditionalTextArea(ref objVars[i].varsToChange.killableFlavorText);
-                objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeBreakableFlavorText)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                showAdditionalTextArea(ref objVars[i].varsToChange.breakableFlavorText);
-                objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangePickupableFlavorText)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                showAdditionalTextArea(ref objVars[i].varsToChange.pickupableFlavorText);
-                objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeSittableFlavorText)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                showAdditionalTextArea(ref objVars[i].varsToChange.sittableFlavorText);
-                objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeTalkableFlavorText)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                showAdditionalTextArea(ref objVars[i].varsToChange.talkableFlavorText);
-                objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeUsableFlavorText)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                showAdditionalTextArea(ref objVars[i].varsToChange.usableFlavorText);
-                objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeWearableFlavorText)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                showAdditionalTextArea(ref objVars[i].varsToChange.wearableFlavorText);
-                objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeOpenableFlavorText)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                showAdditionalTextArea(ref objVars[i].varsToChange.openableFlavorText);
-                objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
-            }
-            else if (objVars[i].objectAction == RoomObject.ObjectAction.ChangeLookAtFlavorText)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-                showAdditionalTextArea(ref objVars[i].varsToChange.lookAtFlavorText);
-                objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
+
+                case RoomObject.ObjectAction.ChangeEdibleFlavorText:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    showAdditionalTextArea(ref objVars[i].varsToChange.edibleFlavorText);
+                    objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
+                    break;
+                case RoomObject.ObjectAction.ChangeDrinkableFlavorText:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    showAdditionalTextArea(ref objVars[i].varsToChange.drinkableFlavorText);
+                    objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
+                    break;
+                case RoomObject.ObjectAction.ChangeKillableFlavorText:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    showAdditionalTextArea(ref objVars[i].varsToChange.killableFlavorText);
+                    objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
+                    break;
+                case RoomObject.ObjectAction.ChangeBreakableFlavorText:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    showAdditionalTextArea(ref objVars[i].varsToChange.breakableFlavorText);
+                    objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
+                    break;
+                case RoomObject.ObjectAction.ChangePickupableFlavorText:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    showAdditionalTextArea(ref objVars[i].varsToChange.pickupableFlavorText);
+                    objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
+                    break;
+                case RoomObject.ObjectAction.ChangeSittableFlavorText:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    showAdditionalTextArea(ref objVars[i].varsToChange.sittableFlavorText);
+                    objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
+                    break;
+                case RoomObject.ObjectAction.ChangeTalkableFlavorText:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    showAdditionalTextArea(ref objVars[i].varsToChange.talkableFlavorText);
+                    objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
+                    break;
+                case RoomObject.ObjectAction.ChangeUsableFlavorText:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    showAdditionalTextArea(ref objVars[i].varsToChange.usableFlavorText);
+                    objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
+                    break;
+                case RoomObject.ObjectAction.ChangeWearableFlavorText:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    showAdditionalTextArea(ref objVars[i].varsToChange.wearableFlavorText);
+                    objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
+                    break;
+                case RoomObject.ObjectAction.ChangeOpenableFlavorText:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    showAdditionalTextArea(ref objVars[i].varsToChange.openableFlavorText);
+                    objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
+                    break;
+                case RoomObject.ObjectAction.ChangeLookAtFlavorText:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    showAdditionalTextArea(ref objVars[i].varsToChange.lookAtFlavorText);
+                    objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
+                    break;
             }
         }
         else if (objVars[i].actionCategory == RoomObject.ActionCategory.RoomActions)
         {
-            if (objVars[i].roomAction == RoomObject.RoomAction.SwitchRooms)
+            switch (objVars[i].roomAction)
             {
-                // TODO: Change this later
-                GUIContent content = new GUIContent("Move to room", "Instantly move to the room you've selected, regardless of where it is. However, it has to be in roomTracker's room list.");
-                objVars[i].varsToChange.targetRoom = (Room)EditorGUILayout.ObjectField(content, objVars[i].varsToChange.targetRoom, typeof(Room), true);
-            }
-            else if (objVars[i].roomAction == RoomObject.RoomAction.AddObjectToRoom)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-            }
-            else if (objVars[i].roomAction == RoomObject.RoomAction.RemoveObjectFromRoom)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-            }
-            else if (objVars[i].roomAction == RoomObject.RoomAction.ChangeRoomEntryText)
-            {
-                showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
-                showAdditionalTextArea(ref objVars[i].varsToChange.roomEntryText);
-            }
-            else if (objVars[i].roomAction == RoomObject.RoomAction.ChangeRoomLookText)
-            {
-                showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
-                showAdditionalTextArea(ref objVars[i].varsToChange.roomLookText);
-            }
-            else if (objVars[i].roomAction == RoomObject.RoomAction.ActivateRoomConnection)
-            {
-                showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
-                showSelectableRoom(new GUIContent("Room To Activate", "The room that's going to be activated in Target Room."), ref objVars[i].varsToChange.targetRoomToActivate);
-            }
-            else if (objVars[i].roomAction == RoomObject.RoomAction.DisableRoomConnection)
-            {
-                showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
-                showSelectableRoom(new GUIContent("Room To Activate", "The room that's going to be activated in Target Room."), ref objVars[i].varsToChange.targetRoomToActivate);
+                case RoomObject.RoomAction.SwitchRooms:
+                    showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
+                    break;
+                case RoomObject.RoomAction.AddObjectToRoom:
+                case RoomObject.RoomAction.RemoveObjectFromRoom:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    break;
+                case RoomObject.RoomAction.ChangeRoomEntryText:
+                    showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
+                    showAdditionalTextArea(ref objVars[i].varsToChange.roomEntryText);
+                    break;
+                case RoomObject.RoomAction.ChangeRoomLookText:
+                    showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
+                    showAdditionalTextArea(ref objVars[i].varsToChange.roomLookText);
+                    break;
+                case RoomObject.RoomAction.ActivateRoomConnection:
+                    showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
+                    showSelectableRoom(new GUIContent("Room To Activate", "The room that's going to be activated in Target Room."), ref objVars[i].varsToChange.targetRoomToActivate);
+                    break;
+                case RoomObject.RoomAction.DisableRoomConnection:
+                    showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
+                    showSelectableRoom(new GUIContent("Room To Activate", "The room that's going to be activated in Target Room."), ref objVars[i].varsToChange.targetRoomToActivate);
+                    break;
             }
         }
         else if (objVars[i].actionCategory == RoomObject.ActionCategory.Conditionals)
