@@ -181,7 +181,7 @@ public class InputParser : MonoBehaviour
                     successFlag = false;
                     break;
                 }
-                roomTracker.printCurrentRoomText();
+                roomTracker.printCurrentLookText();
                 break;
             case "move":
             case "go":

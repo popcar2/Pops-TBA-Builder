@@ -17,17 +17,59 @@ public class RoomTracker : MonoBehaviour
 
         currentRoom = startingRoom;
         currentRoom.initializeRuntimeVariables();
-        textPrompt.printText(currentRoom.roomEntryText);
+        printCurrentRoomEntryText();
         actionHandler.executeActions(currentRoom, currentRoom.roomEntryActions);
     }
 
-    public void printCurrentRoomText()
+    public void printCurrentLookText()
     {
-        string roomText = currentRoom.runtimeLookText;
+        string lookText = currentRoom.runtimeLookText;
+
+        if (System.String.IsNullOrEmpty(lookText))
+        {
+            textPrompt.printText("(You forgot to add Room Look Text for this room)");
+        }
+        else
+        {
+            textPrompt.printText(lookText);
+        }
+    }
+
+    public void printCurrentRoomEntryText()
+    {
+        string roomText = currentRoom.runtimeRoomEntryText;
 
         if (System.String.IsNullOrEmpty(roomText))
         {
-            textPrompt.printText("(You forgot to add Room Text for this current room)");
+            textPrompt.printText("(You forgot to add Room Entry Text for this room)");
+        }
+        else
+        {
+            textPrompt.printText(roomText);
+        }
+    }
+
+    public void printCurrentRoomEntryText(float seconds)
+    {
+        string roomText = currentRoom.runtimeRoomEntryText;
+
+        if (System.String.IsNullOrEmpty(roomText))
+        {
+            StartCoroutine(textPrompt.printTextAfterDelay("(You forgot to add Room Entry Text for this room)", seconds));
+        }
+        else
+        {
+            StartCoroutine(textPrompt.printTextAfterDelay(roomText, seconds));
+        }
+    }
+
+    public void printCurrentRoomInactiveText(Room.RoomConnectionVars roomConnection)
+    {
+        string roomText = roomConnection.roomInactiveText;
+
+        if (System.String.IsNullOrEmpty(roomText))
+        {
+            textPrompt.printText("(You forgot to add Room Inactive Text for this room's connection)");
         }
         else
         {
@@ -55,7 +97,7 @@ public class RoomTracker : MonoBehaviour
 
         // Is delayed so the flavor text can be printed before room text.
         actionHandler.executeActions(currentRoom, currentRoom.roomEntryActions);
-        StartCoroutine(textPrompt.printTextAfterDelay(currentRoom.runtimeRoomEntryText, 0.1f));
+        printCurrentRoomEntryText(0.1f);
     }
 
     public void changeRoomViaRoomConnection(string userInput)
@@ -70,14 +112,14 @@ public class RoomTracker : MonoBehaviour
 
         currentRoom = newRoom;
         actionHandler.executeActions(currentRoom, currentRoom.roomEntryActions);
-        textPrompt.printText(currentRoom.runtimeRoomEntryText);
+        printCurrentRoomEntryText();
     }
 
     private Room findRoomConnection(string userInput)
     {
         Room newRoom = null;
 
-        foreach (Room.RoomConnectionVars roomConnection in currentRoom.runtimeRoomConnections)
+        foreach (Room.RoomConnectionVars roomConnection in currentRoom.roomConnections)
         {
             // No aliases
             if (string.IsNullOrWhiteSpace(roomConnection.roomAlias))
@@ -85,9 +127,9 @@ public class RoomTracker : MonoBehaviour
                 if (userInput.ToLower().Contains(roomConnection.room.name.ToLower()))
                 {
                     // If room inactive
-                    if (!roomConnection.isActive)
+                    if (!roomConnection.runtimeIsActive)
                     {
-                        textPrompt.printText(roomConnection.roomInactiveText);
+                        printCurrentRoomInactiveText(roomConnection);
                         return null;
                     }
                     newRoom = roomConnection.room;
@@ -104,9 +146,9 @@ public class RoomTracker : MonoBehaviour
                     if (userInput.ToLower().Contains(roomAlias.ToLower()))
                     {
                         // If room inactive
-                        if (!roomConnection.isActive)
+                        if (!roomConnection.runtimeIsActive)
                         {
-                            textPrompt.printText(roomConnection.roomInactiveText);
+                            printCurrentRoomInactiveText(roomConnection);
                             return null;
                         }
                         newRoom = roomConnection.room;

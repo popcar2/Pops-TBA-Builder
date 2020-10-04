@@ -392,11 +392,11 @@ public class RoomObjectEditor : Editor
                     break;
                 case RoomObject.RoomAction.ActivateRoomConnection:
                     showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
-                    showSelectableRoom(new GUIContent("Room To Activate", "The room that's going to be activated in Target Room."), ref objVars[i].varsToChange.targetRoomToActivate);
+                    showSelectableRoom(new GUIContent("Room To Activate", "The room that's going to be activated in Target Room."), ref objVars[i].varsToChange.targetRoomConnection);
                     break;
                 case RoomObject.RoomAction.DisableRoomConnection:
                     showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
-                    showSelectableRoom(new GUIContent("Room To Activate", "The room that's going to be activated in Target Room."), ref objVars[i].varsToChange.targetRoomToActivate);
+                    showSelectableRoom(new GUIContent("Room To Activate", "The room that's going to be activated in Target Room."), ref objVars[i].varsToChange.targetRoomConnection);
                     break;
             }
         }
@@ -405,22 +405,24 @@ public class RoomObjectEditor : Editor
             GUIContent conditionalBoolContent = new GUIContent("Activate on true", "Determines whether the commands in this conditional will activate when it's true or false");
             objVars[i].conditionalBool = GUILayout.Toggle(objVars[i].conditionalBool, conditionalBoolContent);
 
-            if (objVars[i].conditional == RoomObject.Conditional.ObjectExistsInRoom)
+
+            switch (objVars[i].conditional)
             {
-                showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-            }
-            else if (objVars[i].conditional == RoomObject.Conditional.ObjectExistsInInventory)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-            }
-            else if (objVars[i].conditional == RoomObject.Conditional.ObjectExistsInEquipment)
-            {
-                showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
-            }
-            else if (objVars[i].conditional == RoomObject.Conditional.RoomWasVisited)
-            {
-                showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
+                case RoomObject.Conditional.ObjectExistsInRoom:
+                    showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);  
+                    break;
+                case RoomObject.Conditional.ObjectExistsInInventory:
+                case RoomObject.Conditional.ObjectExistsInEquipment:
+                    showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    break;
+                case RoomObject.Conditional.RoomWasVisited:
+                    showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
+                    break;
+                case RoomObject.Conditional.RoomConnectionIsActive:
+                    showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);
+                    showSelectableRoom(new GUIContent("Target Room Connection", "The room that's going to be activated in Target Room."), ref objVars[i].varsToChange.targetRoomConnection);
+                    break;
             }
         }
         GUILayout.EndVertical();

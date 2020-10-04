@@ -70,6 +70,18 @@ public class ActionHandler : MonoBehaviour
                             executeActions(obj, objVars[i].conditionalVars);
                         }
                         break;
+                    case RoomObject.Conditional.RoomConnectionIsActive:
+                        bool roomConnectionIsActive = false;
+                        foreach (Room.RoomConnectionVars roomConnectionVars in objVars[i].varsToChange.targetRoom.roomConnections)
+                        {
+                            if (roomConnectionVars.room == objVars[i].varsToChange.targetRoomConnection && roomConnectionVars.runtimeIsActive)
+                                roomConnectionIsActive = true;
+                        }
+                        if (roomConnectionIsActive)
+                        {
+                            executeActions(obj, objVars[i].conditionalVars);
+                        }
+                        break;
                     default:
                         Debug.Log($"Unknown Conditional enum at {obj.name}: you forgot to add what to do in ActionHandler!");
                         break;
@@ -282,10 +294,10 @@ public class ActionHandler : MonoBehaviour
                     break;
 
                 case RoomObject.RoomAction.ActivateRoomConnection:
-                    setActiveRoomConnection(action.varsToChange.targetRoom, action.varsToChange.targetRoomToActivate, true);
+                    setActiveRoomConnection(action.varsToChange.targetRoom, action.varsToChange.targetRoomConnection, true);
                     break;
                 case RoomObject.RoomAction.DisableRoomConnection:
-                    setActiveRoomConnection(action.varsToChange.targetRoom, action.varsToChange.targetRoomToActivate, false);
+                    setActiveRoomConnection(action.varsToChange.targetRoom, action.varsToChange.targetRoomConnection, false);
                     break;
 
                 default:
@@ -560,7 +572,7 @@ public class ActionHandler : MonoBehaviour
         {
             if (roomConnectionVars.room == roomConnection)
             {
-                roomConnectionVars.isActive = activeBool;
+                roomConnectionVars.runtimeIsActive = activeBool;
             }
         }
     }

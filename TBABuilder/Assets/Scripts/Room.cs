@@ -16,7 +16,6 @@ public class Room : ScriptableObject
     [HideInInspector] public List<RoomObject> runtimeRoomObjects = new List<RoomObject>();
     [HideInInspector] public string runtimeRoomEntryText;
     [HideInInspector] public string runtimeLookText;
-    [HideInInspector] public List<RoomConnectionVars> runtimeRoomConnections = new List<RoomConnectionVars>();
 
     [HideInInspector] public List<RoomObject.EditorVariables> roomEntryActions = new List<RoomObject.EditorVariables>();
 
@@ -34,7 +33,11 @@ public class Room : ScriptableObject
         if (String.IsNullOrEmpty(runtimeRoomEntryText))
             runtimeRoomEntryText = roomEntryText;
 
-        runtimeRoomConnections = roomConnections;
+        foreach (RoomConnectionVars roomConnection in roomConnections)
+        {
+            if (roomConnection.isInitialized == false)
+                roomConnection.initializeRuntimeVariables();
+        }
 
         foreach (RoomObject obj in runtimeRoomObjects)
         {
@@ -51,6 +54,14 @@ public class Room : ScriptableObject
         public string roomAlias;
         public string roomInactiveText;
         public bool isActive = true;
+        public bool runtimeIsActive;
+
+        [NonSerialized] public bool isInitialized = false;
+
+        public void initializeRuntimeVariables()
+        {
+            runtimeIsActive = isActive;
+        }
     }
 
     public void removeRoomObject(RoomObject obj)
