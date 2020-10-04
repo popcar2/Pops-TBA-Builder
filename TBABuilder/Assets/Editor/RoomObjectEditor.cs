@@ -259,6 +259,7 @@ public class RoomObjectEditor : Editor
                 case RoomObject.PlayerAction.EquipItem:
                 case RoomObject.PlayerAction.RemoveEquippedItem:
                     showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
                     break;
             }
         }
@@ -268,6 +269,7 @@ public class RoomObjectEditor : Editor
             {
                 case RoomObject.ObjectAction.DestroyObject:
                     showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
                     break;
                 case RoomObject.ObjectAction.SetIsEdible:
                     showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
@@ -378,6 +380,7 @@ public class RoomObjectEditor : Editor
                 case RoomObject.RoomAction.AddObjectToRoom:
                 case RoomObject.RoomAction.RemoveObjectFromRoom:
                     showSelectableRoomObject(targetObjectLabel, ref objVars[i].varsToChange.targetObject);
+                    objVars[i].isDelayed = GUILayout.Toggle(objVars[i].isDelayed, isDelayedLabel);
                     break;
                 case RoomObject.RoomAction.ChangeRoomEntryText:
                     showSelectableRoom(targetRoomLabel, ref objVars[i].varsToChange.targetRoom);

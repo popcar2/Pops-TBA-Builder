@@ -85,6 +85,9 @@ public class ActionHandler : MonoBehaviour
     /// <param name="action">The action to execute</param>
     public void executeOneAction(Object obj, RoomObject.EditorVariables action)
     {
+
+        // executeActions happens twice. Once to execute the actions normally, and once to execute delayed actions.
+        // This method happens the first time, to add the actions marked as delayed to delayedActions.
         if (checkDelayed)
         {
             if (action.isDelayed)
@@ -304,19 +307,21 @@ public class ActionHandler : MonoBehaviour
     /// <param name="objVars">The list of actions</param>
     public void doGenericAction(Object obj, string defaultSuccessText, string defaultFailText, ref string flavorText, bool successBool, List<RoomObject.EditorVariables> objVars)
     {
+        // CheckDelayed is a flag variable that activates on the first execution of actions to add delayed actions to the delayedActions list
+        checkDelayed = true;
+
         if (successBool)
             executeActions(obj, objVars);
 
-        inputParser.printResponse(successBool, defaultSuccessText, defaultFailText, ref flavorText);
         checkDelayed = false;
+        inputParser.printResponse(successBool, defaultSuccessText, defaultFailText, ref flavorText);
 
+        // Do delayed actions
         if (successBool)
         {
             executeActions(obj, delayedActions);
             delayedActions.Clear();
         }
-
-        checkDelayed = true;
     }
 
     public void eatObject(RoomObject obj)

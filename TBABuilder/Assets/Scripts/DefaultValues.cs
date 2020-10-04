@@ -68,5 +68,5 @@ public class DefaultValues : MonoBehaviour
     [SerializeField] public string occupiedEquipmentText;
     [SerializeField] public string roomNotFoundText;
     [SerializeField] public string unknownCommand;
-    [TextArea(1, 2)] [SerializeField] public string HelpText;
+    [TextArea(1, 5)] [SerializeField] public string HelpText;
 }
