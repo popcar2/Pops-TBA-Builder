@@ -1,4 +1,7 @@
-# Pops-TBA-Builder
+# Pop's TBA Builder
+
+## [Download it](https://github.com/popcar2/Pops-TBA-Builder/releases) | [Watch the tutorial video!](https://youtu.be/vHbMqbkBDKs)
+
 Pop's Text Based Adventure Builder is a text based adventure creator where you don't have to edit a single line of code!
 
 This project values simplicity without sacrificing power and customizability. You can create the game's logic, edit responses, flavor texts, and create an entire story 
